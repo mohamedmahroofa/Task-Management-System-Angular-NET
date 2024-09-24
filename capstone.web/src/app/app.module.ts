@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { PriorityComponent } from './priority/priority.component';
 import { PriorityListComponent } from './priority-list/priority-list.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PriorityListComponent } from './priority-list/priority-list.component';
     HeaderComponent,
     LoginComponent,
     PriorityComponent,
-    PriorityListComponent
+    PriorityListComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
