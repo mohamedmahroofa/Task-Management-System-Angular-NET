@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using capstone.web.api.Data;
+using capstone.web.api.Models;
 
 
 namespace capstone.web.api
@@ -91,6 +92,7 @@ namespace capstone.web.api
             app.UseAuthorization();
 
             app.MapUserEndpoints();
+            app.MapCategoryEndpoints();
 
             //var summaries = new[]
             //{
@@ -137,6 +139,25 @@ namespace capstone.web.api
                     Username = "general",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("general-password"),
                     Role = "General"
+                });
+
+                context.SaveChanges();
+            }
+            if (!context.Categories.Any())
+            {
+                // Example seed categories
+                context.Categories.Add(new Category
+                {
+                    Name = "1",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                });
+
+                context.Categories.Add(new Category
+                {
+                    Name = "2",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
                 });
 
                 context.SaveChanges();
