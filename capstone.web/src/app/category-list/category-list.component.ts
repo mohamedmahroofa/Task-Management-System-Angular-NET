@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../models/category';
+import { Category } from '../models/category';
+import { Router } from "@angular/router";
+
+@Component({
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrl: './category-list.component.css'
+})
+export class CategoryListComponent implements OnInit{
+  categories: Category[] = []; // Array to hold list of categories
+
+  constructor(private categoryService: CategoryService, private router: Router) {}
+
+  ngOnInit() {
+    // Fetch persons on component initialization
+    this.categoryService.getCategories().subscribe((data: Category[]) => {
+      this.categories = data;
+    });
+  }
+
+  // Navigate to category details component
+  viewCategory(id: string) {
+    this.router.navigate(["/category", id]);
+  }
+
+  // Navigate to new category form
+  addCategory() {
+    this.router.navigate(["/category"]);
+  }
+} 
+
+
