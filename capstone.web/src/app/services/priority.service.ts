@@ -7,7 +7,7 @@ import { Priority } from '../models/priority';
 })
 export class PriorityService {
   constructor(private http: HttpClient) { }
-  url = 'https://localhost:7197/api';
+  url = 'https://localhost:7197/api/priorities';
     // Fetch the list of Seller
     getPrioritys(): Observable<Priority[]> {
       return this.http.get<Priority[]>(this.url);
@@ -20,7 +20,6 @@ export class PriorityService {
   
     // Add a new Priority
     addPriority(priority: Priority): Observable<Priority> {
-      priority.priorityId = 1 // this woill increment by api
       return this.http.post<Priority>(this.url, priority);
     }
   
