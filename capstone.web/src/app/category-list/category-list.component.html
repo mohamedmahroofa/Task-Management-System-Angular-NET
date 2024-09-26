@@ -11,14 +11,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let person of persons">
+        <tr *ngFor="let category of categories">
           <td>{{ category.categoryId }}</td>
           <td>{{ category.name }}</td>
           <td>{{ category.dateCreated }}</td>
           <td>{{ category.isDeleted }}</td>
           <td>
             <!-- Button to view category details -->
-            <button (click)="viewCategory(category.id)" class="btn btn-primary">
+            <button (click)="viewCategory(category.categoryId)" class="btn btn-primary">
               View
             </button>
           </td>

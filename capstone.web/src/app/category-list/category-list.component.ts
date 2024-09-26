@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../models/category';
+import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
 import { Router } from "@angular/router";
 
@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.css'
+
 })
 export class CategoryListComponent implements OnInit{
   categories: Category[] = []; // Array to hold list of categories
@@ -15,19 +16,19 @@ export class CategoryListComponent implements OnInit{
 
   ngOnInit() {
     // Fetch persons on component initialization
-    this.categoryService.getCategories().subscribe((data: Category[]) => {
+    this.categoryService.getCategories().subscribe((data) => {
       this.categories = data;
     });
   }
 
   // Navigate to category details component
-  viewCategory(id: string) {
-    this.router.navigate(["/category", id]);
+  viewCategory(id: number) {
+    this.router.navigate(['/category', id]);
   }
 
   // Navigate to new category form
   addCategory() {
-    this.router.navigate(["/category"]);
+    this.router.navigate(['/category']);
   }
 } 
 
