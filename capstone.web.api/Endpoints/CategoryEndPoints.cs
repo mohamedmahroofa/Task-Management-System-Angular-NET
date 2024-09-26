@@ -1,4 +1,4 @@
-﻿namespace capstone.web.api
+﻿namespace capstone.web.api.Endpoints
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
