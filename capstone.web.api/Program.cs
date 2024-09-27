@@ -151,18 +151,10 @@ namespace capstone.web.api
                 // Example seed priorities
                 context.Priorities.Add(new Priority
                 {
-                    Name = "1",
+                    Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
                 });
-
-                context.Priorities.Add(new Priority
-                {
-                    Name = "2",
-                    IsDeleted = false,
-                    DateCreated = DateTime.Now,
-                });
-
                 context.SaveChanges();
             }
         }
