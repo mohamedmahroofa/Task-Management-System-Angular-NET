@@ -4,18 +4,18 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
+          
           <th>Name</th>
           <th>DateCreated</th>
-          <th>IsDeleted</th>
+          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let category of categories">
-          <td>{{ category.categoryId }}</td>
+          
           <td>{{ category.name }}</td>
-          <td>{{ category.dateCreated }}</td>
-          <td>{{ category.isDeleted }}</td>
+          <td>{{ category.dateCreated | date: 'yyyy-MM-dd' }}</td>
+          
           <td>
             <!-- Button to view category details -->
             <button (click)="viewCategory(category.categoryId)" class="btn btn-primary">

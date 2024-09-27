@@ -129,14 +129,14 @@ namespace capstone.web.api
                 // Example seed categories
                 context.Categories.Add(new Category
                 {
-                    Name = "1",
+                    Name = "Schoolwork",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
                 });
 
                 context.Categories.Add(new Category
                 {
-                    Name = "2",
+                    Name = "Personal",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
                 });
