@@ -14,7 +14,7 @@
         <tbody>
             <tr *ngFor="let priority of prioritys">
                 <td>{{ priority.name }}</td>
-                <td>{{ priority.dateCreated }}</td>
+                <td>{{ priority.dateCreated | date: 'yyyy-MM-dd'}}</td>
                 <td>
                     <!-- Button to view priority details -->
                     <button (click)="viewPriority(priority.priorityId)" class="btn btn-primary">
