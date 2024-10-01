@@ -33,6 +33,9 @@ export class PriorityListComponent implements OnInit{
   addPriority() {
     this.router.navigate(['/priority']);
   }
+  goBack() {
+    this.router.navigate(['/']);
+  }
 
  
 }
