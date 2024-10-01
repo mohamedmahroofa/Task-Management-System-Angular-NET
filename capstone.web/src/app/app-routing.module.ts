@@ -10,11 +10,11 @@ import { NavigationComponent } from './navigation/navigation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: NavigationComponent, canActivate: [AuthGuard] }, // Example default page
+  { path: '', component: HeaderComponent, canActivate: [AuthGuard] }, // Example default page
   { path: 'prioritys', component: PriorityListComponent },
   { path: 'priority', component: PriorityComponent },
   { path: 'priority/:id', component: PriorityComponent },
-  // { path: 'navigation', component: NavigationComponent },
+  { path: 'navigation', component: NavigationComponent },
   { path: '**', redirectTo: '' },
 ];
 
