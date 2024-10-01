@@ -15,7 +15,7 @@ export class CategoryComponent implements OnInit {
     dateCreated: new Date(),
     isDeleted: false,
     categoryId: 0,
-    id: '' };
+  };
 
   constructor(
     private route: ActivatedRoute,

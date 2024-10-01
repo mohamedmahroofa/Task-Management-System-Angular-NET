@@ -8,7 +8,7 @@ import { Category } from '../models/category';
 })
 export class CategoryService {
 
-  private url = "http://localhost:3000/"; // URL to the JSON server
+  private url = "https://localhost:7197/api/categories"; // URL to the JSON server
 
   constructor(private http: HttpClient) { }
 

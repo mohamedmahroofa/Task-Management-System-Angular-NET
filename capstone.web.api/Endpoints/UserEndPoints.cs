@@ -1,4 +1,4 @@
-﻿namespace capstone.web.api
+﻿namespace capstone.web.api.Endpoints
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
@@ -9,6 +9,7 @@
     using System.Security.Claims;
     using System.Text;
     using capstone.web.api.Data;
+    using capstone.web.api.Models;
 
     public static class UserEndpoints
     {

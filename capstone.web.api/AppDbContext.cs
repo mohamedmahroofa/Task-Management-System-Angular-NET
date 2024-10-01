@@ -1,5 +1,4 @@
-﻿using capstone.web.api;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using capstone.web.api.Models;
 
 namespace capstone.web.api.Data
