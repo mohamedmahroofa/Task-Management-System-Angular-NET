@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'categories', component: CategoryListComponent },
   { path: 'category/:id', component: CategoryComponent },
   { path: "category", component: CategoryComponent },
-  { path: '**', redirectTo: ''},,
+  { path: '**', redirectTo: ''},
 ];
 
 @NgModule({
