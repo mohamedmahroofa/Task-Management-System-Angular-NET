@@ -1,5 +1,5 @@
-﻿using capstone.web.api;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using capstone.web.api.Models;
 
 namespace capstone.web.api.Data
 {
@@ -10,5 +10,7 @@ namespace capstone.web.api.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Priority> Priorities { get; set; }
     }
 }
