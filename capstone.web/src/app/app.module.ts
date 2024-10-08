@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { PriorityComponent } from './priority/priority.component';
 import { PriorityListComponent } from './priority-list/priority-list.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,11 @@ import { NavigationComponent } from './navigation/navigation.component';
     LoginComponent,
     PriorityComponent,
     PriorityListComponent,
-    NavigationComponent
+    NavigationComponent,
+    CategoryListComponent,
+    CategoryComponent
   ],
-  imports: [
+  imports: [  
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -27,13 +27,14 @@
             // GET: /api/categories/{id}
             group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
             {
-                var category = await db.Categories.FindAsync(id);
+                var category = await db.Categories.Where(c => !c.IsDeleted).FirstOrDefaultAsync(c => c.CategoryId == id);
                 return category is not null ? Results.Ok(category) : Results.NotFound();
             });
 
             // POST: /api/categories
             group.MapPost("/", async (Category category, AppDbContext db) =>
             {
+                category.IsDeleted = false;
                 db.Categories.Add(category);
                 await db.SaveChangesAsync();
                 return Results.Created($"/api/categories/{category.CategoryId}", category);
@@ -56,7 +57,7 @@
                 var category = await db.Categories.FindAsync(id);
                 if (category is null) return Results.NotFound();
 
-                db.Categories.Remove(category);
+                category.IsDeleted = true;
                 await db.SaveChangesAsync();
                 return Results.NoContent();
             });

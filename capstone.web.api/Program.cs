@@ -5,6 +5,7 @@ using System.Text;
 using capstone.web.api.Data;
 using capstone.web.api.Models;
 using capstone.web.api.Endpoints;
+using capstone.web.api.Endpoints;
 
 
 namespace capstone.web.api
@@ -132,14 +133,14 @@ namespace capstone.web.api
                 // Example seed categories
                 context.Categories.Add(new Category
                 {
-                    Name = "1",
+                    Name = "Schoolwork",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
                 });
 
                 context.Categories.Add(new Category
                 {
-                    Name = "2",
+                    Name = "Personal",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
                 });
