@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PriorityListComponent implements OnInit{
   prioritys: Priority[] = []; // Array to hold list of persons
-  displayedColumns: string[] = ['name', 'createdDate'];
+  displayedColumns: string[] = ['name', 'dateCreated'];
   
  
     constructor(
