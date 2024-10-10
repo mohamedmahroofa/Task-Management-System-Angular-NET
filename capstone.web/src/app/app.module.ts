@@ -13,7 +13,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import {MatTableModule} from '@angular/material/table';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    MatTableModule
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
