@@ -12,19 +12,26 @@ import { PriorityListComponent } from './priority-list/priority-list.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
-import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    PriorityComponent,
+    PriorityListComponent,
+    NavigationComponent,
+    CategoryListComponent,
+    CategoryComponent
   ],
   imports: [  
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+   
+
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
