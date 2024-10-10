@@ -30,6 +30,10 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getCategory(parseInt(id)).subscribe(data => {
       this.category = data;
       console.log(this.category)
+
+      if(typeof this.category.dateCreated === "string") {
+        this.category.dateCreated = this.category.dateCreated.split('T')[0];
+      }
     });
     }
   }
