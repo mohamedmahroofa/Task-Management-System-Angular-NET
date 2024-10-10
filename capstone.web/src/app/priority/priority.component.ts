@@ -28,6 +28,10 @@ ngOnInit() {
     this.priorityService.getPriority(parseInt(id)).subscribe(data => {
       this.priority = data;
       console.log(this.priority)
+
+      if(typeof this.priority.dateCreated === "string") {
+        this.priority.dateCreated = this.priority.dateCreated.split('T')[0];
+      }
     });
   }
 }
