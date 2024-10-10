@@ -72,3 +72,33 @@
   display: block;
   margin-top: 10px;
 }
+
+
+
+/* add css */
+
+
+.login-title {
+  font-size: 3rem;
+}
+
+.profile-img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* .account-wall {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+} */
+
+.form-control {
+  border-radius: 20px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 20px;
+}
