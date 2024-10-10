@@ -1,8 +1,8 @@
 export interface Category {
-  
+
   categoryId: number;
   name: string;
-  dateCreated: Date;
+  dateCreated: Date | string;
   isDeleted: boolean;
- 
+
 }
