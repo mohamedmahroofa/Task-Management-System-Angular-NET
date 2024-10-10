@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using capstone.web.api.Data;
+using capstone.web.api.Models;
+using capstone.web.api.Endpoints;
+using capstone.web.api.Endpoints;
 
 
 namespace capstone.web.api
@@ -91,26 +94,10 @@ namespace capstone.web.api
             app.UseAuthorization();
 
             app.MapUserEndpoints();
+            app.MapCategoryEndpoints();
+            app.MapPriorityEndpoints();
 
-            //var summaries = new[]
-            //{
-            //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            //};
-
-            //app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            //{
-            //    var forecast = Enumerable.Range(1, 5).Select(index =>
-            //        new WeatherForecast
-            //        {
-            //            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            //            TemperatureC = Random.Shared.Next(-20, 55),
-            //            Summary = summaries[Random.Shared.Next(summaries.Length)]
-            //        })
-            //        .ToArray();
-            //    return forecast;
-            //})
-            //.WithName("GetWeatherForecast")
-            //.WithOpenApi();
+            
 
             app.Run();
         }
@@ -139,6 +126,36 @@ namespace capstone.web.api
                     Role = "General"
                 });
 
+                context.SaveChanges();
+            }
+            if (!context.Categories.Any())
+            {
+                // Example seed categories
+                context.Categories.Add(new Category
+                {
+                    Name = "Schoolwork",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                });
+
+                context.Categories.Add(new Category
+                {
+                    Name = "Personal",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                });
+
+                context.SaveChanges();
+            }
+            if (!context.Priorities.Any())
+            {
+                // Example seed priorities
+                context.Priorities.Add(new Priority
+                {
+                    Name = "Low",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                });
                 context.SaveChanges();
             }
         }
