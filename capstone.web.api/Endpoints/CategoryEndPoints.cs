@@ -20,7 +20,7 @@
             // GET: /api/categories
             group.MapGet("/", async (AppDbContext db) =>
             {
-                var categories = await db.Categories.ToListAsync();
+                var categories = await db.Categories.Where(c => !c.IsDeleted)ToListAsync();
                 return Results.Ok(categories);
             });
 
