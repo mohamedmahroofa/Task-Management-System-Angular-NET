@@ -10,9 +10,9 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .brand-color-blue {
-    color: #004aad;
+    color: #004aad !important;
 }
 
 .brand-background-color-blue {
-    background-color: #004aad;
+    background-color: #004aad !important;
 }
