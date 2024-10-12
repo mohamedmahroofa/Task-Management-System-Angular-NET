@@ -14,6 +14,11 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,11 @@ import {MatTableModule} from '@angular/material/table';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule, MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatButtonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

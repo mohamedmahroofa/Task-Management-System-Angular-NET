@@ -3,6 +3,7 @@ import { Priority } from '../models/priority';
 import { PriorityService } from '../services/priority.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-priority',
   templateUrl: './priority.component.html',
