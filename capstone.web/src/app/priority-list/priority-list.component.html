@@ -23,7 +23,7 @@
       <td mat-cell *matCellDef="let priority">
         <button
           (click)="viewPriority(priority.priorityId)"
-          class="btn btn-primary"
+          mat-raised-button color="primary"
         >
           View
         </button>
@@ -35,7 +35,7 @@
         <td mat-cell *matCellDef="let priority">
           <button
             (click)="deletePriority(priority.priorityId)"
-            class="btn btn-danger"
+            mat-raised-button color="warn"
           >
             Delete
           </button>
