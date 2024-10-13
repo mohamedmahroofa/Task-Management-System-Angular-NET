@@ -1,9 +1,9 @@
 <div class="container">
-  <button mat-raised-button (click)="addPriority()" color="accent">
+  <button mat-raised-button (click)="addPriority()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
     New priority
   </button>
 
-  <button type="button" (click)="goBack()" class="btn btn-secondary mb-3 ml-2">
+  <button mat-raised-button type="button" (click)="goBack()" color="gray" style="margin-bottom: 15px;">
     Back
   </button>
   <table mat-table [dataSource]="prioritys" class="mat-elevation-z8">
