@@ -61,9 +61,9 @@
             required
             #dateInput="ngModel"
           />
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
           <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+             <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="dateInput.invalid && (dateInput.dirty || dateInput.touched)">
             Date is required.
           </mat-error>
