@@ -35,38 +35,46 @@
 
   <div class="container">
     <div class="form-border">
-    <form (ngSubmit)="savePriority()" class="form-container">
+      <form (ngSubmit)="savePriority()" #priorityForm="ngForm" class="form-container">
         <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Name</mat-label>
-            <input
-                matInput
-                [(ngModel)]="priority.name"
-                name="name"
-                required
-                class="large-input"   
-            />
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            [(ngModel)]="priority.name"
+            name="name"
+            required
+            class="large-input"
+            #nameInput="ngModel" 
+          />
+          <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+            Name is required.
+          </mat-error>
         </mat-form-field>
-
+  
         <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Choose a date</mat-label>
-            <input
-                matInput
-                [matDatepicker]="picker"
-                [(ngModel)]="priority.dateCreated"
-                name="dateCreated"
-                required
-            />
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [(ngModel)]="priority.dateCreated"
+            name="dateCreated"
+            required
+            #dateInput="ngModel"
+          />
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-error *ngIf="dateInput.invalid && (dateInput.dirty || dateInput.touched)">
+            Date is required.
+          </mat-error>
         </mat-form-field>
-
+  
         <section class="button-container">
-            <button mat-raised-button color="primary" class="large-button">Save</button>
-            <button mat-raised-button color="warn" class="large-button">Delete</button>
-            <button mat-raised-button color="gray" class="large-button">Back</button>
+          <button mat-raised-button color="primary" class="large-button" [disabled]="priorityForm.invalid">Save</button>
+          <button mat-raised-button color="warn" class="large-button">Delete</button>
+          <button mat-raised-button color="gray" class="large-button">Back</button>
         </section>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-
+  
