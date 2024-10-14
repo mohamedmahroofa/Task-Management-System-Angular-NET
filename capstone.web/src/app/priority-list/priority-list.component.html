@@ -1,9 +1,9 @@
 <div class="container">
-  <button (click)="addPriority()" class="btn btn-success mb-3">
+  <button mat-raised-button (click)="addPriority()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
     New priority
   </button>
 
-  <button type="button" (click)="goBack()" class="btn btn-secondary mb-3 ml-2">
+  <button mat-raised-button type="button" (click)="goBack()" color="gray" style="margin-bottom: 15px;">
     Back
   </button>
   <table mat-table [dataSource]="prioritys" class="mat-elevation-z8">
@@ -23,7 +23,7 @@
       <td mat-cell *matCellDef="let priority">
         <button
           (click)="viewPriority(priority.priorityId)"
-          class="btn btn-primary"
+          mat-raised-button color="primary"
         >
           View
         </button>
@@ -35,7 +35,7 @@
         <td mat-cell *matCellDef="let priority">
           <button
             (click)="deletePriority(priority.priorityId)"
-            class="btn btn-danger"
+            mat-raised-button color="warn"
           >
             Delete
           </button>
