@@ -26,8 +26,9 @@
     }
 
     .large-input {
-        font-size: 16px; /* Larger text in input */
-        padding: 12px; /* More padding for bigger input */
+        font-size: 20px; /* Larger text in input */
+        padding: 16px; /* More padding for bigger input */
+        min-height: 48px; /* Minimum height for input fields */
     }
 
     .button-container {
@@ -37,7 +38,7 @@
     }
 
     .large-button {
-        font-size: 16px; /* Larger text on buttons */
-        padding: 10px 20px; /* More padding for bigger buttons */
+        font-size: 20px; /* Larger text on buttons */
+        padding: 12px 24px; /* More padding for bigger buttons */
         margin: 8px; /* Space between buttons */
     }
