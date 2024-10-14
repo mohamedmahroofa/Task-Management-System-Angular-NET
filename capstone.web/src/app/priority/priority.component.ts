@@ -31,9 +31,9 @@ ngOnInit() {
       this.priority = data;
       console.log(this.priority)
 
-      if(typeof this.priority.dateCreated === "string") {
+   /*   if(typeof this.priority.dateCreated === "string") {
         this.priority.dateCreated = this.priority.dateCreated.split('T')[0];
-      }
+      } */
     });
   }
 }
