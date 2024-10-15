@@ -1,9 +1,13 @@
-.form-signin {
+#login .login-container{
+  width: 500px;
+  height: 700px;
+ }
+
+ .form-signin {
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin: 0 auto; 
 }
-
   .form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
   }
@@ -53,7 +57,6 @@
   font-weight: 400;
   display: block;
 }
-
 .profile-img {
   width: 96px;
   height: 96px;
@@ -74,31 +77,3 @@
 }
 
 
-
-/* add css */
-
-
-.login-title {
-  font-size: 3rem;
-}
-
-.profile-img {
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-/* .account-wall {
-  background-color: #f7f7f7;
-  padding: 20px;
-  border-radius: 10px;
-} */
-
-.form-control {
-  border-radius: 20px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  border-radius: 20px;
-}
