@@ -24,7 +24,7 @@ export class CategoryService {
 
   // Update an existing category
   updatecategory(category: Category): Observable<Category> {
-    return this.http.put<Category>(`${this.url}/${category.id}`, category);
+    return this.http.put<Category>(`${this.url}/${category.categoryId}`, category);
   }
 
   // Delete a category by id
