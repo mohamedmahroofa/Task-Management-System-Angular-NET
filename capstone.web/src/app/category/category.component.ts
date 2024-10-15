@@ -7,7 +7,7 @@ import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrl: './category.component.css',
+  styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit {
 
@@ -22,7 +22,6 @@ export class CategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private categoryService: CategoryService,
-  
   ) {}
 
   ngOnInit() {
@@ -32,16 +31,9 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getCategory(parseInt(id)).subscribe(data => {
       this.category = data;
       console.log(this.category)
-
-      if(typeof this.category.dateCreated === "string") {
-        this.category.dateCreated = this.category.dateCreated.split('T')[0];
-      }
     });
     }
   }
-
-
-
   // Save category details
   saveCategory() {
     if (this.category.categoryId) {
