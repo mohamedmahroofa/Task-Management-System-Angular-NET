@@ -20,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import {MatButtonModule} from '@angular/material/button';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

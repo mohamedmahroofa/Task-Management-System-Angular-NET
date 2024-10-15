@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
 import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-category',
