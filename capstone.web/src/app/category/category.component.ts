@@ -2,11 +2,12 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrl: './category.component.css'
+  styleUrl: './category.component.css',
 })
 export class CategoryComponent implements OnInit {
 
@@ -21,6 +22,7 @@ export class CategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private categoryService: CategoryService,
+  
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,9 @@ export class CategoryComponent implements OnInit {
     });
     }
   }
+
+
+
   // Save category details
   saveCategory() {
     if (this.category.categoryId) {
