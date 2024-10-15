@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
+import { formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-category',
@@ -30,10 +32,6 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getCategory(parseInt(id)).subscribe(data => {
       this.category = data;
       console.log(this.category)
-
-      if(typeof this.category.dateCreated === "string") {
-        this.category.dateCreated = this.category.dateCreated.split('T')[0];
-      }
     });
     }
   }

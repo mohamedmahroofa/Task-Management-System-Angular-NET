@@ -20,7 +20,15 @@
             // GET: /api/categories
             group.MapGet("/", async (AppDbContext db) =>
             {
-                var categories = await db.Categories.Where(c => !c.IsDeleted)ToListAsync();
+                var categories = await db.Categories.Where(c => !c.IsDeleted)
+                            .Select(c => new
+                            {
+                                c.CategoryId,
+                                c.Name,
+                                DateCreated = c.DateCreated.ToString("yyyy-MM-dd"),  // Format date as needed
+                                c.IsDeleted
+                            })
+                            .ToListAsync();
                 return Results.Ok(categories);
             });
 
@@ -35,6 +43,7 @@
             group.MapPost("/", async (Category category, AppDbContext db) =>
             {
                 category.IsDeleted = false;
+                category.DateCreated = DateTime.Now;
                 db.Categories.Add(category);
                 await db.SaveChangesAsync();
                 return Results.Created($"/api/categories/{category.CategoryId}", category);
@@ -47,6 +56,8 @@
                 if (category is null) return Results.NotFound();
 
                 category.Name = updatedCategory.Name;  // Update properties as needed
+                category.DateCreated = category.DateCreated;
+
                 await db.SaveChangesAsync();
                 return Results.NoContent();
             });
