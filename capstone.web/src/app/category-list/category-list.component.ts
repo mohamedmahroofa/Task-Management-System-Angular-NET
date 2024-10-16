@@ -25,13 +25,13 @@ export class CategoryListComponent implements OnInit{
   viewCategory(id: number) {
     this.router.navigate(['/category', id]);
   }
+  goBack(){
+    this.router.navigate(['/',this.goBack]);
+  }
 
   // Navigate to new category form
   addCategory() {
     this.router.navigate(['/category']);
-  }
-  goBack() {
-    this.router.navigate(['/']);
   }
 } 
 
