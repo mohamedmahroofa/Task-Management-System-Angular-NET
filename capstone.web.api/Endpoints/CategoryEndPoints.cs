@@ -56,7 +56,7 @@
                 if (category is null) return Results.NotFound();
 
                 category.Name = updatedCategory.Name;  // Update properties as needed
-                category.DateCreated = category.DateCreated;
+                category.DateCreated = updatedCategory.DateCreated;
 
                 await db.SaveChangesAsync();
                 return Results.NoContent();
