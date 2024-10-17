@@ -35,6 +35,7 @@
             group.MapPost("/", async (Priority priority, AppDbContext db) =>
             {
                 priority.IsDeleted = false;
+                priority.DateCreated = DateTime.Now;
                 db.Priorities.Add(priority);
                 await db.SaveChangesAsync();
                 return Results.Created($"/api/priorities/{priority.PriorityId}", priority);
@@ -48,6 +49,7 @@
 
                 priority.Name = updatedPriority.Name;  // Update properties as needed
                 priority.IsDeleted = updatedPriority.IsDeleted;
+                priority.DateCreated = updatedPriority.DateCreated;
                 await db.SaveChangesAsync();
                 return Results.NoContent();
             });
