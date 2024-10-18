@@ -1,41 +1,51 @@
 .box {
-    border-radius: 30px;
-    background: rgba(243, 243, 243, 0.96);
-    box-shadow: 0px 2px 2px 0px rgba(255, 0, 0, 0.25);
-    width: 508px;
-    height: 467.19px;
-    }
-    
-    .form-signin {
-      max-width: 330px;
-      padding: 15px;
-      margin: 0 auto;
-    }
-    
-    .form-signin .form-signin-heading,
-    .form-signin .checkbox {
-      margin-bottom: 10px;
-    }
-    
-    .form-signin .checkbox {
-      font-weight: normal;
-    }
-    
-    .form-signin .form-control {
-      position: relative;
-      font-size: 16px;
-      height: auto;
-      padding: 10px;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-    
-    /* .form-signin .form-control:focus {
-      z-index: 2;
-    } */
-    
-    .form-signin input[type="text"] {
+  border-radius: 30px;
+  background: rgba(243, 243, 243, 0.96);
+  box-shadow: 0px 2px 2px 0px rgba(255, 0, 0, 0.25);
+  width: 508px;
+  height: 467.19px;
+  }
+  
+  .form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+  
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  
+  .form-signin .checkbox {
+    font-weight: normal;
+  }
+  
+  .form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  /* .form-signin .form-control:focus {
+    z-index: 2;
+  } */
+  
+  .form-signin input[type="text"] {
+  display: flex;
+  width: 426px;
+  height: 34px;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  }
+  
+  .form-signin input[type="password"] {
     display: flex;
     width: 426px;
     height: 34px;
@@ -43,133 +53,123 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    }
-    
-    .form-signin input[type="password"] {
-      display: flex;
-      width: 426px;
-      height: 34px;
-      padding: 6px 12px;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    
-    .account-wall {
-      margin-top: 20px;
-      padding: 40px 0px 20px 0px;
-      background-color: #f7f7f7;
-      -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-      -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    }
-    
-    .login-title {
-      color: #555;
-      font-size: 18px;
-      font-weight: 400;
-      display: block;
-    }
-    
-    .profile-img {
-      width: 96px;
-      height: 96px;
-      margin: 0 auto 10px;
-      display: block;
-      -moz-border-radius: 50%;
-      -webkit-border-radius: 50%;
-      border-radius: 50%;
-    }
-    
-    .need-help {
-      margin-top: 10px;
-    }
-    
-    .new-account {
-      display: block;
-      margin-top: 100px;
-    }
-    
-    /* add css */
-    
-    .login-title {
-      font-size: 3rem;
-    }
-    
-    .profile-img {
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
-    
-    /* .account-wall {
-      background-color: #f7f7f7;
-      padding: 20px;
-      border-radius: 10px;
-    } */
-    
-    .form-control {
-      border-radius: 20px;
-    }
-    
-    
-    
-    .btn-primary {
-      background: #c00202;
-      border-radius: var(--Radius-200, 8px);
-      display: flex;
-      width: 200px;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      font-family: Avenir;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 35px; /* 218.75% */
-    }
-    
-    .text-message {
-      color: #606060;
-      font-family: Avenir;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 900;
-      line-height: 38px; /* 126.667% */
-      text-align: center;
-    }
-    
-    .in {
-      color: #bb0303;
-      font-family: Avenir;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 900;
-      line-height: 38px;
-    }
-    
-    .ca-message {
-    color: #505050;
+  }
+  
+  .account-wall {
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login-title {
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+  }
+  
+  .profile-img {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+  }
+  
+  .need-help {
+    margin-top: 10px;
+  }
+  
+  .new-account {
+    display: block;
+    margin-top: 100px;
+  }
+  
+  /* add css */
+  
+  .login-title {
+    font-size: 3rem;
+  }
+  
+  .profile-img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  /* .account-wall {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+  } */
+  
+  .form-control {
+    border-radius: 20px;
+  }
+  
+  
+  
+  .btn-primary {
+    background: #c00202;
+    border-radius: var(--Radius-200, 8px);
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
     text-align: center;
     font-family: Avenir;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 26px; /* 162.5% */
-    display: flex;
-    width: 327.32px;
-    height: 22px;
-    flex-direction: row;
-    flex-shrink: 0;
-    }
-    
-    .text-center {
-    color: #C00202;
+    line-height: 35px; /* 218.75% */
+  }
+  
+  .text-message {
+    color: #606060;
     font-family: Avenir;
-    font-size: 16px;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
-    margin-left: 8px;
-    }
-    
+    font-weight: 900;
+    line-height: 38px; /* 126.667% */
+    text-align: center;
+  }
+  
+  .in {
+    color: #bb0303;
+    font-family: Avenir;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 38px;
+  }
+  
+  .ca-message {
+  color: #505050;
+  text-align: center;
+  font-family: Avenir;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+  display: flex;
+  width: 327.32px;
+  height: 22px;
+  flex-direction: row;
+  flex-shrink: 0;
+  }
+  
+  .text-center {
+  color: #C00202;
+  font-family: Avenir;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  margin-left: 8px;
+  }
+  
