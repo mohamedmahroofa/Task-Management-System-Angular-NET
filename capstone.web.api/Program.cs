@@ -155,6 +155,7 @@ namespace capstone.web.api
                     Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
+                    color ="Green",
                 });
 
                 context.Priorities.Add(new Priority
@@ -162,6 +163,7 @@ namespace capstone.web.api
                     Name = "Medium",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
+                    color = "Yellow",
                 });
 
                 context.Priorities.Add(new Priority
@@ -169,6 +171,7 @@ namespace capstone.web.api
                     Name = "High",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
+                    color = "Orange",
                 });
 
                 context.Priorities.Add(new Priority
@@ -176,6 +179,7 @@ namespace capstone.web.api
                     Name = "Critical",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
+                    color = "Red",
                 });
                 context.SaveChanges();
             }
