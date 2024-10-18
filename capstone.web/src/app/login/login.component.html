@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <div id="login">  
   <div class="login-container mt-5 shadow rounded py-3 ">
     <div class="row justify-content-center">
@@ -86,3 +87,57 @@
 </section>
 <!-- End your project here-->
 
+=======
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="box col-12 col-md-6">
+      <h2 class="text-message">Log<span class="in">in</span></h2>
+      <div>
+        <form class="form-signin" (ngSubmit)="login()">
+          <div class="form-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="User Name"
+              id="username"
+              [(ngModel)]="username"
+              name="username"
+              required
+              autofocus
+            />
+          </div>
+          <div class="form-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+          </div>
+          <button
+            class="btn-primary"
+            type="submit"
+          >
+            Sign in
+          </button>
+          <div class="d-flex justify-content-between">
+            <label class="checkbox">
+              <input type="checkbox" value="remember-me" /> Remember me
+            </label>
+            <a href="#" class="text-end need-help">Need help?</a>
+          </div>
+        </form>
+      </div>
+      <p class="ca-message">Do not have an account?<a href="#" class="text-center">Create an account</a></p>
+    </div>
+  </div>
+  <div *ngIf="errorMessage" class="row justify-content-center">
+    <div class="col-12 col-md-6 alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>
+>>>>>>> ae63a76fcb49829e2a0d7f42427df61e1860a794
