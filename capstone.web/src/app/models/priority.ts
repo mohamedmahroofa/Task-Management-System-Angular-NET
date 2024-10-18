@@ -3,4 +3,5 @@ export interface Priority {
     name: string,
     dateCreated: Date | string;
     isDeleted: boolean;
+    color:string;
 }

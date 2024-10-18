@@ -16,7 +16,8 @@ export class PriorityComponent implements OnInit  {
     priorityId: 0,
     name: '',
     dateCreated: new Date(),
-    isDeleted: false
+    isDeleted: false,
+    color: '',
 };
 constructor(
   private route: ActivatedRoute,
