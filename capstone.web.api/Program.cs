@@ -181,27 +181,6 @@ namespace capstone.web.api
                     DateCreated = DateTime.Now,
                     color = "Red",
                 });
-
-                context.Priorities.Add(new Priority
-                {
-                    Name = "Medium",
-                    IsDeleted = false,
-                    DateCreated = DateTime.Now,
-                });
-
-                context.Priorities.Add(new Priority
-                {
-                    Name = "High",
-                    IsDeleted = false,
-                    DateCreated = DateTime.Now,
-                });
-
-                context.Priorities.Add(new Priority
-                {
-                    Name = "Critical",
-                    IsDeleted = false,
-                    DateCreated = DateTime.Now,
-                });
                 context.SaveChanges();
             }
         }
