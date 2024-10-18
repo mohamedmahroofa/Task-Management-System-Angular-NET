@@ -182,10 +182,10 @@ margin-left: 8px;
 
 .footer {
   position: absolute;
-  top: 341px;
+  top: 391px;
   left: 0px;
   background: conic-gradient(from 100.76deg at 50% 50%, #000 0deg, #c00202 360deg);
-  width: 1440px;
+  width: 100%;
   height: 223px;
 }
 .signin-to-add {
@@ -361,7 +361,9 @@ margin-left: 8px;
 }
 .create-an-account {
   color: #c00202;
+  word-wrap: nowrap;
 }
+
 .do-not-have-container1 {
   width: 100%;
 }
@@ -386,13 +388,13 @@ margin-left: 8px;
 }
 .form {
   position: absolute;
-  top: 137px;
-  left: 727px;
+  top: 187px;
+  left: 1080px;
   box-shadow: 0px 2px 2px rgba(255, 0, 0, 0.25);
   border-radius: 30px;
   background-color: rgba(243, 243, 243, 0.96);
-  width: 548px;
-  height: 529px;
+  width: 570px;
+  height: 570px;
 }
 .wednesday {
   position: relative;
@@ -452,23 +454,25 @@ margin-left: 8px;
   box-shadow: 0px 2px 2px rgba(255, 0, 0, 0.25);
   border-radius: 0px 0px 15px 15px;
   background-color: #f3f3f3;
-  width: 1440px;
+  width: 100%;
   height: 67px;
   color: #505050;
 }
 .young-woman-working-at-desk-1 {
   position: absolute;
-  top: 189px;
-  left: 198px;
+  top: 199px;
+  left: 398px;
   width: 512px;
   height: 459.3px;
   object-fit: cover;
 }
 .new-signin-page {
-  width: 100%;
-  position: relative;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
   background-color: #fff;
-  height: 1024px;
+  height: 100vh;
   overflow: hidden;
   text-align: left;
   font-size: 16px;
