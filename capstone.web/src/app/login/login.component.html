@@ -4,15 +4,15 @@
   <form class="form" (ngSubmit)="login()">  
     <div class="divrow">
       <div class="divcol-12">
-        <div class="signin-to-add">Signin to add a task</div>
         <div class="heading-1">
           <div class="signin">
             <span class="signin-txt">
-              <span>Log</span>
+              <span>Sign</span>
               <span class="in">in</span>
             </span>
           </div>
         </div>
+        <div class="signin-to-add">Signin to add a task</div>
       </div>      
       <div class="divlogin-form">
         <div class="divform-input">
@@ -61,7 +61,7 @@
         </span>
       </div>      
     </div>
-    <div *ngIf="errorMessage" class="mat-elevation-z4 mat-error error-message position-relative">
+    <div *ngIf="errorMessage" class="mat-elevation-z4 mat-error error-message position-relative border rounded">
       <mat-icon>error_outline</mat-icon> 
       <span>{{ errorMessage }}</span>
     </div>
