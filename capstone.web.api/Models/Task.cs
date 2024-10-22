@@ -2,9 +2,9 @@
 
 namespace capstone.web.api.Models
 {
-    public class Task
+    public class Quest
     {
-        public int TaskId { get; set; }
+        public int QuestId { get; set; }
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public bool IsDeleted { get; set; }
