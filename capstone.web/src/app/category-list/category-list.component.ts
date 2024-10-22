@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 })
 export class CategoryListComponent implements OnInit{
   categories: Category[] = []; // Array to hold list of categories
+  displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
 
   constructor(private categoryService: CategoryService, private router: Router) {}
 
@@ -33,6 +34,14 @@ export class CategoryListComponent implements OnInit{
   addCategory() {
     this.router.navigate(['/category']);
   }
-} 
+  deleteCategory(id: number) {
+    if (confirm('Are you sure you want to delete this category?')) {
+      this.categoryService.deleteCategory(id).subscribe(() => {
+        this.categories = this.categories.filter(category => category.categoryId !== id);
+      });
+   
+    }
+  }
 
+}
 

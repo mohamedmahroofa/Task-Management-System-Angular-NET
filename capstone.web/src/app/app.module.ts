@@ -19,9 +19,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
+
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { CommonModule } from '@angular/common';
     NavigationComponent,
     CategoryComponent,
     CategoryListComponent,
-    RouterModule 
   ],
   imports: [  
     BrowserModule,
@@ -46,12 +45,13 @@ import { CommonModule } from '@angular/common';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    CommonModule  
+    CommonModule,
+    RouterModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
