@@ -178,8 +178,6 @@ line-height: 26px;
 margin-left: 8px;
 }
 */
-
-
 .footer {
   position: absolute;
   top: 391px;
@@ -190,7 +188,7 @@ margin-left: 8px;
 }
 .signin-to-add {
   position: absolute;
-  top: 66.19px;
+  top: 40px;
   left: calc(50% - 71px);
   line-height: 26px;
 }
@@ -480,4 +478,23 @@ margin-left: 8px;
   font-family: Avenir;
 }
 
+.error-message {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffebee;
+  color: #d32f2f;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+  margin-top: 150px;
+  border-radius: 12px;
+  width: 300px;
+  margin-left:52px;
+}
+
+.error-message mat-icon {
+  margin-right: 8px;
+  color: #d32f2f;
+}
 
