@@ -18,6 +18,7 @@ namespace capstone.web.api.Models
         [JsonIgnore]
         public Category? Category { get; set; }
         public Priority? Priority { get; set; }
+        
 
     }
 }
