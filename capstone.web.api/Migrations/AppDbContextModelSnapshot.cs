@@ -63,6 +63,10 @@ namespace capstone.web.api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PriorityId");
 
                     b.ToTable("Priorities");

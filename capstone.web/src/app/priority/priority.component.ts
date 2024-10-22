@@ -3,6 +3,8 @@ import { Priority } from '../models/priority';
 import { PriorityService } from '../services/priority.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-priority',
   templateUrl: './priority.component.html',
@@ -14,7 +16,8 @@ export class PriorityComponent implements OnInit  {
     priorityId: 0,
     name: '',
     dateCreated: new Date(),
-    isDeleted: false
+    isDeleted: false,
+    color: '',
 };
 constructor(
   private route: ActivatedRoute,
@@ -28,6 +31,10 @@ ngOnInit() {
     this.priorityService.getPriority(parseInt(id)).subscribe(data => {
       this.priority = data;
       console.log(this.priority)
+
+   /*   if(typeof this.priority.dateCreated === "string") {
+        this.priority.dateCreated = this.priority.dateCreated.split('T')[0];
+      } */
     });
   }
 }
@@ -43,6 +50,7 @@ savePriority() {
     });
   }
 }
+
 
 
 deletePriority() {
