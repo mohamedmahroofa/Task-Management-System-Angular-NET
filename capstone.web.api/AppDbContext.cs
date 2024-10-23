@@ -12,5 +12,7 @@ namespace capstone.web.api.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Priority> Priorities { get; set; }
+        public DbSet<Quest> Quests { get; set; }
+
     }
 }

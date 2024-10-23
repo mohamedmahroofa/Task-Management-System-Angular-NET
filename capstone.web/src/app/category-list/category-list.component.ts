@@ -12,11 +12,12 @@ import { Router } from "@angular/router";
 export class CategoryListComponent implements OnInit{
   categories: Category[] = []; // Array to hold list of categories
   displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
+  displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
 
   constructor(private categoryService: CategoryService, private router: Router) {}
 
   ngOnInit() {
-    // Fetch persons on component initialization
+    // Fetch Categories on component initialization
     this.categoryService.getCategories().subscribe((data) => {
       this.categories = data;
     });
@@ -26,22 +27,11 @@ export class CategoryListComponent implements OnInit{
   viewCategory(id: number) {
     this.router.navigate(['/category', id]);
   }
-  goBack(){
-    this.router.navigate(['/',this.goBack]);
-  }
 
   // Navigate to new category form
   addCategory() {
     this.router.navigate(['/category']);
   }
-  deleteCategory(id: number) {
-    if (confirm('Are you sure you want to delete this category?')) {
-      this.categoryService.deleteCategory(id).subscribe(() => {
-        this.categories = this.categories.filter(category => category.categoryId !== id);
-      });
-   
-    }
-  }
+} 
 
-}
 
