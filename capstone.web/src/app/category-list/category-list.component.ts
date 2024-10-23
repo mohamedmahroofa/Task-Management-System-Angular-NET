@@ -12,7 +12,6 @@ import { Router } from "@angular/router";
 export class CategoryListComponent implements OnInit{
   categories: Category[] = []; // Array to hold list of categories
   displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
-  displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
 
   constructor(private categoryService: CategoryService, private router: Router) {}
 
