@@ -20,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
     PriorityListComponent,
     NavigationComponent,
     CategoryListComponent,
-    CategoryComponent
+    CategoryComponent,
+    RegistrationComponent
   ],
   imports: [  
     BrowserModule,
