@@ -12,8 +12,8 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240926231233_AddedPriorityEndpoints")]
-    partial class AddedPriorityEndpoints
+    [Migration("20241023001916_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,9 +66,46 @@ namespace capstone.web.api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("PriorityId");
 
                     b.ToTable("Priorities");
+                });
+
+            modelBuilder.Entity("capstone.web.api.Models.Quest", b =>
+                {
+                    b.Property<int>("QuestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestId"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PriorityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuestId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("PriorityId");
+
+                    b.ToTable("Quests");
                 });
 
             modelBuilder.Entity("capstone.web.api.Models.User", b =>
@@ -106,6 +143,35 @@ namespace capstone.web.api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("capstone.web.api.Models.Quest", b =>
+                {
+                    b.HasOne("capstone.web.api.Models.Category", "Category")
+                        .WithMany("Quests")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("capstone.web.api.Models.Priority", "Priority")
+                        .WithMany("Quests")
+                        .HasForeignKey("PriorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Priority");
+                });
+
+            modelBuilder.Entity("capstone.web.api.Models.Category", b =>
+                {
+                    b.Navigation("Quests");
+                });
+
+            modelBuilder.Entity("capstone.web.api.Models.Priority", b =>
+                {
+                    b.Navigation("Quests");
                 });
 #pragma warning restore 612, 618
         }
