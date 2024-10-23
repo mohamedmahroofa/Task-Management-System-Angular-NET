@@ -12,5 +12,6 @@ namespace capstone.web.api.Models
 
         [JsonIgnore]
         public ICollection<Quest>? Quests { get; set; }
+        public string color { get; set; } 
     }
 }
