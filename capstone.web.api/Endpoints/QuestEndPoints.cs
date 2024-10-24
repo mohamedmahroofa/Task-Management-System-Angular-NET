@@ -1,0 +1,78 @@
+﻿namespace capstone.web.api.Endpoints
+{
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.IdentityModel.Tokens;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+    using capstone.web.api.Data;
+    using capstone.web.api.Models;
+
+    public static class QuestEndpoints
+    {
+        public static void MapQuestEndpoints(this IEndpointRouteBuilder routes)
+        {
+            var group = routes.MapGroup("/api/quests");
+
+            // GET: /api/quests
+            group.MapGet("/", async (AppDbContext db) =>
+            {
+                var quests = await db.Quests.Where(q => !q.IsDeleted).ToListAsync();
+                return Results.Ok(quests);
+            });
+
+            // GET: /api/quests/{id}
+            group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+            {
+                var quest = await db.Quests.Where(q => !q.IsDeleted).FirstOrDefaultAsync(q => q.QuestId== id);
+                return quest is not null ? Results.Ok(quest) : Results.NotFound();
+            });
+
+            // POST: /api/quests
+            group.MapPost("/", async (Quest quest, AppDbContext db) =>
+            {
+                quest.IsDeleted = false;
+                quest.DateCreated = DateTime.Now;
+                quest.DueDate = DateTime.Now;
+                quest.CategoryId = 1;
+                quest.PriorityId = 1;
+
+                db.Quests.Add(quest);
+                await db.SaveChangesAsync();
+                return Results.Created($"/api/quests/{quest.QuestId}", quest);
+            });
+
+            // PUT: /api/quests/{id}
+            group.MapPut("/{id:int}", async (int id, Quest updatedQuest, AppDbContext db) =>
+            {
+                var quest = await db.Quests.FindAsync(id);
+                if (quest is null) return Results.NotFound();
+
+                // Propeties be updated.
+                quest.Name = updatedQuest.Name;  
+                quest.DateCreated = updatedQuest.DateCreated;
+                quest.DueDate = updatedQuest.DueDate;
+                quest.CategoryId = updatedQuest.CategoryId;
+                quest.PriorityId = updatedQuest.PriorityId;
+
+                await db.SaveChangesAsync();
+                return Results.NoContent();
+            });
+
+            // DELETE: /api/quests/{id}
+            group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+            {
+                var quest = await db.Quests.FindAsync(id);
+                if (quest is null) return Results.NotFound();
+
+                quest.IsDeleted = true;
+                await db.SaveChangesAsync();
+                return Results.NoContent();
+            });
+        }
+    }
+
+}
