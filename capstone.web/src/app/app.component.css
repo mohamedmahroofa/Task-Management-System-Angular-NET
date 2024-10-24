@@ -39,7 +39,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  /* padding: 1rem; */
   box-sizing: inherit;
   position: relative;
 }
@@ -57,7 +57,7 @@ main {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   margin-bottom: 3rem;
 }
 
