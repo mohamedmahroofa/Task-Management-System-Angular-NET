@@ -26,22 +26,11 @@ export class CategoryListComponent implements OnInit{
   viewCategory(id: number) {
     this.router.navigate(['/category', id]);
   }
-  deleteCategory(id: number) {
-    if (confirm('Are you sure you want to delete this priority?')) {
-      this.categoryService.deleteCategory(id).subscribe(() => {
-        this.categories = this.categories.filter(category => category.categoryId !== id);
-      });
-    }
-  }
 
   // Navigate to new category form
   addCategory() {
     this.router.navigate(['/category']);
   }
-  goBack() {
-    this.router.navigate(['/']);
-  }
-
 } 
 
 
