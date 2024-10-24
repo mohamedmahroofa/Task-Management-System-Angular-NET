@@ -36,9 +36,7 @@
             {
                 quest.IsDeleted = false;
                 quest.DateCreated = DateTime.Now;
-                quest.DueDate = DateTime.Now;
-                quest.CategoryId = 1;
-                quest.PriorityId = 1;
+                
 
                 db.Quests.Add(quest);
                 await db.SaveChangesAsync();
@@ -57,6 +55,7 @@
                 quest.DueDate = updatedQuest.DueDate;
                 quest.CategoryId = updatedQuest.CategoryId;
                 quest.PriorityId = updatedQuest.PriorityId;
+                
 
                 await db.SaveChangesAsync();
                 return Results.NoContent();

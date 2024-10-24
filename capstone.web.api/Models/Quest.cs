@@ -19,6 +19,7 @@ namespace capstone.web.api.Models
         //Navigational properties
         [JsonIgnore]
         public Category? Category { get; set; }
+        [JsonIgnore]
         public Priority? Priority { get; set; }
         
 
