@@ -12,8 +12,8 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241023001916_new")]
-    partial class @new
+    [Migration("20241024202036_New-quest-entity")]
+    partial class Newquestentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,6 +87,9 @@ namespace capstone.web.api.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
