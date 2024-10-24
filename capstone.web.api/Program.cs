@@ -96,8 +96,9 @@ namespace capstone.web.api
             app.MapUserEndpoints();
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
+            app.MapQuestEndpoints();
 
-            
+
 
             app.Run();
         }
@@ -155,7 +156,57 @@ namespace capstone.web.api
                     Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
+                    color ="Green",
                 });
+
+                context.Priorities.Add(new Priority
+                {
+                    Name = "Medium",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    color = "Yellow",
+                });
+
+                context.Priorities.Add(new Priority
+                {
+                    Name = "High",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    color = "Orange",
+                });
+
+                context.Priorities.Add(new Priority
+                {
+                    Name = "Critical",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    color = "Red",
+                });
+                context.SaveChanges();
+            }
+            if (!context.Quests.Any())
+            {
+                // Example seed quests
+                context.Quests.Add(new Quest
+                {
+                    Name = "Go to School",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    CategoryId = 1,
+                    PriorityId = 3,
+                });
+
+                context.Quests.Add(new Quest
+                {
+                    Name = "Take 21:00 pill",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    CategoryId = 2,
+                    PriorityId = 1,
+                });
+
                 context.SaveChanges();
             }
         }
