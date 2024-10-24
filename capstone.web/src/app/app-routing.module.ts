@@ -13,7 +13,7 @@ import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: HeaderComponent, canActivate: [AuthGuard] }, // Example default page
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login page
   { path: 'prioritys', component: PriorityListComponent },
   { path: 'priority', component: PriorityComponent },
   { path: 'priority/:id', component: PriorityComponent },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'categories', component: CategoryListComponent },
   { path: 'category/:id', component: CategoryComponent },
   { path: "category", component: CategoryComponent },
-  { path: '**', redirectTo: ''},
+  { path: '**', redirectTo: '/login' }, // Redirect any unknown routes to login
 ];
 
 @NgModule({
