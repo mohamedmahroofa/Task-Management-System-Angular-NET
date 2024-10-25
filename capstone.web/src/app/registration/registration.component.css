@@ -1,0 +1,321 @@
+.footer {
+    position: absolute;
+    top: 391px;
+    left: 0px;
+    background: conic-gradient(from 100.76deg at 50% 50%, #000 0deg, #c00202 360deg);
+    width: 100%;
+    height: 223px;
+  }
+  .signin-to-add {
+    position: absolute;
+    top: 40px;
+    left: calc(50% - 71px);
+    line-height: 26px;
+  }
+  .in {
+    color: #bb0303;
+  }
+  .signin-txt {
+    line-break: anywhere;
+    width: 100%;
+  }
+  .signin {
+    position: absolute;
+    top: -1.5px;
+    left: calc(50% - 48px);
+    line-height: 38px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    width: 96px;
+    height: 41px;
+  }
+  .heading-1 {
+    position: absolute;
+    top: -19px;
+    left: 15px;
+    width: 478px;
+    height: 38px;
+    font-size: 30px;
+    color: #606060;
+  }
+  .divcol-12 {
+    position: absolute;
+    width: 100%;
+    top: 28px;
+    right: 0px;
+    left: 0px;
+    height: 137.2px;
+  }
+  
+  .divplaceholder {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    width: 402px;
+    height: 22px;
+    overflow: hidden;
+  }
+  .input {
+    position: absolute;
+    top: calc(50% - 18px);
+    left: calc(50% - 239px);
+    box-shadow: 0px 2px 2px rgba(255, 0, 0, 0.25) inset;
+    border-radius: 12px;
+    background-color: #fff;
+    width: 426px;
+    height: 34px;
+  }
+  .divform-input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 478px;
+    height: 36px;
+  }
+  
+  .divplaceholder1 {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    width: 402px;
+    height: 22px;
+    overflow: hidden;
+  }
+  
+  .password {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 22px;
+  }
+  
+  .form-control {
+    border: 0px solid #ccc;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .input1 {
+    position: absolute;
+    top: calc(50% - 18px);
+    left: calc(50% - 239px);
+    box-shadow: 0px 2px 2px rgba(255, 0, 0, 0.25) inset;
+    border-radius: 12px;
+    background-color: #fff;
+    width: 426px;
+    height: 34px;
+    overflow: hidden;
+  }
+  .button {
+    position: absolute;
+    top: 9px;
+    left: 449px;
+    line-height: 16px;
+    font-weight: 800;
+    color: #606060;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18.2px;
+    height: 16px;
+  }
+  .divform-input1 {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    width: 478px;
+    height: 36px;
+  }
+  .divlogin-form {
+    position: absolute;
+    top: 182.19px;
+    left: 35.5px;
+    width: 478px;
+    height: 88px;
+    color: #6c757d;
+  }
+  .link-forgot {
+    position: absolute;
+    top: 287.19px;
+    left: 185.93px;
+    line-height: 24px;
+    color: #606060;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 125.1px;
+    height: 22px;
+    white-space: nowrap;
+  }
+  .signin1 {
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 22px);
+    line-height: 35px;
+  }
+  .button1 {
+    position: absolute;
+    top: 326.19px;
+    left: calc(50% - 100px);
+    border-radius: 8px;
+    border: none;
+    background-color: #c00202;
+    width: 200px;
+    height: 35px;
+    text-align: center;
+    color: #fff;
+  }
+  .ptext-center {
+    position: absolute;
+    top: 427.19px;
+    left: 15px;
+    width: 478px;
+    height: 26px;
+  }
+  .create-an-account {
+    color: #c00202;
+    word-wrap: nowrap;
+  }
+  
+  .do-not-have-container1 {
+    width: 100%;
+  }
+  .do-not-have-container {
+    position: absolute;
+    top: 400.19px;
+    left: 90.44px;
+    line-height: 26px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 327.3px;
+    height: 22px;
+    color: #505050;
+  }
+  .divrow {
+    position: absolute;
+    top: 31px;
+    left: 16px;
+    width: 508px;
+    height: 467.2px;
+  }
+  .form {
+    position: absolute;
+    top: 187px;
+    left: 1080px;
+    box-shadow: 0px 2px 2px rgba(255, 0, 0, 0.25);
+    border-radius: 30px;
+    background-color: rgba(243, 243, 243, 0.96);
+    width: 570px;
+    height: 570px;
+  }
+  .wednesday {
+    position: relative;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .item-link {
+    position: absolute;
+    top: 1px;
+    left: 183.47px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 8px 11.6px 8px 8px;
+  }
+  .div {
+    position: absolute;
+    top: 9px;
+    left: 288.47px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .div1 {
+    position: absolute;
+    top: 9px;
+    left: 385.47px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .list-child {
+    position: absolute;
+    top: 8px;
+    left: 534.47px;
+    width: 25px;
+    height: 25px;
+  }
+  .list {
+    position: absolute;
+    top: calc(50% - 20.5px);
+    right: 15.97px;
+    width: 601.5px;
+    height: 40px;
+  }
+  .final-logo-1-icon {
+    position: absolute;
+    top: 0px;
+    left: 45px;
+    width: 103px;
+    height: 67px;
+    object-fit: cover;
+  }
+  .header-nav {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 2px 2px rgba(255, 0, 0, 0.25);
+    border-radius: 0px 0px 15px 15px;
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 67px;
+    color: #505050;
+  }
+  .young-woman-working-at-desk-1 {
+    position: absolute;
+    top: 199px;
+    left: 398px;
+    width: 512px;
+    height: 459.3px;
+    object-fit: cover;
+  }
+  .registration {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    height: 100vh;
+    overflow: hidden;
+    text-align: left;
+    font-size: 16px;
+    color: #000;
+    font-family: Avenir;
+  }
+  
+  .error-message {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffebee;
+    color: #d32f2f;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    margin-top: 150px;
+    border-radius: 12px;
+    width: 300px;
+    margin-left:52px;
+  }
+  
+  .error-message mat-icon {
+    margin-right: 8px;
+    color: #d32f2f;
+  }
+  
+  
