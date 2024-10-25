@@ -34,28 +34,63 @@
 
         public static void MapUserEndpoints(this IEndpointRouteBuilder endpoints)
         {
-            var secretKey = "%^@#HD*@HD2387d223wyfi@67823gfSDHIFEQIWUC387f@3fhR$#@@jfwWEHI";
 
-            endpoints.MapGet("/api/users", [Authorize(Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
+            var secretKey = "%^@#HD*@HD2387d223wyfi@67823gfSDHIFEQIWUC387f@3fhR$#@@jfwWEHI";
+            var group = endpoints.MapGroup("/api/users");
+
+            /*endpoints.MapGet("/api/users", [Authorize(Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
             {
                 return Results.Ok(await db.Users.ToListAsync());
+            });*/
+            group.MapGet("/api/users", async (AppDbContext db) =>
+            {
+                var users = await db.Users.ToListAsync();
+                return Results.Ok(users);
             });
 
-            endpoints.MapGet("/api/users/{id}", [Authorize(Policy = "ReadOnlyAndAbove")] async (int id, AppDbContext db) =>
+            /*endpoints.MapGet("/api/users/{id}", [Authorize(Policy = "ReadOnlyAndAbove")] async (int id, AppDbContext db) =>
+            {
+                var user = await db.Users.FindAsync(id);
+                return user is not null ? Results.Ok(user) : Results.NotFound();
+            });*/
+            group.MapGet("/api/users/{id}", async (int id, AppDbContext db) =>
             {
                 var user = await db.Users.FindAsync(id);
                 return user is not null ? Results.Ok(user) : Results.NotFound();
             });
 
-            endpoints.MapPost("/api/users", [Authorize(Policy = "AdministratorOnly")] async (User user, AppDbContext db) =>
+            /* endpoints.MapPost("/api/users", [Authorize(Policy = "AdministratorOnly")] async (User user, AppDbContext db) =>
+             {
+                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash); // Secure hashing
+                 db.Users.Add(user);
+                 await db.SaveChangesAsync();
+                 return Results.Created($"/api/users/{user.Id}", user);
+             });*/
+            group.MapPost("/api/users", async (User user, AppDbContext db) =>
             {
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash); // Secure hashing
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
                 return Results.Created($"/api/users/{user.Id}", user);
             });
+            /*endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, User updateUser, AppDbContext db) =>
+            {
+                var user = await db.Users.FindAsync(id);
+                if (user is null) return Results.NotFound();
 
-            endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, User updateUser, AppDbContext db) =>
+                user.FirstName = updateUser.FirstName;
+                user.LastName = updateUser.LastName;
+                user.Email = updateUser.Email;
+                user.Username = updateUser.Username;
+                user.Role = updateUser.Role;
+
+                if (!string.IsNullOrWhiteSpace(updateUser.PasswordHash))
+                    user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updateUser.PasswordHash);
+
+                await db.SaveChangesAsync();
+                return Results.NoContent();
+            });*/
+            group.MapPut("/api/users/{id}", async (int id, User updateUser, AppDbContext db) =>
             {
                 var user = await db.Users.FindAsync(id);
                 if (user is null) return Results.NotFound();
@@ -73,7 +108,18 @@
                 return Results.NoContent();
             });
 
-            endpoints.MapDelete("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, AppDbContext db) =>
+            /*endpoints.MapDelete("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, AppDbContext db) =>
+            {
+                var user = await db.Users.FindAsync(id);
+                if (user is not null)
+                {
+                    db.Users.Remove(user);
+                    await db.SaveChangesAsync();
+                    return Results.NoContent();
+                }
+                return Results.NotFound();
+            });*/
+            group.MapDelete("/api/users/{id}", async (int id, AppDbContext db) =>
             {
                 var user = await db.Users.FindAsync(id);
                 if (user is not null)
@@ -85,7 +131,7 @@
                 return Results.NotFound();
             });
 
-            endpoints.MapPost("/api/login", async (LoginDto login, AppDbContext db) =>
+            /*endpoints.MapPost("/api/login", async (LoginDto login, AppDbContext db) =>
             {
                 var user = await db.Users.SingleOrDefaultAsync(u => u.Username == login.Username);
                 if (user is null || !BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash))
@@ -99,7 +145,7 @@
             {
                 // Clear token client-side by expiring or removing from storage
                 return Results.Ok(new { Message = "Logout successful" });
-            });
+            });*/
         }
 
         public class LoginDto
