@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router  } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -10,21 +11,40 @@ import { UserService } from '../services/user.service';
 })
 
 export class RegistrationComponent {
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
   username: string = '';
   password: string = '';
-  errorMessage: string = '';
+  confirmPassword: string = '';
+  role: string = '';
+  message: string = '';
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private http: HttpClient) {}
 
-  login(): void {
-    this.userService.login(this.username, this.password).subscribe(
-      response => {
-        this.userService.setToken(response.token);
-        this.router.navigate(['/']); // Navigate to the home page or dashboard
-      },
-      error => {
-        this.errorMessage = 'Invalid username or password.';
-      }
-    );
+  register() {
+    if (this.password !== this.confirmPassword) {
+      this.message = "Passwords do not match!";
+      return;
+    }
+
+    const userData = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      username: this.username,
+      password: this.password,
+    };
+
+    this.http.post('https://yourapi.com/api/users/register', userData)
+      .subscribe({
+        next: (response) => {
+          this.message = 'User registered successfully!';
+        },
+        error: (error) => {
+          this.message = 'Error registering user: ' + error.error;
+          console.error(error);
+        }
+      });
   }
 }

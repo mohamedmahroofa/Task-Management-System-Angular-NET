@@ -22,6 +22,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RegistrationComponent } from './registration/registration.component';
 
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { RegistrationComponent } from './registration/registration.component';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
