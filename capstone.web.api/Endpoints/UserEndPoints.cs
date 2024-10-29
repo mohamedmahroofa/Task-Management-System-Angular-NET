@@ -78,19 +78,31 @@
                 var user = await db.Users.FindAsync(id);
                 if (user is null) return Results.NotFound();
 
-                user.FirstName = updateUser.FirstName;
-                user.LastName = updateUser.LastName;
-                user.Email = updateUser.Email;
-                user.Username = updateUser.Username;
-                user.Role = updateUser.Role;
+            endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
+            {
+                // Validate that the username and email are unique
+                if (await db.Users.AnyAsync(u => u.Username == user.Username || u.Email == user.Email))
+                {
+                    return Results.BadRequest("Username or Email already exists.");
+                }  
 
-                if (!string.IsNullOrWhiteSpace(updateUser.PasswordHash))
-                    user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updateUser.PasswordHash);
+                // Hash the Password
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
 
+                // Set the default role to "General"
+                if (string.IsNullOrWhiteSpace(user.Role))
+                {
+                    user.Role = "General"; // Set default role
+                }
+
+                // Add the new user to the database
+                db.Users.Add(user);
                 await db.SaveChangesAsync();
-                return Results.NoContent();
-            });*/
-            group.MapPut("/api/users/{id}", async (int id, User updateUser, AppDbContext db) =>
+
+                return Results.Created($"/api/users/{user.Id}", user);
+            });
+
+            endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, User updateUser, AppDbContext db) =>
             {
                 var user = await db.Users.FindAsync(id);
                 if (user is null) return Results.NotFound();
