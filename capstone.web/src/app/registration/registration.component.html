@@ -1,92 +1,100 @@
-<div class="registration">
-  <div class="footer"></div>
-  <div class="form">
-
-    <form (ngSubmit)="register()">
-
-      <div class="divcol-12">
-        <div class="heading-1">
-          <div class="signin">
-            <span class="signin-txt">
-              <p>Regis
-                <span class="in">ter</span>
-              </p>
-            </span>
-          </div>
-        </div>
-      </div>
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Firstname</mat-label>
-        <input matInput [(ngModel)]="firstName" firstname="Firstname" required class="large-input"
-          #nameInput="ngModel" />
-        <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-          Firstname is required.
-        </mat-error>
-      </mat-form-field>
-
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Lastname</mat-label>
-        <input matInput [(ngModel)]="lastName" lastname="Lastname" required class="large-input" #nameInput="ngModel" />
-        <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-          Lastname is required.
-        </mat-error>
-      </mat-form-field>
-
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" type="email" required class="large-input" #emailInput="ngModel" />
-        <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
-          A valid email is required.
-        </mat-error>
-      </mat-form-field>
-
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="username" required class="large-input" #usernameInput="ngModel" />
-        <mat-error *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)">
-          Username is required.
-        </mat-error>
-      </mat-form-field>
-
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput [(ngModel)]="password" type="password" required class="large-input" #passwordInput="ngModel" />
-        <mat-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
-          Password is required.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Confirm Password</mat-label>
-        <input matInput [(ngModel)]="confirmPassword" type="password" required class="large-input"
-          #confirmPasswordInput="ngModel" />
-        <mat-error *ngIf="confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)">
-          Confirm Password is required.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Role</mat-label>
-        <mat-select [(ngModel)]="role" required>
-          <mat-option value="administrator">Administrator</mat-option>
-          <mat-option value="general">General</mat-option>
-
-          <!-- Add more roles as needed -->
-        </mat-select>
-
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="register()">
-        Register
-      </button>
-      <p>{{ message }}</p>
-    </form>
-  </div>
-
-
-
-
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="initial-scale=1, width=device-width">
+  	
+  
+  	
+  	
+  	
+</head>
+<body>
+  	
+  	<div class="form">
+    		<div class="divrow">
+      			<div class="divcol-12">
+        				<div class="get-yourself-todo-container">
+          					<span>Get yourself </span>
+          					<span class="todo">
+            						<span class="up">TODO</span>
+            						<span> </span>
+          					</span>
+          					<span>
+            						<span>more</span>
+          					</span>
+        				</div>
+        				<div class="heading-1">
+          					<div class="signup">
+            						<span>Sign</span>
+            						<span class="up">up</span>
+          					</div>
+        				</div>
+      			</div>
+      			<div class="divlogin-form">
+        				<div class="divform-input">
+          					<div class="input">
+            						<div class="divplaceholder">
+              							<div class="name">Name</div>
+            						</div>
+          					</div>
+        				</div>
+        				<div class="divform-input1">
+          					<div class="input">
+            						<div class="divplaceholder1">
+              							<div class="username">Username</div>
+            						</div>
+          					</div>
+          					<div class="button"></div>
+        				</div>
+        				<div class="divform-group">
+          					<div class="divform-input2">
+            						<div class="button1"></div>
+          					</div>
+          					<div class="input2">
+            						<div class="divplaceholder1">
+              							<div class="email">Email</div>
+            						</div>
+          					</div>
+        				</div>
+      			</div>
+      			<div class="divform-input3">
+        				<div class="input">
+          					<div class="divplaceholder">
+            						<div class="password">Password</div>
+          					</div>
+        				</div>
+      			</div>
+      			<div class="divform-input4">
+        				<div class="input">
+          					<div class="divplaceholder1">
+            						<div class="password">Confirm Password</div>
+          					</div>
+        				</div>
+        				<div class="button"></div>
+      			</div>
+      			<div class="heading-4-container">
+        				<span>Accept Terms & Conditions </span>
+        				<span class="learn-more">Learn More</span>
+      			</div>
+      			<img class="checkcircle-icon" alt="" src="CheckCircle.svg">
+      			
+    		</div>
+    		<div class="button3">
+      			<div class="signup1">Signup</div>
+    		</div>
+    		<div class="ptext-center">
+      			<div class="already-have-an-container">
+        				<span class="already-have-an-container1">
+          					<span>Already have an account? </span>
+          					<span class="signin">Signin</span>
+        				</span>
+      			</div>
+    		</div>
+  	</div>
+  	
+  	
+  	
+  	
+</body>
+</html>
