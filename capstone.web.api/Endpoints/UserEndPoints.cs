@@ -40,13 +40,13 @@
             {
                 return Results.Ok(await db.Users.ToListAsync());
             });
-
+            //There is no database getting created, 401 error when running the method. All of these methods are marking a 401 error, checking bugs and proceeding to solve them
             endpoints.MapGet("/api/users/{id}", [Authorize(Policy = "ReadOnlyAndAbove")] async (int id, AppDbContext db) =>
             {
                 var user = await db.Users.FindAsync(id);
                 return user is not null ? Results.Ok(user) : Results.NotFound();
             });
-
+            //There is no database getting created, 401 error when running the method.
             endpoints.MapPost("/api/users", [Authorize(Policy = "AdministratorOnly")] async (User user, AppDbContext db) =>
             {
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash); // Secure hashing
