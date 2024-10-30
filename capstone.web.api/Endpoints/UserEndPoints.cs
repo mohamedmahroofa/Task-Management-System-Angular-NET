@@ -38,7 +38,7 @@
 
             endpoints.MapGet("/api/users", [Authorize(Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
             {
-                return Results.Ok(await db.Users.ToListAsync());
+                return Results.Ok(await db.Users.ToListAsync()); 
             });
 
             endpoints.MapGet("/api/users/{id}", [Authorize(Policy = "ReadOnlyAndAbove")] async (int id, AppDbContext db) =>
