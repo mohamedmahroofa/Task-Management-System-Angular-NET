@@ -34,6 +34,7 @@
             // POST: /api/quests
             group.MapPost("/", async (Quest quest, AppDbContext db) =>
             {
+                
                 quest.IsDeleted = false;
                 quest.DateCreated = DateTime.Now;
                 
