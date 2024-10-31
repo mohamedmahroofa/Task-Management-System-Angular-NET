@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { Router  } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.css'
+  styleUrls: ['./registration.component.css'] // Fixed styleUrl to styleUrls
 })
-
 export class RegistrationComponent {
   firstName: string = '';
   lastName: string = '';
@@ -19,8 +16,9 @@ export class RegistrationComponent {
   confirmPassword: string = '';
   role: string = '';
   message: string = '';
+  isSubmitting: boolean = false; // Added to manage submission state
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   register() {
     if (this.password !== this.confirmPassword) {
@@ -34,16 +32,23 @@ export class RegistrationComponent {
       email: this.email,
       username: this.username,
       password: this.password,
+      role: this.role // Include role in the request
     };
 
-    this.http.post('https://yourapi.com/api/users/register', userData)
+    this.isSubmitting = true; // Set submitting state
+
+    this.http.post('https://localhost:7197/api/register', userData)
       .subscribe({
         next: (response) => {
           this.message = 'User registered successfully!';
+          this.router.navigate(['/login']); // Navigate to login or another page
         },
         error: (error) => {
-          this.message = 'Error registering user: ' + error.error;
+          this.message = 'Error registering user: ' + (error.error || 'Server error');
           console.error(error);
+        },
+        complete: () => {
+          this.isSubmitting = false; // Reset submitting state
         }
       });
   }
