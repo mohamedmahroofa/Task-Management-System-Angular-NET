@@ -6,7 +6,7 @@ import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent {
@@ -20,7 +20,7 @@ export class LoginComponent {
     this.userService.login(this.username, this.password).subscribe(
       response => {
         this.userService.setToken(response.token);
-        this.router.navigate(['/']); // Navigate to the home page or dashboard
+        this.router.navigate(['/navigation']); // Navigate to the home page or dashboard
       },
       error => {
         this.errorMessage = 'Invalid username or password.';
