@@ -31,7 +31,7 @@ export class RegistrationComponent {
       lastName: this.lastName,
       email: this.email,
       username: this.username,
-      password: this.password,
+      passwordHash: this.password,
       role: this.role // Include role in the request
     };
 
