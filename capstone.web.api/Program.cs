@@ -5,6 +5,7 @@ using System.Text;
 using capstone.web.api.Data;
 using capstone.web.api.Models;
 using capstone.web.api.Endpoints;
+using capstone.web.api.Endpoints;
 
 
 namespace capstone.web.api
@@ -96,7 +97,7 @@ namespace capstone.web.api
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
 
-            
+
 
             app.Run();
         }
@@ -154,7 +155,7 @@ namespace capstone.web.api
                     Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
-                    color ="Green",
+                    color = "Green",
                 });
 
                 context.Priorities.Add(new Priority
