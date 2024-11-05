@@ -3,6 +3,7 @@
   <form (ngSubmit)="register()">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Firstname</mat-label>
+    
       <input matInput [(ngModel)]="firstName" name="firstname" required class="large-input" #nameInput="ngModel" />
       <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
         Firstname is required.

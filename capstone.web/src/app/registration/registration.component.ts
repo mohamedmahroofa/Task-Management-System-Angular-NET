@@ -43,6 +43,7 @@ export class RegistrationComponent {
           this.message = 'User registered successfully!';
           this.router.navigate(['/login']); // Navigate to login or another page
         },
+        
         error: (error) => {
           this.message = 'Error registering user: ' + (error.error || 'Server error');
           console.error(error);

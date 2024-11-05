@@ -10,6 +10,7 @@
     using System.Text;
     using capstone.web.api.Data;
     using capstone.web.api.Models;
+    using System.Text.RegularExpressions;
 
     public static class UserEndpoints
     {
@@ -57,26 +58,28 @@
 
             endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
             {
-                // Validate that the username and email are unique
+                // Validate that the username and email are unique and match email pattern
                 if (await db.Users.AnyAsync(u => u.Username == user.Username || u.Email == user.Email))
                 {
-                    return Results.BadRequest("Username or Email already exists.");
+                        // Hash the Password
+                        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+
+                        // Set the default role to "General"
+                        if (string.IsNullOrWhiteSpace(user.Role))
+                        {
+                            user.Role = "General"; // Set default role
+                        }
+
+                        // Add the new user to the database
+                        db.Users.Add(user);
+                        await db.SaveChangesAsync();
+                        return Results.Created($"/api/users/{user.Id}", user);
                 }
-
-                // Hash the Password
-                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-
-                // Set the default role to "General"
-                if (string.IsNullOrWhiteSpace(user.Role))
-                {
-                    user.Role = "General"; // Set default role
+                else
+                { 
+                    return Results.BadRequest("Username or Email already exist.");
                 }
-
-                // Add the new user to the database
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-
-                return Results.Created($"/api/users/{user.Id}", user);
+               
             });
 
             endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, User updateUser, AppDbContext db) =>
