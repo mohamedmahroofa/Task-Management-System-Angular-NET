@@ -23,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { RegistrationComponent } from './registration/registration.component';
 
 import {MatSelectModule} from '@angular/material/select';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 
 
@@ -36,7 +38,9 @@ import {MatSelectModule} from '@angular/material/select';
     NavigationComponent,
     CategoryListComponent,
     CategoryComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserListComponent,
+    UserManagementComponent
   ],
   imports: [  
     BrowserModule,
