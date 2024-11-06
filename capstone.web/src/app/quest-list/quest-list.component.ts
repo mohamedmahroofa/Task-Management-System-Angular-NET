@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrl: './quest-list.component.css'
 })
 export class QuestListComponent implements OnInit{
-  quests: Quest[] = []; // Array to hold list of persons
-  displayedColumns: string[] = ['name', 'dateCreated' ,'dueDate', 'action','actiondelete'];
+  quests: Quest[] = []; // Array to hold list of quests
+  displayedColumns: string[] = ['name', 'dueDate' , 'action','actiondelete'];
   
  
     constructor(
@@ -32,7 +32,7 @@ export class QuestListComponent implements OnInit{
   deleteQuest(id: number) {
     if (confirm('Are you sure you want to delete this quest?')) {
       this.questService.deleteQuest(id).subscribe(() => {
-        this.quests = this.quests.filter(quest => quest.QuestId !== id);
+        this.quests = this.quests.filter(quest => quest.questId !== id);
       });
     }
   }
@@ -41,7 +41,7 @@ export class QuestListComponent implements OnInit{
     this.router.navigate(['/quest']);
   }
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/navigation']);
   }
 
  

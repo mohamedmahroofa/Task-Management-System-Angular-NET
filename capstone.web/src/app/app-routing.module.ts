@@ -9,6 +9,8 @@ import { PriorityComponent } from './priority/priority.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
+import { QuestComponent } from './quest/quest.component';
+import { QuestListComponent } from './quest-list/quest-list.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,10 @@ const routes: Routes = [
   { path: 'categories', component: CategoryListComponent },
   { path: 'category/:id', component: CategoryComponent },
   { path: "category", component: CategoryComponent },
+  { path: 'quest/:id', component: QuestComponent },
+  { path: "quest", component: QuestComponent },
+  { path: 'quests', component: QuestListComponent },
+  
   { path: '**', redirectTo: '/login' }, // Redirect any unknown routes to login
 ];
 
