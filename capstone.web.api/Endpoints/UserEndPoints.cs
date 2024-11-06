@@ -33,10 +33,10 @@
         }
 
         public static void MapUserEndpoints(this IEndpointRouteBuilder endpoints)
-        {
+        {   
             var secretKey = "%^@#HD*@HD2387d223wyfi@67823gfSDHIFEQIWUC387f@3fhR$#@@jfwWEHI";
 
-            endpoints.MapGet("/api/users", [Authorize(Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
+            endpoints.MapGet("/api/users", [Authorize (Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
             {
                 return Results.Ok(await db.Users.ToListAsync());
             });
