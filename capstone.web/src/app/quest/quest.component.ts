@@ -15,7 +15,7 @@ import { MatOption } from '@angular/material/core';
   styleUrl: './quest.component.scss'
 })
 export class QuestComponent implements OnInit {
-  quest: Quest = { questId: 0, name: "", priorityId: 0, categoryId: 0, dueDate: new Date(), dateCreated: new Date(), isDeleted: false};
+  quest: Quest = { questId: 0, name: "", priorityId: 1, categoryId: 1, dueDate: new Date(), dateCreated: new Date(), isDeleted: false};
   priorities: Priority[] = [];
   categories: Category[] = [];
   constructor(
