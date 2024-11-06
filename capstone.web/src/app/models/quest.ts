@@ -6,7 +6,6 @@ export interface Quest {
     isDeleted: boolean;
     priorityId: number,
     categoryId: number,
-    priorityName: string,
-    categoryName: string
+    
     
 }
