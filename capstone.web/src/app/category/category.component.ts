@@ -1,21 +1,23 @@
-import { Component,OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component , OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
-import { formatDate } from '@angular/common';
-import { DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit  {
 
   category: Category = {
+    categoryId: 0,
     name: '',
     dateCreated: new Date(),
     isDeleted: false,
+<<<<<<< HEAD
     categoryId: 0,
   };
 
@@ -28,105 +30,53 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap?.get('id'); // Get category id from route
+=======
+};
+constructor(
+  private route: ActivatedRoute,
+  private categoryService: CategoryService,
+  private router: Router
+) {}
+ngOnInit() {
+  const id = this.route.snapshot.paramMap?.get('id'); // Get category id from route
+>>>>>>> origin/tom
   if (id) {
     // Fetch category details if id exists
     this.categoryService.getCategory(parseInt(id)).subscribe(data => {
       this.category = data;
       console.log(this.category)
-      if(typeof this.category.dateCreated === "string") {
-        this.category.dateCreated = this.category.dateCreated.split('T')[0];
-      }
+
     });
-    }
-  }
-  // Save category details
-  saveCategory() {
-    if (this.category.categoryId) {
-      this.categoryService.updateCategory(this.category).subscribe(() => {
-        this.goBack();
-      });
-    } else {
-      this.categoryService.addCategory(this.category).subscribe(() => {
-        this.goBack();
-      });
-    }
-  }
-  
-  
-  deleteCategory() {
-    if (this.category.categoryId) {
-      this.categoryService.deleteCategory(this.category.categoryId).subscribe(() => {
-        this.goBack();
-      }, error => {
-        console.error('Error deleting category:', error);
-        // Handle error appropriately (e.g., show error message)
-      });
-    }
-  }
-  
-  goBack() {
-    this.router.navigate(['/categories']);
   }
 }
-//   }import { Component, OnInit } from '@angular/core';
-// import { Category } from '../models/category';
-// import { CategoryService } from '../category.service';
-// import { ActivatedRoute, Router } from '@angular/router';
 
-// @Component({
-//   selector: 'app-category',
-//   templateUrl: './category.component.html',
-//   styleUrl: './category.component.css'
-// })
-// export class CategoryComponent implements OnInit  {
-//   category: Category = {
-//     name: "",
-//     dateCreated: new Date(),
-//     categoryId: 0,
-//     isDeleted: false,
-    
-//   };  
+saveCategory() {
+  if (this.category.categoryId) {
+    this.categoryService.updateCategory(this.category).subscribe(() => {
+      this.goBack();
+    });
+  } else {
+    this.categoryService.addCategory(this.category).subscribe(() => {
+      this.goBack();
+    });
+  }
+}
 
-//   constructor(
-//     private route: ActivatedRoute,
-//     private router: Router,
-//     private categoryService: CategoryService
-//   )
-// {}
 
-// ngOnInit() {
-//   const id = this.route.snapshot.paramMap?.get('id'); // Get priority id from route
-//   if (id) {
-//     // Fetch priority details if id exists
-//     this.categoryService.getCategories().subscribe(data => {
-//       this.category = data;
-//       console.log(this.category)
-//     });
-//   }
-// }
 
-// // Save person details
-// saveCategory() {
-//   if (this.category.categoryId) {
-//     this.categoryService
-//       .updatecategory(this.category)
-//       .subscribe(() => this.goBack());
-//   } else {
-//     this.categoryService.addCategory(this.category).subscribe(() => this.goBack());
-//   }
-// }
+deleteCategory() {
+  if (this.category.categoryId) {
+    this.categoryService.deleteCategory(this.category.categoryId).subscribe(() => {
+      this.goBack();
+    }, error => {
+      console.error('Error deleting category:', error);
+      // Handle error appropriately (e.g., show error message)
+    });
+  }
+}
 
-// // Delete person
-// deleteCategory() {
-//   if (this.category.categoryId) {
-//     this.categoryService
-//       .deletecategory(this.category.categoryId)
-//       .subscribe(() => this.goBack());
-//   }
-// }
+goBack() {
+  this.router.navigate(['/categories']);
+}
+}
 
-// // Navigate back to persons list
-// goBack() {
-//   this.router.navigate(["/categories"]);
-// }
-// }

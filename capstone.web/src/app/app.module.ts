@@ -19,10 +19,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
+import { MatOption } from '@angular/material/core';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { QuestComponent } from './quest/quest.component';
+import { QuestListComponent } from './quest-list/quest-list.component';
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { MatIconModule } from '@angular/material/icon';
     NavigationComponent,
     CategoryComponent,
     CategoryListComponent,
+    QuestComponent,
+    QuestListComponent
   ],
   imports: [  
     BrowserModule,
@@ -46,7 +51,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatOption
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

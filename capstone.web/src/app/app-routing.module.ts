@@ -9,11 +9,13 @@ import { PriorityComponent } from './priority/priority.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
+import { QuestComponent } from './quest/quest.component';
+import { QuestListComponent } from './quest-list/quest-list.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: HeaderComponent, canActivate: [AuthGuard] }, // Example default page
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login page
   { path: 'prioritys', component: PriorityListComponent },
   { path: 'priority', component: PriorityComponent },
   { path: 'priority/:id', component: PriorityComponent },
@@ -21,7 +23,11 @@ const routes: Routes = [
   { path: 'categories', component: CategoryListComponent },
   { path: 'category/:id', component: CategoryComponent },
   { path: "category", component: CategoryComponent },
-  { path: '**', redirectTo: ''},
+  { path: 'quest/:id', component: QuestComponent },
+  { path: "quest", component: QuestComponent },
+  { path: 'quests', component: QuestListComponent },
+  
+  { path: '**', redirectTo: '/login' }, // Redirect any unknown routes to login
 ];
 
 @NgModule({

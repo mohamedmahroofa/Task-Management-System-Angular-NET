@@ -34,6 +34,12 @@
             // POST: /api/priorities
             group.MapPost("/", async (Priority priority, AppDbContext db) =>
             {
+
+                var priorityReq = await db.Priorities.CountAsync(p => !p.IsDeleted);
+                if (priorityReq < 1) //at least one entry in the database to be able to post
+                {
+                    return Results.BadRequest("There must be at least 1 Priority level");
+                }
                 priority.IsDeleted = false;
                 priority.DateCreated = DateTime.Now;
                 db.Priorities.Add(priority);

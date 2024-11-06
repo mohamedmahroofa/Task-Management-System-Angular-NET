@@ -34,6 +34,12 @@
             // POST: /api/categories
             group.MapPost("/", async (Category category, AppDbContext db) =>
             {
+                var categoryReq = await db.Categories.CountAsync(c => !c.IsDeleted);
+                if (categoryReq < 1) //at least one entry in the database to be able to post
+                {
+                    return Results.BadRequest("There must be at least 1 Category");
+                }
+
                 category.IsDeleted = false;
                 category.DateCreated = DateTime.Now;
                 db.Categories.Add(category);
