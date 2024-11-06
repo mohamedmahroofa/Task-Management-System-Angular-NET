@@ -37,7 +37,7 @@ export class CategoryListComponent implements OnInit{
     this.router.navigate(['/category']);
   }
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/navigation']);
   }
 
  
