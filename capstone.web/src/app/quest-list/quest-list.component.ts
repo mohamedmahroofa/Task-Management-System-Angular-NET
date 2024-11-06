@@ -41,7 +41,7 @@ export class QuestListComponent implements OnInit{
     this.router.navigate(['/quest']);
   }
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/navigation']);
   }
 
  
