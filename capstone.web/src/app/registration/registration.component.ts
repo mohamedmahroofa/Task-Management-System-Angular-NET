@@ -37,12 +37,13 @@ export class RegistrationComponent {
 
     this.isSubmitting = true; // Set submitting state
 
-    this.http.post('https://localhost:7197/api/register', userData)
+    this.http.post('https://localhost:7197/api/users', userData)
       .subscribe({
         next: (response) => {
           this.message = 'User registered successfully!';
           this.router.navigate(['/login']); // Navigate to login or another page
         },
+        
         error: (error) => {
           this.message = 'Error registering user: ' + (error.error || 'Server error');
           console.error(error);
