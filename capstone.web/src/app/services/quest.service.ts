@@ -25,7 +25,7 @@ export class QuestService {
   
     
     updateQuest(quest: Quest): Observable<Quest> {
-      return this.http.put<Quest>(`${this.url}/${quest.QuestId}`, quest);
+      return this.http.put<Quest>(`${this.url}/${quest.questId}`, quest);
     }
   
     

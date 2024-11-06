@@ -5,6 +5,8 @@ export interface Quest {
     dueDate: Date | string;
     isDeleted: boolean;
     priorityId: number,
-    categoryId: number
+    categoryId: number,
+    priorityName: string,
+    categoryName: string
     
 }
