@@ -19,7 +19,7 @@
 }
 .get-yourself-todo-container {
   position: absolute;
-  top: 105px;
+  top: 0;
   left: calc(50% - 98px);
   line-height: 26px;
 }
@@ -34,21 +34,21 @@
   font-weight: 900;
 }
 .heading-1 {
-  position: absolute;
+  /* position: absolute;
   top: 15px;
   left: 8px;
   width: 478px;
-  height: 38px;
+  height: 38px; */
   font-size: 30px;
   color: #606060;
 }
 .divcol-12 {
-  position: absolute;
+  /* position: absolute;
   width: 100%;
   top: 0px;
   right: 0px;
   left: 0px;
-  height: 137.2px;
+  height: 137.2px; */
   color: #000;
 }
 .name {
@@ -61,12 +61,12 @@
   height: 22px;
 }
 .divplaceholder {
-  position: absolute;
-  top: 6px;
-  left: 12px;
-  width: 402px;
-  height: 22px;
-  overflow: hidden;
+  /* position: absolute; */
+  /* top: 6px; */
+  /* left: 12px; */
+  /* width: 402px; */
+  /* height: 22px; */
+  /* overflow: hidden; */
 }
 .input {
   position: absolute;
@@ -95,12 +95,13 @@
   height: 22px;
 }
 .divplaceholder1 {
-  position: absolute;
-  top: 6px;
-  left: 12px;
-  width: 372px;
-  height: 22px;
-  overflow: hidden;
+  /* position: absolute; */
+  /* top: 6px; */
+  /* left: 12px; */
+  /* padding: 50px; */
+  /* width: 372px; */
+  /* height: 22px; */
+  /* overflow: hidden; */
 }
 .button {
   position: absolute;
@@ -218,12 +219,13 @@
   height: 25px;
 }
 .divrow {
-  position: absolute;
-  top: 31px;
+  /* position: absolute; */
+  /*top: 31px;
   left: 16px;
   width: 508px;
-  height: 507.2px;
-  text-align: left;
+  height: 507.2px; */
+  /* margin-top: 30px; */
+  /* text-align: left; */
 }
 .signup2 {
   position: absolute;
@@ -427,14 +429,14 @@
   color: #505050;
 }
 .signup {
-  width: 100%;
-  position: relative;
+  /* width: 100%; */
+  /* position: relative; */
   background-color: #fff;
-  height: 1024px;
-  overflow: hidden;
-  text-align: center;
+  /* height: 1024px; */
+  /* overflow: hidden; */
+  /* text-align: center; */
   font-size: 16px;
   color: #6c757d;
-  font-family: Avenir;
+  /* font-family: Avenir; */
 }
 
