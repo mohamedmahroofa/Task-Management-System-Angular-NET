@@ -9,7 +9,8 @@ import { PriorityComponent } from './priority/priority.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
-import {RegistrationComponent} from './registration/registration.component'
+import {RegistrationComponent} from './registration/registration.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'category/:id', component: CategoryComponent },
   { path: "category", component: CategoryComponent },
   { path: 'registration', component: RegistrationComponent },
+  { path: 'usermanagement', component: UserManagementComponent },
   { path: '**', redirectTo: ''},
 ];
 
