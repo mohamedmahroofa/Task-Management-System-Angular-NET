@@ -9,13 +9,8 @@ import { PriorityComponent } from './priority/priority.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
-<<<<<<< HEAD
-import {RegistrationComponent} from './registration/registration.component';
-import { UserManagementComponent } from './user-management/user-management.component';
-=======
 import {RegistrationComponent} from './registration/registration.component'
 import { UserListComponent } from './user-list/user-list.component';
->>>>>>> 85e2cc42d5c656cddefabfde4b00690114d9ebad
 
 
 const routes: Routes = [
