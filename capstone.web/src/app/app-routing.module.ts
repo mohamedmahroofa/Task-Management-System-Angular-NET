@@ -11,6 +11,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
 import {RegistrationComponent} from './registration/registration.component'
 import { UserListComponent } from './user-list/user-list.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 
 const routes: Routes = [
@@ -24,8 +25,8 @@ const routes: Routes = [
   { path: 'category/:id', component: CategoryComponent },
   { path: "category", component: CategoryComponent },
   { path: 'users', component: UserListComponent },
+  { path: 'user-management', component: UserManagementComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'usermanagement', component: UserManagementComponent },
   { path: '**', redirectTo: ''},
 ];
 

@@ -1,5 +1,5 @@
 export interface UserManagement {
-    priorityId: number,
+    userId: number,
     name: string,
     dateCreated: Date | string;
     isDeleted: boolean;
