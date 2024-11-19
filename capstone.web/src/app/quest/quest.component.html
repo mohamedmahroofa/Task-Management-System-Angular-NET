@@ -15,7 +15,14 @@
             Name is required.
           </mat-error>
         </mat-form-field>
-  
+       
+        <mat-form-field>
+          <mat-label>Select</mat-label>
+          <mat-select [(ngModel)]="quest.priorityId" name="priority" id="priorityId">
+            <mat-option *ngFor="let priority of priorities" [value]="priority.priorityId">{{ priority.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Choose a date</mat-label>
           <input
