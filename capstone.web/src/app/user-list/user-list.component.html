@@ -1,5 +1,5 @@
 <div class="container">
-    <button mat-raised-button (click)="addUser()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
+      <button mat-raised-button (click)="addUser()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
         New User
       </button>
 
@@ -44,6 +44,6 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let user; columns: displayedColumns"></tr>
+          <tr mat-row *matRowDef="let user; columns: displayedColumns"></tr>
       </table>
 </div>
