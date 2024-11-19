@@ -20,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -52,7 +53,8 @@ import { QuestListComponent } from './quest-list/quest-list.component';
     MatNativeDateModule, 
     MatButtonModule,
     MatIconModule,
-    MatOption
+    MatOption,
+    MatSelect
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
