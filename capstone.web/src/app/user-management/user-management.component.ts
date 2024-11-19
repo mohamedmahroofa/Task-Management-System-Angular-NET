@@ -12,10 +12,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UserManagementComponent implements OnInit  {
   user: UserManagement = {
     userId: 0,
-    name: '',
-    dateCreated: new Date(),
-    isDeleted: false,
-    color: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    username: '',
+    password: '',
+    role: 'general' // default role
 };
 constructor(
   private route: ActivatedRoute,
