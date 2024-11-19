@@ -12,13 +12,8 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241119162543_InitialCreate.Designer.cs
-    [Migration("20241119162543_InitialCreate")]
-    partial class InitialCreate
-========
-    [Migration("20241119053806_Trial")]
-    partial class Trial
->>>>>>>> 85e2cc42d5c656cddefabfde4b00690114d9ebad:capstone.web.api/Migrations/20241119053806_Trial.Designer.cs
+    [Migration("20241119234510_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

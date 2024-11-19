@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace capstone.web.api.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241119162543_InitialCreate.cs
-    public partial class InitialCreate : Migration
-========
-    public partial class Trial : Migration
->>>>>>>> 85e2cc42d5c656cddefabfde4b00690114d9ebad:capstone.web.api/Migrations/20241119053806_Trial.cs
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
