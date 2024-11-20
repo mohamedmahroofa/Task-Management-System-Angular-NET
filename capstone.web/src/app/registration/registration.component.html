@@ -15,7 +15,7 @@
             class="list-item"
           />
         </div>
-        <div class="group-parent">
+        <!-- <div class="group-parent">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search..." />
             <div class="input-group-append">
@@ -24,7 +24,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
         <img
           class="final-logo-1-icon"
           alt=""
@@ -99,7 +99,7 @@
                         placeholder="Confirm Password"
                       />
                     </div>
-                    <div class="">
+                    <!-- <div class="">
                       <div class="">
                         <div>
                         <label for="roles">Choose a Role:</label>
@@ -109,24 +109,26 @@
                           <option value="General">General</option>
                         </select>
                       </div>
+                    </div> -->
+                    <div class="heading-4-container">
+                      <input
+                        type="checkbox"
+                        class=""
+                        id="terms"
+                        name="terms"
+                        value="terms"
+                      />
+                      <span>Accept Terms & Conditions </span>
+                      <span class="learn-more">Learn More</span>
                     </div>
+                    <button class="button3" [disabled]="isSubmitting">
+                      <div class="signup2">Register</div>
+                    </button>
                   </div>
                 </div>
-
-                <div class="heading-4-container">
-                  <span>Accept Terms & Conditions </span>
-                  <span class="learn-more">Learn More</span>
-                </div>
-                <img
-                  class="checkcircle-icon"
-                  alt="checkmark"
-                  src="../assets/check-mark-button-svgrepo-com.svg"
-                />
               </div>
 
-              <button class="button3" [disabled]="isSubmitting">
-                <div class="signup2">Register</div>
-              </button>
+             
 
               <div class="ptext-center">
                 <div class="already-have-an-container">
