@@ -17,20 +17,6 @@ export class CategoryComponent implements OnInit  {
     name: '',
     dateCreated: new Date(),
     isDeleted: false,
-<<<<<<< HEAD
-    categoryId: 0,
-  };
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private categoryService: CategoryService,
-    
-  ) {}
-
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap?.get('id'); // Get category id from route
-=======
 };
 constructor(
   private route: ActivatedRoute,
@@ -39,7 +25,6 @@ constructor(
 ) {}
 ngOnInit() {
   const id = this.route.snapshot.paramMap?.get('id'); // Get category id from route
->>>>>>> origin/tom
   if (id) {
     // Fetch category details if id exists
     this.categoryService.getCategory(parseInt(id)).subscribe(data => {
