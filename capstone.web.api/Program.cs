@@ -182,7 +182,7 @@ namespace capstone.web.api
                     DateCreated = DateTime.Now,
                     color = "Red",
                 });
-                context.SaveChanges();
+                context.SaveChanges();  
             }
             if (!context.Quests.Any())
             {
