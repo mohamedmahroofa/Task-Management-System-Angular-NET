@@ -193,6 +193,9 @@
   line-height: 19.2px;
   font-weight: 500;
   color: #606060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .checkcircle-icon {
   position: absolute;
@@ -229,19 +232,12 @@
   width: 100%;
 }
 .already-have-an-container {
-  position: absolute;
-  top: -13px;
-  left: 121.97px;
   line-height: 26px;
   display: flex;
   align-items: center;
-  width: 234.3px;
   height: 22px;
 }
 .ptext-center {
-  position: absolute;
-  top: 613.19px;
-  left: 31px;
   width: 478px;
   height: 26px;
   color: #505050;
