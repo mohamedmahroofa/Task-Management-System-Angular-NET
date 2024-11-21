@@ -21,10 +21,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RegistrationComponent } from './registration/registration.component';
-
-import {MatSelectModule} from '@angular/material/select';
+import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserManagementComponent } from './user-management/user-management.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -39,8 +39,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
     CategoryListComponent,
     CategoryComponent,
     RegistrationComponent,
+    UserComponent,
     UserListComponent,
-    UserManagementComponent
   ],
   imports: [  
     BrowserModule,
