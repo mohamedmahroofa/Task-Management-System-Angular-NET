@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
@@ -9,31 +9,40 @@ import { Router } from '@angular/router';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent implements OnInit{
-  users: User[] = []; // Array to hold list of users
-  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'role', 'action'];
-
-  constructor(
-    private userService: UserService,
-    private router: Router
-  ) {}
+  users: User[] = []; // Array to hold list of persons
+  displayedColumns: string[] = ['firstName', 'lastName' , 'userName','email','role','action','actiondelete'];
+  
+ 
+    constructor(
+      private userService: UserService,
+      private router: Router
+    ) {}
   
   ngOnInit(){
-    // Fetch Prioritys on component initialization
-    this.userService.getUsers().subscribe((data) => {
-     this.users = data;
-   });
-}
+       // Fetch Users on component initialization
+       this.userService.getUsers().subscribe((data) => {
+        this.users = data;
+      });
+  }
 
   // Navigate to User details component
   viewUser(id: number) {
     this.router.navigate(['/user', id]);
   }
-  
+  deleteUser(id: number) {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.userService.deleteUser(id).subscribe(() => {
+        this.users = this.users.filter(user => user.id !== id);
+      });
+    }
+  }
+  // Navigate to new User form
   addUser() {
-    this.router.navigate(['/user-management']);
+    this.router.navigate(['/user']);
   }
   goBack() {
     this.router.navigate(['/']);
   }
 
+ 
 }
