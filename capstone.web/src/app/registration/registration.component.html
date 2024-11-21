@@ -1,67 +1,154 @@
-<div class="registration">
-  <h2>Register</h2>
-  <form (ngSubmit)="register()">
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Firstname</mat-label>
-    
-      <input matInput [(ngModel)]="firstName" name="firstname" required class="large-input" #nameInput="ngModel" />
-      <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-        Firstname is required.
-      </mat-error>
-    </mat-form-field>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="signup">
+      <div class="header-nav">
+        <div class="list">
+          <div class="item-link">
+            <div class="wednesday">Wednesday</div>
+          </div>
+          <div class="div">16/10/2024</div>
+          <div class="div1">11:56:26</div>
+          <img
+            alt="notification"
+            src="../../assets/bellSimple.svg"
+            class="list-item"
+          />
+        </div>
+        <!-- <div class="group-parent">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search..." />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                <img alt="search" src="../../assets/bellSimple.svg" />
+              </button>
+            </div>
+          </div>
+        </div> -->
+        <img
+          class="final-logo-1-icon"
+          alt=""
+          src="../../assets/final_logo.png"
+        />
+      </div>
+      <div class="footer-parent">
+        <div class="footer"></div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Lastname</mat-label>
-      <input matInput [(ngModel)]="lastName" name="lastname" required class="large-input" #lastnameInput="ngModel" />
-      <mat-error *ngIf="lastnameInput.invalid && (lastnameInput.dirty || lastnameInput.touched)">
-        Lastname is required.
-      </mat-error>
-    </mat-form-field>
+        <div class="row mr-0">
+          <div class="col-md-6">
+            <div class="footer1"></div>
+          </div>
+          <div class="col-md-6">
+            <div class="form">
+              <div class="">
+                <div class="divcol-12">
+                  <div class="signup1 d-flex justify-content-center pt-4">
+                    <span>Sign</span>
+                    <span class="up">up</span>
+                  </div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" type="email" name="email" required class="large-input" #emailInput="ngModel" />
-      <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
-        A valid email is required.
-      </mat-error>
-    </mat-form-field>
+                  <div class="d-flex justify-content-center pt-4 pb-4" >
+                    <span>Get yourself </span>
+                    <span class="todo">
+                      <span class="up ml-1">TODO</span>
+                      <span> </span>
+                    </span>
+                    <span>
+                      <span class="ml-1">more</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center align-item-center">
+                  <div class="">
+                    <div class="">
+                      <input
+                        class="input"
+                        type="text"
+                        placeholder="First Name"
+                      />
+                    </div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Username</mat-label>
-      <input matInput [(ngModel)]="username" name="username" required class="large-input" #usernameInput="ngModel" />
-      <mat-error *ngIf="usernameInput.invalid && (usernameInput.dirty || usernameInput.touched)">
-        Username is required.
-      </mat-error>
-    </mat-form-field>
+                    <div class="">
+                      <input
+                        type="text"
+                        class="input"
+                        placeholder="Last Name"
+                      />
+                    </div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Password</mat-label>
-      <input matInput [(ngModel)]="password" type="password" name="password" required class="large-input" #passwordInput="ngModel" />
-      <mat-error *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
-        Password is required.
-      </mat-error>
-    </mat-form-field>
+                    <div class="">
+                      <input type="email" class="input" placeholder="Email" />
+                    </div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Confirm Password</mat-label>
-      <input matInput [(ngModel)]="confirmPassword" type="password" name="confirmPassword" required class="large-input" #confirmPasswordInput="ngModel" />
-      <mat-error *ngIf="confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)">
-        Confirm Password is required.
-      </mat-error>
-    </mat-form-field>
+                    <div class="">
+                      <input type="text" class="input" placeholder="username" />
+                    </div>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Role</mat-label>
-      <mat-select [(ngModel)]="role" name="role" required>
-        <mat-option value="administrator">Administrator</mat-option>
-        <mat-option value="general">General</mat-option>
-        <!-- Add more roles as needed -->
-      </mat-select>
-    </mat-form-field>
+                    <div class="">
+                      <input
+                        type="password"
+                        class="input"
+                        placeholder="password"
+                      />
+                    </div>
 
-    <button mat-raised-button color="primary" [disabled]="isSubmitting">
-      Register
-    </button>
-  </form>
-  <p>{{ message }}</p>
-</div>
+                    <div class="">
+                      <input
+                        type="password"
+                        class="input"
+                        placeholder="Confirm Password"
+                      />
+                    </div>
+                    <!-- <div class="">
+                      <div class="">
+                        <div>
+                        <label for="roles">Choose a Role:</label>
+                      </div>
+                        <select name="role" id="role" class="input">
+                          <option value="Administrator">Administrator</option>
+                          <option value="General">General</option>
+                        </select>
+                      </div>
+                    </div> -->
+                    <div class="heading-4-container m-3">
+                      <input
+                        type="checkbox"
+                        class=""
+                        id="terms"
+                        name="terms"
+                        value="terms"
+                      />
+                      <span>Accept Terms & Conditions </span>
+                      <span class="learn-more ml-1">Learn More</span>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3">
+                      <button class="button3" [disabled]="isSubmitting">
+                        <div class="signup2">Register</div>
+                      </button>
+                    </div>
+                    <div class="ptext-center  pb-4">
+                      <div class="already-have-an-container">
+                        <span class="already-have-an-container1 pb-4">
+                          <span>Already have an account? </span>
+                          <span class="signin">Signin</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-group">
+          <div class="footer1"></div>
+          <img
+            class="young-woman-working-on-laptop"
+            alt=""
+            src="..\assets\woman-register.png"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
