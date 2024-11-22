@@ -50,14 +50,24 @@
             Name is required.
           </mat-error>
         </mat-form-field>
+  
+        <!-- Priority Selection -->
         <mat-form-field>
-          <mat-label>Select</mat-label>
+          <mat-label>Priority</mat-label>
           <mat-select [(ngModel)]="quest.priorityId" name="priority" id="priorityId">
             <mat-option *ngFor="let priority of priorities" [value]="priority.priorityId">{{ priority.name }}</mat-option>
           </mat-select>
         </mat-form-field>
-
   
+        <!-- Category Selection -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-select [(ngModel)]="quest.categoryId" name="category" id="categoryId">
+            <mat-option *ngFor="let category of categories" [value]="category.categoryId">{{ category.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <!-- Date Selection -->
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Choose a date</mat-label>
           <input
@@ -69,8 +79,8 @@
             #dateInput="ngModel"
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-             <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="dateInput.invalid && (dateInput.dirty || dateInput.touched)">
             Date is required.
           </mat-error>
