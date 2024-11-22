@@ -35,14 +35,14 @@
           </td>
       </ng-container>
       <ng-container matColumnDef="actiondelete">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let user">
-          <button
+          <!-- <button
             (click)="deleteUser(user.id)"
             mat-raised-button color="warn"
           >
             Delete
-          </button>
+          </button> -->
         </td>
       </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
