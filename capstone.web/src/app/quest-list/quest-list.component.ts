@@ -2,6 +2,10 @@ import { Component , OnInit } from '@angular/core';
 import { Quest } from '../models/quest';
 import { QuestService } from '../services/quest.service';
 import { Router } from '@angular/router';
+import { Category } from '../models/category';
+import { Priority } from '../models/priority';
+import { CategoryService } from '../services/category.service';
+import { PriorityService } from '../services/priority.service';
 
 @Component({
   selector: 'app-quest-list',
@@ -10,11 +14,15 @@ import { Router } from '@angular/router';
 })
 export class QuestListComponent implements OnInit{
   quests: Quest[] = []; // Array to hold list of quests
-  displayedColumns: string[] = ['name', 'dueDate' , 'action','actiondelete'];
+  priorities: Priority[] = []; // Array to hold list of priorities
+  categories: Category[] = []; // Array to hold list of categories
+  displayedColumns: string[] = ['name', 'dueDate' , 'priority', 'action','actiondelete'];
   
  
     constructor(
       private questService: QuestService,
+      private priorityService: PriorityService,
+      private categoryService: CategoryService,
       private router: Router
     ) {}
   
@@ -23,7 +31,17 @@ export class QuestListComponent implements OnInit{
        this.questService.getQuests().subscribe((data) => {
         this.quests = data;
       });
+
+      this.priorityService.getPrioritys().subscribe((data) => {
+        this.priorities = data;
+      });
+
+      this.categoryService.getCategories().subscribe((data) => {
+        this.categories = data;
+      });
   }
+
+  
 
   // Navigate to Quest details component
   viewQuest(id: number) {
@@ -43,6 +61,15 @@ export class QuestListComponent implements OnInit{
   goBack() {
     this.router.navigate(['/navigation']);
   }
-
  
+  getPriorityName(id: number): string {
+
+    const priority = this.priorities.find((x) => x.priorityId == id)
+  
+    if(priority) {
+      return priority.name;
+    }
+  
+    throw `Unable to find Genre by the given Id: ${id}`;
+  }
 }
