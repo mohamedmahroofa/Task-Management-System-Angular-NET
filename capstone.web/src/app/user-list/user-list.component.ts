@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserListComponent implements OnInit{
   users: User[] = []; // Array to hold list of persons
-  displayedColumns: string[] = ['firstName', 'lastName' , 'userName','email','role','action','actiondelete'];
+  displayedColumns: string[] = ['firstName', 'userName','email','role','action','actiondelete'];
   
  
     constructor(
