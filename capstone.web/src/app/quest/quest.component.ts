@@ -8,16 +8,16 @@ import { Priority } from '../models/priority';
 import { Category } from '../models/category';
 import { MatOption } from '@angular/material/core';
 
-
 @Component({
   selector: 'app-quest',
   templateUrl: './quest.component.html',
-  styleUrl: './quest.component.scss'
+  styleUrls: ['./quest.component.scss']
 })
 export class QuestComponent implements OnInit {
-  quest: Quest = { questId: 0, name: "", priorityId: 1, categoryId: 1, dueDate: new Date(), dateCreated: new Date(), isDeleted: false};
+  quest: Quest = { questId: 0, name: "", priorityId: 1, categoryId: 1, dueDate: new Date(), dateCreated: new Date(), isDeleted: false };
   priorities: Priority[] = [];
   categories: Category[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,23 +35,21 @@ export class QuestComponent implements OnInit {
       });
     }
 
+    // Fetch priority list
     this.priorityService.getPrioritys().subscribe((data) => {
       this.priorities = data;
-      console.log(data);
     });
 
+    // Fetch category list
     this.categoryService.getCategories().subscribe((data) => {
       this.categories = data;
-      console.log(data);
     });
   }
 
   saveQuest() {
     if (this.quest.questId) {
       this.questService.updateQuest(this.quest).subscribe(() => this.goBack());
-    } 
-    
-    else {
+    } else {
       this.questService.addQuest(this.quest).subscribe(() => this.goBack());
     }
   }
@@ -61,7 +59,6 @@ export class QuestComponent implements OnInit {
       this.questService.deleteQuest(this.quest.questId).subscribe(() => this.goBack());
     }
   }
-
 
   goBack() {
     this.router.navigate(["/quests"]);
