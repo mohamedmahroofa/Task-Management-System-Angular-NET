@@ -12,7 +12,7 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241122003326_mig1")]
+    [Migration("20241122005658_mig1")]
     partial class mig1
     {
         /// <inheritdoc />

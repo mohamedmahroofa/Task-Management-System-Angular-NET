@@ -15,16 +15,6 @@
             class="list-item"
           />
         </div>
-        <!-- <div class="group-parent">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search..." />
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">
-                <img alt="search" src="../../assets/bellSimple.svg" />
-              </button>
-            </div>
-          </div>
-        </div> -->
         <img
           class="final-logo-1-icon"
           alt=""
@@ -33,106 +23,133 @@
       </div>
       <div class="footer-parent">
         <div class="footer"></div>
-
         <div class="row mr-0">
           <div class="col-md-6">
             <div class="footer1"></div>
           </div>
           <div class="col-md-6">
-            <form class="form" (ngSubmit) = "register()">
-              <div class="">
-                <div class="divcol-12">
-                  <div class="signup1 d-flex justify-content-center pt-4">
-                    <span>Sign</span>
-                    <span class="up">up</span>
-                  </div>
-
-                  <div class="d-flex justify-content-center pt-4 pb-4" >
-                    <span>Get yourself </span>
-                    <span class="todo">
-                      <span class="up ml-1">TODO</span>
-                      <span> </span>
-                    </span>
-                    <span>
-                      <span class="ml-1">more</span>
-                    </span>
-                  </div>
+            <form class="form" (ngSubmit)="register()">
+              <div class="divcol-12">
+                <div class="signup1 d-flex justify-content-center pt-4">
+                  <span>Sign</span>
+                  <span class="up">up</span>
                 </div>
-                <div class="d-flex justify-content-center align-item-center">
-                  <div class="">
-                    <div class="">
-                      <input
-                        class="input"
-                        type="text"
-                        placeholder="First Name"
-                      />
-                    </div>
 
-                    <div class="">
-                      <input
-                        type="text"
-                        class="input"
-                        placeholder="Last Name"
-                      />
-                    </div>
+                <div class="d-flex justify-content-center pt-4 pb-4">
+                  <span>Get yourself </span>
+                  <span class="todo">
+                    <span class="up ml-1">TODO</span>
+                  </span>
+                  <span>
+                    <span class="ml-1">more</span>
+                  </span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center align-item-center">
+                <div class="">
+                  <div>
+                    <input
+                      class="input"
+                      type="text"
+                      placeholder="First Name"
+                      [(ngModel)]="firstName"
+                      name="firstName"
+                      required
+                    />
+                  </div>
 
-                    <div class="">
-                      <input type="email" class="input" placeholder="Email" />
-                    </div>
+                  <div>
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Last Name"
+                      [(ngModel)]="lastName"
+                      name="lastName"
+                      required
+                    />
+                  </div>
 
-                    <div class="">
-                      <input type="text" class="input" placeholder="username" />
-                    </div>
+                  <div>
+                    <input
+                      type="email"
+                      class="input"
+                      placeholder="Email"
+                      [(ngModel)]="email"
+                      name="email"
+                      required
+                    />
+                  </div>
 
-                    <div class="">
-                      <input
-                        type="password"
-                        class="input"
-                        placeholder="password"
-                      />
-                    </div>
+                  <div>
+                    <input
+                      type="text"
+                      class="input"
+                      placeholder="Username"
+                      [(ngModel)]="username"
+                      name="username"
+                      required
+                    />
+                  </div>
 
-                    <div class="">
-                      <input
-                        type="password"
-                        class="input"
-                        placeholder="Confirm Password"
-                      />
-                    </div>
-                    <!-- <div class="">
-                      <div class="">
-                        <div>
-                        <label for="roles">Choose a Role:</label>
-                      </div>
-                        <select name="role" id="role" class="input">
-                          <option value="Administrator">Administrator</option>
-                          <option value="General">General</option>
-                        </select>
-                      </div>
-                    </div> -->
-                    <div class="heading-4-container m-3">
-                      <input
-                        type="checkbox"
-                        class=""
-                        id="terms"
-                        name="terms"
-                        value="terms"
-                      />
-                      <span>Accept Terms & Conditions </span>
-                      <span class="learn-more ml-1">Learn More</span>
-                    </div>
-                    <div class="d-flex justify-content-center mb-3">
-                      <button class="button3" [disabled]="isSubmitting">
-                        <div class="signup2">Register</div>
-                      </button>
-                    </div>
-                    <div class="ptext-center  pb-4">
-                      <div class="already-have-an-container">
-                        <span class="already-have-an-container1 pb-4">
-                          <span>Already have an account? </span>
-                          <a class="signin" href="/login" >Signin</a>
-                        </span>
-                      </div>
+                  <div>
+                    <input
+                      type="password"
+                      class="input"
+                      placeholder="Password"
+                      [(ngModel)]="password"
+                      name="password"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      type="password"
+                      class="input"
+                      placeholder="Confirm Password"
+                      [(ngModel)]="confirmPassword"
+                      name="confirmPassword"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label for="roles">Choose a Role:</label>
+                    <select
+                      name="role"
+                      id="role"
+                      class="input"
+                      [(ngModel)]="role"
+                      required
+                    >
+                      <option value="" disabled selected>Select Role</option>
+                      <option value="Administrator">Administrator</option>
+                      <option value="General">General</option>
+                    </select>
+                  </div>
+
+                  <div class="heading-4-container m-3">
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      name="terms"
+                      value="terms"
+                      required
+                    />
+                    <span>Accept Terms & Conditions </span>
+                    <span class="learn-more ml-1">Learn More</span>
+                  </div>
+                  <div class="d-flex justify-content-center mb-3">
+                    <button class="button3" [disabled]="isSubmitting">
+                      <div class="signup2">Register</div>
+                    </button>
+                  </div>
+                  <div class="ptext-center pb-4">
+                    <div class="already-have-an-container">
+                      <span class="already-have-an-container1 pb-4">
+                        <span>Already have an account? </span>
+                        <a class="signin" href="/login">Signin</a>
+                      </span>
                     </div>
                   </div>
                 </div>
