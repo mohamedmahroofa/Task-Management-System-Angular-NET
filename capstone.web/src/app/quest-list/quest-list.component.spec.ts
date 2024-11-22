@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PriorityListComponent } from './priority-list.component';
+import { PriorityListComponent } from '../priority-list/priority-list.component';
+
 
 describe('PriorityListComponent', () => {
   let component: PriorityListComponent;
