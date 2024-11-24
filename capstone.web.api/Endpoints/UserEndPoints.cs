@@ -76,12 +76,12 @@
                 return Results.Created($"/api/users/{user.Id}", user);**/
             });
 
-            endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
+           /* endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
             {
                 // Validate that the username and email are unique and match email pattern
                 
                
-            });
+            });*/
 
             endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, User updateUser, AppDbContext db) =>
             {
