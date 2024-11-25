@@ -34,9 +34,9 @@
       <td mat-cell *matCellDef="let quest"> {{ getPriorityName(quest.priorityId) }} </td>
     </ng-container>
 
-    <!-- Action Section -->
+    <!-- View -->
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <th mat-header-cell *matHeaderCellDef>Details</th>
       <td mat-cell *matCellDef="let quest">
         <button
           (click)="viewQuest(quest.questId)"
@@ -48,7 +48,7 @@
     </ng-container>
 
     <ng-container matColumnDef="actiondelete">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <th mat-header-cell *matHeaderCellDef>Delete Task</th>
         <td mat-cell *matCellDef="let quest">
           <button
             (click)="deleteQuest(quest.questId)"
