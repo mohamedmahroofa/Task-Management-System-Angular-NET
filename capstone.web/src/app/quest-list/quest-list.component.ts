@@ -62,6 +62,17 @@ export class QuestListComponent implements OnInit{
     this.router.navigate(['/navigation']);
   }
  
+  getCategoryName(id: number): string {
+
+    const category = this.categories.find((x) => x.categoryId == id)
+  
+    if(category) {
+      return category.name;
+    }
+  
+    throw `Unable to find Category by the given Id: ${id}`;
+  }
+
   getPriorityName(id: number): string {
 
     const priority = this.priorities.find((x) => x.priorityId == id)
@@ -70,6 +81,6 @@ export class QuestListComponent implements OnInit{
       return priority.name;
     }
   
-    throw `Unable to find Genre by the given Id: ${id}`;
+    throw `Unable to find Priority by the given Id: ${id}`;
   }
 }

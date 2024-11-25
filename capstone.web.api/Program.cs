@@ -5,7 +5,6 @@ using System.Text;
 using capstone.web.api.Data;
 using capstone.web.api.Models;
 using capstone.web.api.Endpoints;
-using capstone.web.api.Endpoints;
 
 //adding a comment just to test commit
 namespace capstone.web.api
@@ -96,6 +95,8 @@ namespace capstone.web.api
             app.MapUserEndpoints();
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
+            app.MapQuestEndpoints();
+
 
 
 
