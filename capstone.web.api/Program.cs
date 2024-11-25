@@ -120,6 +120,16 @@ namespace capstone.web.api
 
                 context.Users.Add(new User
                 {
+                    FirstName = "Jesus",
+                    LastName = "Alapisco",
+                    Email = "alapiscodavilaj@mymacewan.ca",
+                    Username = "alapiscof",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234"), // Securely hash passwords
+                    Role = "Administrator"
+                });
+
+                context.Users.Add(new User
+                {
                     FirstName = "General",
                     LastName = "User",
                     Email = "general@example.com",
