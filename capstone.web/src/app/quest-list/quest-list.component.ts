@@ -16,7 +16,7 @@ export class QuestListComponent implements OnInit{
   quests: Quest[] = []; // Array to hold list of quests
   priorities: Priority[] = []; // Array to hold list of priorities
   categories: Category[] = []; // Array to hold list of categories
-  displayedColumns: string[] = ['name', 'dueDate' , 'priority', 'action','actiondelete'];
+  displayedColumns: string[] = ['name', 'dueDate' , 'category', 'priority', 'action','actiondelete'];
   
  
     constructor(
@@ -64,7 +64,7 @@ export class QuestListComponent implements OnInit{
  
   getCategoryName(id: number): string {
 
-    const category = this.categories.find((x) => x.categoryId == id)
+    const category = this.categories.find((y) => y.categoryId == id)
   
     if(category) {
       return category.name;
