@@ -1,68 +1,67 @@
-import { Component,OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component , OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit  {
 
   category: Category = {
+    categoryId: 0,
     name: '',
     dateCreated: new Date(),
     isDeleted: false,
-    categoryId: 0,
-  };
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private categoryService: CategoryService,
-  ) {}
-
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap?.get('id'); // Get category id from route
+};
+constructor(
+  private route: ActivatedRoute,
+  private categoryService: CategoryService,
+  private router: Router
+) {}
+ngOnInit() {
+  const id = this.route.snapshot.paramMap?.get('id'); // Get category id from route
   if (id) {
     // Fetch category details if id exists
     this.categoryService.getCategory(parseInt(id)).subscribe(data => {
       this.category = data;
       console.log(this.category)
 
-      if(typeof this.category.dateCreated === "string") {
-        this.category.dateCreated = this.category.dateCreated.split('T')[0];
-      }
     });
-    }
   }
-  // Save category details
-  saveCategory() {
-    if (this.category.categoryId) {
-      this.categoryService.updateCategory(this.category).subscribe(() => {
-        this.goBack();
-      });
-    } else {
-      this.categoryService.addCategory(this.category).subscribe(() => {
-        this.goBack();
-      });
-    }
+}
+
+saveCategory() {
+  if (this.category.categoryId) {
+    this.categoryService.updateCategory(this.category).subscribe(() => {
+      this.goBack();
+    });
+  } else {
+    this.categoryService.addCategory(this.category).subscribe(() => {
+      this.goBack();
+    });
   }
-  
-  
-  deleteCategory() {
-    if (this.category.categoryId) {
-      this.categoryService.deleteCategory(this.category.categoryId).subscribe(() => {
-        this.goBack();
-      }, error => {
-        console.error('Error deleting category:', error);
-        // Handle error appropriately (e.g., show error message)
-      });
-    }
+}
+
+
+
+deleteCategory() {
+  if (this.category.categoryId) {
+    this.categoryService.deleteCategory(this.category.categoryId).subscribe(() => {
+      this.goBack();
+    }, error => {
+      console.error('Error deleting category:', error);
+      // Handle error appropriately (e.g., show error message)
+    });
   }
-  
-  goBack() {
-    this.router.navigate(['/categories']);
-  }
-  }
+}
+
+goBack() {
+  this.router.navigate(['/categories']);
+}
+}
+

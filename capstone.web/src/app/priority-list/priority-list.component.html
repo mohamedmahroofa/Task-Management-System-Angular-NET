@@ -6,6 +6,7 @@
   <button mat-raised-button type="button" (click)="goBack()" style="background-color: black; color: white; margin-bottom: 15px;">
     Back
   </button>
+  
   <table mat-table [dataSource]="prioritys" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -44,27 +45,5 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let priority; columns: displayedColumns"></tr>
-    <!-- <thead>
-            <tr>
-                <th>Name</th>
-                <th>Created Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let priority of prioritys">
-                <td>{{ priority.name }}</td>
-                <td>{{ priority.dateCreated | date: 'yyyy-MM-dd'}}</td>
-                <td>
-
-                    <button (click)="viewPriority(priority.priorityId)" class="btn btn-primary ">
-                        View
-                    </button>
-                    <button (click)="deletePriority(priority.priorityId)" class="btn btn-danger ml-2">
-                        Delete
-                    </button>
-                   
-                </td>
-            </tr>
-        </tbody> -->
   </table>
 </div>
