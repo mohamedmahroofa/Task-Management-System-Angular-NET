@@ -32,6 +32,7 @@ import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import {MatSelectModule} from '@angular/material/select';
 import { StatusComponent } from './status/status.component';
+import { StatusListComponent } from './status-list/status-list.component';
 
 
 
@@ -53,6 +54,7 @@ import { StatusComponent } from './status/status.component';
     UserComponent,
     UserListComponent,
     StatusComponent,
+    StatusListComponent,
   ],
   imports: [  
     BrowserModule,
