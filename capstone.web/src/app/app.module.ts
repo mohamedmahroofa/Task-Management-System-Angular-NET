@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { PriorityComponent } from './priority/priority.component';
 import { PriorityListComponent } from './priority-list/priority-list.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category/category.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +19,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { QuestComponent } from './quest/quest.component';
+import { QuestListComponent } from './quest-list/quest-list.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user-list/user-list.component';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 
 @NgModule({
@@ -30,8 +43,14 @@ import { MatIconModule } from '@angular/material/icon';
     PriorityComponent,
     PriorityListComponent,
     NavigationComponent,
+    CategoryComponent,
     CategoryListComponent,
-    CategoryComponent
+    QuestComponent,
+    QuestListComponent,
+    CategoryComponent,
+    RegistrationComponent,
+    UserComponent,
+    UserListComponent,
   ],
   imports: [  
     BrowserModule,
@@ -43,12 +62,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatOption,
+    MatSelect,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

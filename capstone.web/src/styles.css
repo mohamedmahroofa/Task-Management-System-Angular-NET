@@ -10,12 +10,17 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .brand-color-blue {
-    color: #004aad !important;
+    color: #c00202 !important;
 }
 
 .brand-background-color-blue {
-    background-color: #004aad !important;
+    background-color: #c00202 !important;
 }
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

@@ -57,7 +57,7 @@
       <div class="do-not-have-container">
         <span class="do-not-have-container1">
           <span>Do not have an account? </span>
-          <a href="/register" class="create-an-account">Create an account.</a>
+          <a href="registration" class="create-an-account">Create an account.</a>
         </span>
       </div>      
     </div>
@@ -70,10 +70,13 @@
   <div class="header-nav">
     <div class="list">
       <div class="item-link">
-        <div class="wednesday">Wednesday</div>
+        <!-- Dynamic weekday -->
+        <div class="wednesday">{{ dayOfWeek }}</div>
       </div>
-      <div class="div">16/10/2024</div>
-      <div class="div1">11:56:26</div>
+      <!-- Dynamic Date -->
+      <div class="div">{{ currentDate }}</div>
+      <!-- Dynamic Time -->
+      <div class="div1">{{ currentTime }}</div>
       <img class="list-child" alt="" src="../../assets/bellSimple.svg" />
     </div>
     <img class="final-logo-1-icon" alt="" src="../../assets/final_logo.png" />

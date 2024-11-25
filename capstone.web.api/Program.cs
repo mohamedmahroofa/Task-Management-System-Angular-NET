@@ -5,9 +5,8 @@ using System.Text;
 using capstone.web.api.Data;
 using capstone.web.api.Models;
 using capstone.web.api.Endpoints;
-using capstone.web.api.Endpoints;
 
-
+//adding a comment just to test commit
 namespace capstone.web.api
 {
     public class Program
@@ -56,7 +55,7 @@ namespace capstone.web.api
             });
 
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer((builder.Configuration.GetConnectionString("DefaultConnection"))));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Enable authorization
             builder.Services.AddAuthorization();
@@ -96,8 +95,11 @@ namespace capstone.web.api
             app.MapUserEndpoints();
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
+            app.MapQuestEndpoints();
 
-            
+
+
+
 
             app.Run();
         }
@@ -155,7 +157,7 @@ namespace capstone.web.api
                     Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
-                    color ="Green",
+                    color = "Green",
                 });
 
                 context.Priorities.Add(new Priority
@@ -181,6 +183,31 @@ namespace capstone.web.api
                     DateCreated = DateTime.Now,
                     color = "Red",
                 });
+                context.SaveChanges();  
+            }
+            if (!context.Quests.Any())
+            {
+                // Example seed quests
+                context.Quests.Add(new Quest
+                {
+                    Name = "Go to School",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    CategoryId = 1,
+                    PriorityId = 3,
+                });
+
+                context.Quests.Add(new Quest
+                {
+                    Name = "Take 21:00 pill",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    CategoryId = 2,
+                    PriorityId = 1,
+                });
+
                 context.SaveChanges();
             }
         }
