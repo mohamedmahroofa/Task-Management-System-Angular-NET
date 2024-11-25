@@ -27,6 +27,12 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { QuestComponent } from './quest/quest.component';
 import { QuestListComponent } from './quest-list/quest-list.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user-list/user-list.component';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 
 @NgModule({
@@ -40,7 +46,11 @@ import { QuestListComponent } from './quest-list/quest-list.component';
     CategoryComponent,
     CategoryListComponent,
     QuestComponent,
-    QuestListComponent
+    QuestListComponent,
+    CategoryComponent,
+    RegistrationComponent,
+    UserComponent,
+    UserListComponent,
   ],
   imports: [  
     BrowserModule,
@@ -54,7 +64,8 @@ import { QuestListComponent } from './quest-list/quest-list.component';
     MatButtonModule,
     MatIconModule,
     MatOption,
-    MatSelect
+    MatSelect,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

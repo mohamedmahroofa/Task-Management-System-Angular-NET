@@ -96,7 +96,7 @@ namespace capstone.web.api
             app.MapUserEndpoints();
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
-            app.MapQuestEndpoints();
+
 
 
 
@@ -156,7 +156,7 @@ namespace capstone.web.api
                     Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
-                    color ="Green",
+                    color = "Green",
                 });
 
                 context.Priorities.Add(new Priority
