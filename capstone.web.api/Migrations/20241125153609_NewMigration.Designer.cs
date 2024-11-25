@@ -12,8 +12,8 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241024202036_New-quest-entity")]
-    partial class Newquestentity
+    [Migration("20241125153609_NewMigration")]
+    partial class NewMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
