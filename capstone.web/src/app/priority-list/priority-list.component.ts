@@ -41,7 +41,7 @@ export class PriorityListComponent implements OnInit{
     this.router.navigate(['/priority']);
   }
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/navigation']);
   }
 
  
