@@ -34,10 +34,10 @@
         }
 
         public static void MapUserEndpoints(this IEndpointRouteBuilder endpoints)
-        {
+        {   
             var secretKey = "%^@#HD*@HD2387d223wyfi@67823gfSDHIFEQIWUC387f@3fhR$#@@jfwWEHI";
 
-            endpoints.MapGet("/api/users", [Authorize(Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
+            endpoints.MapGet("/api/users", [Authorize (Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
             {
                 return Results.Ok(await db.Users.ToListAsync());
             });
@@ -74,6 +74,30 @@
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
                 return Results.Created($"/api/users/{user.Id}", user);**/
+            });
+
+            endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
+            {
+                // Validate that the username and email are unique
+                if (await db.Users.AnyAsync(u => u.Username == user.Username || u.Email == user.Email))
+                {
+                    return Results.BadRequest("Username or Email already exists.");
+                }
+
+                // Hash the Password
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+
+                // Set the default role to "General"
+                if (string.IsNullOrWhiteSpace(user.Role))
+                {
+                    user.Role = "General"; // Set default role
+                }
+
+                // Add the new user to the database
+                db.Users.Add(user);
+                await db.SaveChangesAsync();
+
+                return Results.Created($"/api/users/{user.Id}", user);
             });
 
            /* endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
