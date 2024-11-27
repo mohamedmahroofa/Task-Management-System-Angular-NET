@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace capstone.web.api.Migrations
 {
     /// <inheritdoc />
-    public partial class NewMigration : Migration
+    public partial class UserFilteringMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,7 +71,8 @@ namespace capstone.web.api.Migrations
                     DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    PriorityId = table.Column<int>(type: "int", nullable: false)
+                    PriorityId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,6 +89,12 @@ namespace capstone.web.api.Migrations
                         principalTable: "Priorities",
                         principalColumn: "PriorityId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Quests_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -99,6 +106,11 @@ namespace capstone.web.api.Migrations
                 name: "IX_Quests_PriorityId",
                 table: "Quests",
                 column: "PriorityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quests_UserId",
+                table: "Quests",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -108,13 +120,13 @@ namespace capstone.web.api.Migrations
                 name: "Quests");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Priorities");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
