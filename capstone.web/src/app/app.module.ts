@@ -22,6 +22,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 
+import {ReactiveFormsModule} from '@angular/forms';
+
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -56,6 +58,7 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatTableModule, MatFormFieldModule,
     MatInputModule,
