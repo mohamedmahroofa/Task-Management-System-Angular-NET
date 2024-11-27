@@ -17,7 +17,7 @@ export class QuestListComponent implements OnInit{
   priorities: Priority[] = []; // Array to hold list of priorities
   categories: Category[] = []; // Array to hold list of categories
   displayedColumns: string[] = ['name', 'dueDate' , 'category', 'priority', 'action','actiondelete'];
-  
+  filteredQuests = this.quests;
  
     constructor(
       private questService: QuestService,
