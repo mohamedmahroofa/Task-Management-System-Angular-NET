@@ -206,6 +206,7 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 1,
                     PriorityId = 3,
+                    UserId = 1,
                 });
 
                 context.Quests.Add(new Quest
@@ -216,6 +217,7 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 2,
                     PriorityId = 1,
+                    UserId = 3,
                 });
 
                 context.SaveChanges();

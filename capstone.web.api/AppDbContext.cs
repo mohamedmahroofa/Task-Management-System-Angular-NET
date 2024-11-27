@@ -14,5 +14,13 @@ namespace capstone.web.api.Data
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Quest> Quests { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Quest>()
+                .HasOne(q => q.User)
+                .WithMany(u => u.Quests)
+                .HasForeignKey(q => q.UserId);
+        }
+
     }
 }
