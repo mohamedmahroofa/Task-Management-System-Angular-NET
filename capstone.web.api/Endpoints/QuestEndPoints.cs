@@ -10,6 +10,7 @@
     using System.Text;
     using capstone.web.api.Data;
     using capstone.web.api.Models;
+    using System.Net.Http;
 
     public static class QuestEndpoints
     {
@@ -18,23 +19,43 @@
             var group = routes.MapGroup("/api/quests");
 
             // GET: /api/quests
-            group.MapGet("/", async (AppDbContext db) =>
+            group.MapGet("/", async (AppDbContext db, HttpContext httpContext) =>
             {
-                var quests = await db.Quests.Where(q => !q.IsDeleted).ToListAsync();
+                var userIdClaim = httpContext.User.FindFirst("id");
+                if (userIdClaim == null)
+                {
+                    return Results.Unauthorized();
+                }
+                var userId = int.Parse(userIdClaim.Value);
+
+                var quests = await db.Quests.Where(q => !q.IsDeleted && q.UserId == userId).ToListAsync();
                 return Results.Ok(quests);
+
+
+
             });
 
             // GET: /api/quests/{id}
-            group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapGet("/{id:int}", async (int id, AppDbContext db, HttpContext httpContext) =>
             {
+                
                 var quest = await db.Quests.Where(q => !q.IsDeleted).FirstOrDefaultAsync(q => q.QuestId== id);
                 return quest is not null ? Results.Ok(quest) : Results.NotFound();
             });
 
             // POST: /api/quests
-            group.MapPost("/", async (Quest quest, AppDbContext db) =>
+            group.MapPost("/", async (Quest quest, AppDbContext db, HttpContext httpContext) =>
             {
-                
+
+                var userIdClaim = httpContext.User.FindFirst("id");
+                if (userIdClaim == null)
+                {
+                    return Results.Unauthorized();
+                }
+                var userId = int.Parse(userIdClaim.Value);
+
+                quest.UserId = userId;
+
                 quest.IsDeleted = false;
                 quest.DateCreated = DateTime.Now;
                 
@@ -45,8 +66,9 @@
             });
 
             // PUT: /api/quests/{id}
-            group.MapPut("/{id:int}", async (int id, Quest updatedQuest, AppDbContext db) =>
+            group.MapPut("/{id:int}", async (int id, Quest updatedQuest, AppDbContext db, HttpContext httpContext) =>
             {
+                
                 var quest = await db.Quests.FindAsync(id);
                 if (quest is null) return Results.NotFound();
 
@@ -63,8 +85,9 @@
             });
 
             // DELETE: /api/quests/{id}
-            group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapDelete("/{id:int}", async (int id, AppDbContext db, HttpContext httpContext) =>
             {
+                
                 var quest = await db.Quests.FindAsync(id);
                 if (quest is null) return Results.NotFound();
 
