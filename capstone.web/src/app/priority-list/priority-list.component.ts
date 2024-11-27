@@ -4,9 +4,10 @@ import { PriorityService } from '../services/priority.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-priority-list',
-  templateUrl: './priority-list.component.html',
-  styleUrl: './priority-list.component.css'
+    selector: 'app-priority-list',
+    templateUrl: './priority-list.component.html',
+    styleUrl: './priority-list.component.css',
+    standalone: false
 })
 export class PriorityListComponent implements OnInit{
   prioritys: Priority[] = []; // Array to hold list of persons

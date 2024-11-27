@@ -8,9 +8,10 @@ import { CategoryService } from '../services/category.service';
 import { PriorityService } from '../services/priority.service';
 
 @Component({
-  selector: 'app-quest-list',
-  templateUrl: './quest-list.component.html',
-  styleUrl: './quest-list.component.css'
+    selector: 'app-quest-list',
+    templateUrl: './quest-list.component.html',
+    styleUrl: './quest-list.component.css',
+    standalone: false
 })
 export class QuestListComponent implements OnInit{
   quests: Quest[] = []; // Array to hold list of quests
