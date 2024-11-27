@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class StatusListComponent implements OnInit{
   statuses: Status[] = []; // Array to hold list of statuses
-  displayedColumns: string[] = ['name', 'dateCreated' ,'actiondelete'];
+  displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
 
   constructor(private statusService: StatusService, private router: Router) {}
 
@@ -22,9 +22,9 @@ export class StatusListComponent implements OnInit{
   }
 
   // Navigate to Status details component
-  // viewStatus(id: number) {
-  //   this.router.navigate(['/status', id]);
-  // }
+  viewStatus(id: number) {
+    this.router.navigate(['/status', id]);
+  }
   deleteStatus(id: number) {
     if (confirm('Are you sure you want to delete this status?')) {
       this.statusService.deleteStatus(id).subscribe(() => {
