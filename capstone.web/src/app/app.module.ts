@@ -4,25 +4,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/security/auth.interceptor';
+
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+
 import { PriorityComponent } from './priority/priority.component';
 import { PriorityListComponent } from './priority-list/priority-list.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatTableModule} from '@angular/material/table';
+
+import { MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule} from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
-
-import {ReactiveFormsModule} from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -32,7 +34,7 @@ import { QuestListComponent } from './quest-list/quest-list.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
