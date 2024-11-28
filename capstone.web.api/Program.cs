@@ -5,7 +5,6 @@ using System.Text;
 using capstone.web.api.Data;
 using capstone.web.api.Models;
 using capstone.web.api.Endpoints;
-using capstone.web.api.Endpoints;
 
 //adding a comment just to test commit
 namespace capstone.web.api
@@ -100,6 +99,8 @@ namespace capstone.web.api
 
 
 
+
+
             app.Run();
         }
         static void SeedDatabase(AppDbContext context)
@@ -114,6 +115,16 @@ namespace capstone.web.api
                     Email = "admin@example.com",
                     Username = "admin",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin-password"), // Securely hash passwords
+                    Role = "Administrator"
+                });
+
+                context.Users.Add(new User
+                {
+                    FirstName = "Jesus",
+                    LastName = "Alapisco",
+                    Email = "alapiscodavilaj@mymacewan.ca",
+                    Username = "alapiscof",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234"), // Securely hash passwords
                     Role = "Administrator"
                 });
 
@@ -156,7 +167,7 @@ namespace capstone.web.api
                     Name = "Low",
                     IsDeleted = false,
                     DateCreated = DateTime.Now,
-                    color ="Green",
+                    color = "Green",
                 });
 
                 context.Priorities.Add(new Priority
@@ -195,6 +206,7 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 1,
                     PriorityId = 3,
+                    UserId = 1,
                 });
 
                 context.Quests.Add(new Quest
@@ -205,6 +217,7 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 2,
                     PriorityId = 1,
+                    UserId = 3,
                 });
 
                 context.SaveChanges();

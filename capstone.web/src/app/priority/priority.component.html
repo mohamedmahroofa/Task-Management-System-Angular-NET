@@ -1,38 +1,3 @@
-<!-- Form to view and edit priority details
-<div class="container">
-    <form (ngSubmit)="savePriority()">
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <div style="margin-bottom: 16px;"></div>
-
-      <mat-form-field appearance="fill" class="full-width">
-
-        <mat-label>Choose a date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          [(ngModel)]="priority.dateCreated"
-          name="dateCreated"
-          required
-        />
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-hint>MM/DD/YYYY</mat-hint>
-      </mat-form-field>
-      
-      <section>
-        <button mat-raised-button color="primary" style="margin-right: 8px;">Save</button>
-      
-      <button mat-raised-button color="warn"  style="margin-right: 8px;">Delete</button>
-      
-      <button mat-raised-button color="gray"  style="margin-right: 8px;">Back</button>
-      </section>
-    </form>
-  </div>
-  -->
-
   <div class="container">
     <div class="form-border">
       <form (ngSubmit)="savePriority()" #priorityForm="ngForm" class="form-container">
@@ -50,16 +15,17 @@
             Name is required.
           </mat-error>
         </mat-form-field>
-  
+
+        <!-- Date Created Field -->
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Choose a date</mat-label>
           <input
             matInput
-            [matDatepicker]="picker"
             [(ngModel)]="priority.dateCreated"
             name="dateCreated"
-            required
+            [matDatepicker]="picker"
             #dateInput="ngModel"
+            required
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -68,7 +34,9 @@
             Date is required.
           </mat-error>
         </mat-form-field>
-  
+
+        <!-- Buttons -->
+
         <section class="button-container">
           <button mat-raised-button color="primary" class="large-button" [disabled]="priorityForm.invalid">Save</button>
           <button mat-raised-button color="warn" class="large-button">Delete</button>
