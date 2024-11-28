@@ -96,6 +96,8 @@ namespace capstone.web.api
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
             app.MapQuestEndpoints();
+         
+
 
 
 
@@ -206,6 +208,31 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 2,
                     PriorityId = 1,
+                });
+
+                context.SaveChanges();
+            }
+            if (!context.Statuses.Any())
+            {
+                context.Statuses.Add(new Status
+                {
+                    Name = "New",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now
+                });
+
+                context.Statuses.Add(new Status
+                {
+                    Name = "Active",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now
+                });
+
+                context.Statuses.Add(new Status
+                {
+                    Name = "Resolved",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now
                 });
 
                 context.SaveChanges();
