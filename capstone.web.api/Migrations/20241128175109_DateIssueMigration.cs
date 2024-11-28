@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace capstone.web.api.Migrations
 {
     /// <inheritdoc />
-    public partial class UserFilteringMigration : Migration
+    public partial class DateIssueMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
