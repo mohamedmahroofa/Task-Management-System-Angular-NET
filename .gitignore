@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Backend-specific ignores (capstone.web.api)
+capstone.web.api/Migrations/
