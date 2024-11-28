@@ -38,15 +38,20 @@
             // GET: /api/quests/{id}
             group.MapGet("/{id:int}", async (int id, AppDbContext db, HttpContext httpContext) =>
             {
-                
-                var quest = await db.Quests.Where(q => !q.IsDeleted).FirstOrDefaultAsync(q => q.QuestId== id);
+                var userIdClaim = httpContext.User.FindFirst("id");
+                if (userIdClaim == null)
+                {
+                    return Results.Unauthorized();
+                }
+                var userId = int.Parse(userIdClaim.Value);
+
+                var quest = await db.Quests.Where(q => !q.IsDeleted && q.UserId == userId).FirstOrDefaultAsync(q => q.QuestId == id);
                 return quest is not null ? Results.Ok(quest) : Results.NotFound();
             });
 
             // POST: /api/quests
             group.MapPost("/", async (Quest quest, AppDbContext db, HttpContext httpContext) =>
             {
-
                 var userIdClaim = httpContext.User.FindFirst("id");
                 if (userIdClaim == null)
                 {
@@ -68,7 +73,14 @@
             // PUT: /api/quests/{id}
             group.MapPut("/{id:int}", async (int id, Quest updatedQuest, AppDbContext db, HttpContext httpContext) =>
             {
-                
+
+                var userIdClaim = httpContext.User.FindFirst("id");
+                if (userIdClaim == null)
+                {
+                    return Results.Unauthorized();
+                }
+                var userId = int.Parse(userIdClaim.Value);
+
                 var quest = await db.Quests.FindAsync(id);
                 if (quest is null) return Results.NotFound();
 
