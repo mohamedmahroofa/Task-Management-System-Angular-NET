@@ -98,11 +98,6 @@ namespace capstone.web.api
             app.MapQuestEndpoints();
             app.MapStatusEndpoints();
 
-
-
-
-
-
             app.Run();
         }
         static void SeedDatabase(AppDbContext context)
