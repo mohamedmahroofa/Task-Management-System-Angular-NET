@@ -9,10 +9,13 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy{
   username: string = '';
   password: string = '';
   errorMessage: string = '';
+
+  usernameValid: boolean = false;
+  passwordValid: boolean = false;
 
   currentDate: string = '';
   currentTime: string = '';
@@ -40,7 +43,14 @@ export class LoginComponent {
     this.currentTime = now.toLocaleTimeString(); // Format: HH:MM:SS
   }
 
-  
+  validateInput(field: string): void {
+    if(field === 'username') {
+      this.usernameValid = this.username.length > 0;
+    } else if (field === 'password') {
+      this.passwordValid = this.password.length > 0;
+    }
+  }
+
   login(): void {
     this.userService.login(this.username, this.password).subscribe(
       response => {

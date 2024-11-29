@@ -514,6 +514,24 @@ margin-left: 8px;
   color: #d32f2f;
 }
 
+.input, .input1{
+  position: relative;
+}
+
+.input i{
+  position: absolute;
+  right: 40px;
+  top: 85%;
+  transform: translateY(-50%);
+}
+
+.input1 i {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (max-width: 768px) {
   .form {
     padding: 240px;
