@@ -35,6 +35,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { MatSelectModule } from '@angular/material/select';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -55,6 +56,7 @@ import { MatSelectModule } from '@angular/material/select';
     RegistrationComponent,
     UserComponent,
     UserListComponent,
+    DashboardComponent,
   ],
   imports: [  
     BrowserModule,
