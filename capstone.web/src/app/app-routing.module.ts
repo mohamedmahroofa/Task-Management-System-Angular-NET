@@ -16,6 +16,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserComponent } from './user/user.component';
 import { StatusListComponent } from './status-list/status-list.component';
 import { StatusComponent } from './status/status.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'users', component: UserListComponent },
   { path: 'user', component: UserComponent },
   { path: 'user/:id', component: UserComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: '**', redirectTo: '/login' }, // Redirect any unknown routes to login
 ];
 
