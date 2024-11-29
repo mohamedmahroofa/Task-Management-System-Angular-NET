@@ -13,6 +13,8 @@ import { PriorityListComponent } from './priority-list/priority-list.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { StatusComponent } from './status/status.component';
+import { StatusListComponent } from './status-list/status-list.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -35,8 +37,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { MatSelectModule } from '@angular/material/select';
-import { StatusComponent } from './status/status.component';
-import { StatusListComponent } from './status-list/status-list.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
@@ -58,6 +59,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegistrationComponent,
     UserComponent,
     UserListComponent,
+    StatusComponent,
+    StatusListComponent
   ],
   imports: [  
     BrowserModule,

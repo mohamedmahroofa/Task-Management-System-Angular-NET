@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Status } from '../models/status';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusService } from '../services/status.service';
-import { AppModule } from '../app.module';
+
+
+
 
 @Component({
   selector: 'app-status',
