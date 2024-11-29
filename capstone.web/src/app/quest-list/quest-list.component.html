@@ -1,6 +1,6 @@
 <div class="container">
 
-  <mat-form-field appearance="fill" style="width: 200px; margin-bottom: 15px;">
+  <mat-form-field appearance="fill" style="width: 200px; margin-bottom: 15px; margin-right: 10px;">
     <mat-label>Filter by Priority</mat-label>
     <mat-select [formControl]="priorityFilter" (selectionChange)="applyFilter()">
       <mat-option value="">All</mat-option>
@@ -10,11 +10,11 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button (click)="addQuest()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
+  <button mat-raised-button (click)="addQuest()" style=" color:grey; margin-bottom: 15px; margin-right: 8px;">
     New Quest
   </button>
 
-  <button mat-raised-button type="button" (click)="goBack()" style="background-color: black; color: white; margin-bottom: 15px;">
+  <button mat-raised-button type="button" (click)="goBack()" style="background-color: rgba(216, 212, 212, 0.647); color: white; margin-bottom: 15px;">
     Back
   </button>
   
@@ -74,60 +74,3 @@
     <tr mat-row *matRowDef="let quest; columns: displayedColumns"></tr>
   </table>
 </div>
-
-<!-- <div class="container">
-  <button mat-raised-button (click)="addQuest()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
-    New quest
-  </button>
-
-  <button mat-raised-button type="button" (click)="goBack()" style="background-color: black; color: white; margin-bottom: 15px;">
-    Back
-  </button>
-  
-  <table mat-table [dataSource]="quests" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let quest" ><b [style.background-color]="quest.color" style="padding: 5px; width: 50%; text-align: center;">{{ quest.name }}</b></td>
-    </ng-container>
-
-    <ng-container matColumnDef="dateCreated">
-      <th mat-header-cell *matHeaderCellDef>Date Created</th>
-      <td mat-cell *matCellDef="let quest">
-        {{ quest.dateCreated | date: "fullDate" }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="dateCreated">
-      <th mat-header-cell *matHeaderCellDef>Due Date</th>
-      <td mat-cell *matCellDef="let quest">
-        {{ quest.dueDate | date: "fullDate" }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let quest">
-        <button
-          (click)="viewQuest(quest.questId)"
-          mat-raised-button color="primary"
-        >
-          View
-        </button>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actiondelete">
-        <th mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let quest">
-          <button
-            (click)="deleteQuest(quest.questId)"
-            mat-raised-button color="warn"
-          >
-            Delete
-          </button>
-        </td>
-      </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let quest; columns: displayedColumns"></tr>
-  </table>
-</div> -->

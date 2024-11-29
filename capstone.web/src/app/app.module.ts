@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule} from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -39,6 +40,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { MatSelectModule } from '@angular/material/select';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TimeBarComponent } from './time-bar/time-bar.component';
 
 
 
@@ -60,7 +62,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UserComponent,
     UserListComponent,
     StatusComponent,
-    StatusListComponent
+    StatusListComponent,
+    DashboardComponent,
+    TimeBarComponent,
+    
   ],
   imports: [  
     BrowserModule,
@@ -77,6 +82,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatOption,
     MatSelect,
     MatSelectModule,
+    MatSidenavModule
     
   ],
   providers: [
