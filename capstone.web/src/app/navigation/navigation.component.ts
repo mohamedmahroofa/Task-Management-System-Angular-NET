@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavigationComponent {
   constructor(private userService: UserService, private router: Router) { }
 
-<<<<<<< HEAD
+
     currentDate: string = '';
     currentTime: string = '';
     dayOfWeek: string = '';
@@ -38,7 +38,7 @@ export class NavigationComponent {
         this.currentTime = now.toLocaleTimeString(); // Format: HH:MM:SS
       }
 
-=======
+
   isAuthenticated(): boolean {
     return this.userService.isAuthenticated();
   }
@@ -49,5 +49,5 @@ export class NavigationComponent {
       this.router.navigate(['/login']);
     }
   }
->>>>>>> origin/jerry
+
 }
