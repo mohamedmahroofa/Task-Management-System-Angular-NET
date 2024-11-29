@@ -5,10 +5,10 @@
       <div class="header-nav">
         <div class="list">
           <div class="item-link">
-            <div class="wednesday">Wednesday</div>
+            <div class="wednesday">{{ dayOfWeek }}</div>
           </div>
-          <div class="div">16/10/2024</div>
-          <div class="div1">11:56:26</div>
+          <div class="div">{{ currentDate }}</div>
+          <div class="div1">{{ currentTime }}</div>
           <img
             alt="notification"
             src="../../assets/bellSimple.svg"
@@ -113,7 +113,7 @@
                     />
                   </div>
 
-                  <div>
+                  <!-- <div>
                     <label for="roles">Choose a Role:</label>
                     <select
                       name="role"
@@ -126,7 +126,7 @@
                       <option value="Administrator">Administrator</option>
                       <option value="General">General</option>
                     </select>
-                  </div>
+                  </div> -->
 
                   <div class="heading-4-container m-3">
                     <input

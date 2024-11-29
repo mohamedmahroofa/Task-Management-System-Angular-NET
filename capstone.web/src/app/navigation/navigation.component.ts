@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-navigation',
@@ -7,7 +10,9 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class NavigationComponent {
+  constructor(private userService: UserService, private router: Router) { }
 
+<<<<<<< HEAD
     currentDate: string = '';
     currentTime: string = '';
     dayOfWeek: string = '';
@@ -33,4 +38,16 @@ export class NavigationComponent {
         this.currentTime = now.toLocaleTimeString(); // Format: HH:MM:SS
       }
 
+=======
+  isAuthenticated(): boolean {
+    return this.userService.isAuthenticated();
+  }
+
+  logout(): void {
+    if (confirm('Do you want to logout?')) {
+      this.userService.logout();
+      this.router.navigate(['/login']);
+    }
+  }
+>>>>>>> origin/jerry
 }

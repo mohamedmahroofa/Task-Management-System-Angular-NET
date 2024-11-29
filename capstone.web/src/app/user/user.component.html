@@ -97,6 +97,7 @@
       <!-- Buttons -->
       <section class="button-container">
         <button mat-raised-button color="primary" class="large-button" [disabled]="userForm.invalid">Save</button>
+        <button mat-raised-button color="warn" (click)="deleteUser()" class="large-button" style="background-color: red; color: white;">Delete</button>
         <button mat-raised-button color="" (click)="goBack()" class="large-button" style="background-color: black; color: white;">Back</button>
       </section>
     </form>

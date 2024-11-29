@@ -6,13 +6,21 @@
           <a class="nav-link" routerLink="/categories">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/prioritys">Priorities</a>
-        </li>
+            <a class="nav-link" routerLink="/prioritys">Priorities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/users">Users</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/quests">Quests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/statuses">Status</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/users">Users</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/quests">Quests</a>
+          <button class="btn btn-outline-danger" href="#" (click)="logout()">Logout</button>
         </li>
       </ul>
     </div>
