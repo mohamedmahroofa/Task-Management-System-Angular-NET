@@ -96,12 +96,7 @@ namespace capstone.web.api
             app.MapCategoryEndpoints();
             app.MapPriorityEndpoints();
             app.MapQuestEndpoints();
-         
-
-
-
-
-
+            app.MapStatusEndpoints();
 
             app.Run();
         }
@@ -231,6 +226,12 @@ namespace capstone.web.api
                 context.Statuses.Add(new Status
                 {
                     Name = "Resolved",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now
+                });
+                context.Statuses.Add(new Status
+                {
+                    Name = "Closed",
                     IsDeleted = false,
                     DateCreated = DateTime.Now
                 });
