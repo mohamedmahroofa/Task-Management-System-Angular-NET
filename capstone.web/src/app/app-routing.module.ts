@@ -17,6 +17,7 @@ import { UserComponent } from './user/user.component';
 import { StatusListComponent } from './status-list/status-list.component';
 import { StatusComponent } from './status/status.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TimeBarComponent } from './time-bar/time-bar.component';
 
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'timeBar', component: TimeBarComponent },
   { path: '**', redirectTo: '/login' }, // Redirect any unknown routes to login
 ];
 
