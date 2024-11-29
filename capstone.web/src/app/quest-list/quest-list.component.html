@@ -1,4 +1,15 @@
 <div class="container">
+
+  <mat-form-field appearance="fill" style="width: 200px; margin-bottom: 15px;">
+    <mat-label>Filter by Priority</mat-label>
+    <mat-select [formControl]="priorityFilter" (selectionChange)="applyFilter()">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let priority of priorities" [value]="priority.priorityId">
+        {{ priority.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <button mat-raised-button (click)="addQuest()" color="accent" style="margin-bottom: 15px; margin-right: 8px;">
     New Quest
   </button>
@@ -8,7 +19,7 @@
   </button>
   
   <!-- Name Column -->
-  <table mat-table [dataSource]="quests" class="mat-elevation-z8">
+  <table mat-table [dataSource]="filteredQuests" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let quest" >{{ quest.name }}</td>

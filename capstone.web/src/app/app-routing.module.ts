@@ -14,6 +14,8 @@ import { QuestListComponent } from './quest-list/quest-list.component';
 import {RegistrationComponent} from './registration/registration.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserComponent } from './user/user.component';
+import { StatusListComponent } from './status-list/status-list.component';
+import { StatusComponent } from './status/status.component';
 
 
 
@@ -31,7 +33,9 @@ const routes: Routes = [
   { path: 'quest/:id', component: QuestComponent },
   { path: "quest", component: QuestComponent },
   { path: 'quests', component: QuestListComponent },
-  
+  { path: 'statuses', component: StatusListComponent },
+  { path: 'status', component: StatusComponent },
+  { path: 'status/:id', component: StatusComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'users', component: UserListComponent },
   { path: 'user', component: UserComponent },

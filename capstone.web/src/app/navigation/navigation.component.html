@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navigation">
-    <a class="navbar-brand brand-color-blue" routerLink="/">Tasks Manager</a>
+    <a class="navbar-brand brand-color-blue" routerLink="/navigation">Tasks Manager</a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" routerLink="/categories">Categories</a>
-          </li>
+          <a class="nav-link" routerLink="/categories">Categories</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/prioritys">Priorities</a>
           </li>
@@ -14,6 +14,15 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/quests">Quests</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/statuses">Status</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button class="btn btn-outline-danger" href="#" (click)="logout()">Logout</button>
+        </li>
       </ul>
     </div>
+    
   </nav>

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+    selector: 'app-registration',
+    templateUrl: './registration.component.html',
+    styleUrls: ['./registration.component.css'],
+    standalone: false
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit{
   firstName: string = '';
   lastName: string = '';
   email: string = '';
@@ -18,14 +19,36 @@ export class RegistrationComponent {
   message: string = '';
   isSubmitting: boolean = false;
 
+  currentDate: string = '';
+  currentTime: string = '';
+  dayOfWeek: string = '';
+  intervalId: any;
+  
   constructor(private http: HttpClient, private router: Router) {}
 
+  ngOnInit() {
+    this.updateDateTime();
+    this.intervalId = setInterval(() => {
+      this.updateDateTime();
+    }, 1000); // Update every second
+  }
+
+  //dynamic
+  updateDateTime() {
+    const now = new Date();
+    this.dayOfWeek = now.toLocaleString('en-US', { weekday: 'long' });
+    this.currentDate = now.toLocaleDateString(); // Format: MM/DD/YYYY
+    this.currentTime = now.toLocaleTimeString(); // Format: HH:MM:SS
+  }
   register() {
     // Ensure passwords match
     if (this.password !== this.confirmPassword) {
       this.message = 'Passwords do not match!';
       return;
     }
+
+
+    
 
     // Create user data object
     const userData = {
@@ -40,6 +63,8 @@ export class RegistrationComponent {
     // Set submission state
     this.isSubmitting = true;
 
+    // dynamic
+    
     // Make API call
     this.http.post('https://localhost:7197/api/users', userData).subscribe({
       next: (response) => {

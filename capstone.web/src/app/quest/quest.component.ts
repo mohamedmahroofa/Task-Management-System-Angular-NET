@@ -9,9 +9,10 @@ import { Category } from '../models/category';
 import { MatOption } from '@angular/material/core';
 
 @Component({
-  selector: 'app-quest',
-  templateUrl: './quest.component.html',
-  styleUrls: ['./quest.component.scss']
+    selector: 'app-quest',
+    templateUrl: './quest.component.html',
+    styleUrls: ['./quest.component.scss'],
+    standalone: false
 })
 export class QuestComponent implements OnInit {
   quest: Quest = { questId: 0, name: "", priorityId: 1, categoryId: 1, dueDate: new Date(), dateCreated: new Date(), isDeleted: false };

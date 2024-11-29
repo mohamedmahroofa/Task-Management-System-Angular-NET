@@ -4,9 +4,10 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css'
+    selector: 'app-user-list',
+    templateUrl: './user-list.component.html',
+    styleUrl: './user-list.component.css',
+    standalone: false
 })
 export class UserListComponent implements OnInit{
   users: User[] = []; // Array to hold list of persons
@@ -41,7 +42,7 @@ export class UserListComponent implements OnInit{
     this.router.navigate(['/user']);
   }
   goBack() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/navigation']);
   }
 
  
