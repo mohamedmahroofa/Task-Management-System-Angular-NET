@@ -1,0 +1,26 @@
+.dashboard-container {
+    height: 100vh; /* Full height layout */
+  }
+  
+  .sidebar {
+    width: 250px; /* Adjust the width of the sidebar */
+    background-color: #f5f5f5; /* Light grey background for sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+  }
+  
+  .sticky-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: inherit;
+    padding: 8px 0;
+  }
+  
+  mat-drawer-content {
+    padding: 16px; /* Space around the main content */
+    overflow: auto;
+  }

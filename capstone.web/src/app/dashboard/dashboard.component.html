@@ -1,1 +1,26 @@
-<p>dashboard works!</p>
+<header>
+    <app-time-bar></app-time-bar>
+</header>
+<body>
+    <div>
+        <h1 class="sticky-header">USERNAME</h1>
+    </div>
+    <main>
+        <mat-drawer-container class="dashboard-container">
+            <!-- Sidebar Navigation -->
+            <mat-drawer class="sidebar" mode="side" opened>
+              <app-navigation></app-navigation>
+            </mat-drawer>
+        
+            <!-- Main Content -->
+            <mat-drawer-content>
+              <main>
+                <app-quest-list></app-quest-list>
+              </main>
+            </mat-drawer-content>
+          </mat-drawer-container>
+    </main>
+</body>
+
+
+
