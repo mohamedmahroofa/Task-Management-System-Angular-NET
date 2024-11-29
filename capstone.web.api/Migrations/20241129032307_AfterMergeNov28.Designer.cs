@@ -12,13 +12,8 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.Designer.cs
-    [Migration("20241128175109_DateIssueMigration")]
-    partial class DateIssueMigration
-========
-    [Migration("20241128235606_One")]
-    partial class One
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.Designer.cs
+    [Migration("20241129032307_AfterMergeNov28")]
+    partial class AfterMergeNov28
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,11 +102,10 @@ namespace capstone.web.api.Migrations
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
 
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.Designer.cs
-                    b.Property<int>("UserId")
-========
                     b.Property<int?>("StatusId")
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.Designer.cs
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("QuestId");
@@ -120,11 +114,9 @@ namespace capstone.web.api.Migrations
 
                     b.HasIndex("PriorityId");
 
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.Designer.cs
-                    b.HasIndex("UserId");
-========
                     b.HasIndex("StatusId");
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.Designer.cs
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Quests");
                 });
@@ -203,17 +195,15 @@ namespace capstone.web.api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.Designer.cs
+                    b.HasOne("capstone.web.api.Models.Status", null)
+                        .WithMany("Quests")
+                        .HasForeignKey("StatusId");
+
                     b.HasOne("capstone.web.api.Models.User", "User")
                         .WithMany("Quests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-========
-                    b.HasOne("capstone.web.api.Models.Status", null)
-                        .WithMany("Quests")
-                        .HasForeignKey("StatusId");
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.Designer.cs
 
                     b.Navigation("Category");
 
@@ -232,11 +222,12 @@ namespace capstone.web.api.Migrations
                     b.Navigation("Quests");
                 });
 
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.Designer.cs
-            modelBuilder.Entity("capstone.web.api.Models.User", b =>
-========
             modelBuilder.Entity("capstone.web.api.Models.Status", b =>
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.Designer.cs
+                {
+                    b.Navigation("Quests");
+                });
+
+            modelBuilder.Entity("capstone.web.api.Models.User", b =>
                 {
                     b.Navigation("Quests");
                 });

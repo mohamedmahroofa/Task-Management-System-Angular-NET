@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace capstone.web.api.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.cs
-    public partial class DateIssueMigration : Migration
-========
-    public partial class One : Migration
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.cs
+    public partial class AfterMergeNov28 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,11 +87,8 @@ namespace capstone.web.api.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     PriorityId = table.Column<int>(type: "int", nullable: false),
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.cs
-                    UserId = table.Column<int>(type: "int", nullable: false)
-========
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: true)
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.cs
                 },
                 constraints: table =>
                 {
@@ -113,18 +106,16 @@ namespace capstone.web.api.Migrations
                         principalColumn: "PriorityId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.cs
+                        name: "FK_Quests_Statuses_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Statuses",
+                        principalColumn: "StatusId");
+                    table.ForeignKey(
                         name: "FK_Quests_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-========
-                        name: "FK_Quests_Statuses_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Statuses",
-                        principalColumn: "StatusId");
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.cs
                 });
 
             migrationBuilder.CreateIndex(
@@ -138,15 +129,14 @@ namespace capstone.web.api.Migrations
                 column: "PriorityId");
 
             migrationBuilder.CreateIndex(
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.cs
-                name: "IX_Quests_UserId",
-                table: "Quests",
-                column: "UserId");
-========
                 name: "IX_Quests_StatusId",
                 table: "Quests",
                 column: "StatusId");
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.cs
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quests_UserId",
+                table: "Quests",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -162,11 +152,10 @@ namespace capstone.web.api.Migrations
                 name: "Priorities");
 
             migrationBuilder.DropTable(
-<<<<<<<< HEAD:capstone.web.api/Migrations/20241128175109_DateIssueMigration.cs
-                name: "Users");
-========
                 name: "Statuses");
->>>>>>>> origin/jerry:capstone.web.api/Migrations/20241128235606_One.cs
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
