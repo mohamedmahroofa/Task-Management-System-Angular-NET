@@ -19,6 +19,8 @@ export class RegistrationComponent implements OnInit, OnDestroy{
   message: string = '';
   isSubmitting: boolean = false;
 
+  firstNameValid: boolean = false;
+  lastNameValid: boolean = false;
   usernameValid: boolean = false;
   passwordValid: boolean = false;
   confirmPasswordValid: boolean = false;
@@ -53,13 +55,17 @@ export class RegistrationComponent implements OnInit, OnDestroy{
   }
 
   validateInput(field: string): void {
-    if(field === 'username'){
+    if (field === 'firstName') {
+      this.firstNameValid = this.firstName.length > 0;
+    } else if (field === 'lastName') {
+      this.lastNameValid = this.lastName.length > 0;
+    } else if (field === 'username') {
       this.usernameValid = this.username.length > 0;
-    } else if(field === 'password'){
+    } else if (field === 'password') {
       this.passwordValid = this.password.length > 0;
-    } else if(field === 'confirmPassword'){
+    } else if (field === 'confirmPassword') {
       this.confirmPasswordValid = this.confirmPassword === this.password;
-    } else if(field === 'email'){
+    } else if (field === 'email') {
       this.emailValid = this.validateEmail(this.email);
     }
   }
@@ -101,7 +107,7 @@ export class RegistrationComponent implements OnInit, OnDestroy{
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        this.message = 'Error registering user: ' + (error.error || 'Server error');
+        this.message = 'Registration failed, please try again' + (error.error || 'Server error');
         console.error(error);
       },
       complete: () => {
