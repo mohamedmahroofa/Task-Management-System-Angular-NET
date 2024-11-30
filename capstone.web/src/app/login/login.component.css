@@ -520,14 +520,14 @@ margin-left: 8px;
 
 .input i{
   position: absolute;
-  right: 40px;
+  right: 10px;
   top: 85%;
   transform: translateY(-50%);
 }
 
 .input1 i {
   position: absolute;
-  right: 40px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }

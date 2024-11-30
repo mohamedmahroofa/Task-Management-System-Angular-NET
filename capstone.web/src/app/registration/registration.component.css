@@ -407,6 +407,18 @@ input{
   border: none;
   padding: 15px;
 }
+
+.input{
+  position: relative;
+}
+
+.input i{
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (max-width: 768px) {
 .young-woman-working-on-laptop{
   display: none;

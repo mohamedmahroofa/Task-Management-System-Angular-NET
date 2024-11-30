@@ -77,7 +77,10 @@
                       [(ngModel)]="email"
                       name="email"
                       required
+                      (input)="validateInput('email')"
+                      [ngClass]="{'valid' : emailValid, 'invalid': !emailValid && email.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success':emailValid, 'fa-times-circle text-danger': !emailValid}"></i>
                   </div>
 
                   <div>
