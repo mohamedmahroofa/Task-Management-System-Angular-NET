@@ -55,7 +55,10 @@
                       [(ngModel)]="firstName"
                       name="firstName"
                       required
+                      (input)="validateInput('firstName')"
+                      [ngClass]="{'valid': firstNameValid, 'invalid': !firstNameValid && firstName.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success': firstNameValid, 'fa-times-circle text-danger': !firstNameValid}"></i>
                   </div>
 
                   <div>
@@ -66,7 +69,10 @@
                       [(ngModel)]="lastName"
                       name="lastName"
                       required
+                      (input)="validateInput('lastName')"
+                      [ngClass]="{'valid': lastNameValid, 'invalid': !lastNameValid && lastName.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success': lastNameValid, 'fa-times-circle text-danger': !lastNameValid}"></i>
                   </div>
 
                   <div>
@@ -77,7 +83,10 @@
                       [(ngModel)]="email"
                       name="email"
                       required
+                      (input)="validateInput('email')"
+                      [ngClass]="{'valid' : emailValid, 'invalid': !emailValid && email.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success':emailValid, 'fa-times-circle text-danger': !emailValid}"></i>
                   </div>
 
                   <div>
@@ -88,7 +97,10 @@
                       [(ngModel)]="username"
                       name="username"
                       required
+                      (input)="validateInput('username')"
+                      [ngClass]="{'valid': usernameValid, 'invalid': !usernameValid && username.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success': usernameValid, 'fa-times-circle text-danger': !usernameValid}"></i>
                   </div>
 
                   <div>
@@ -99,7 +111,10 @@
                       [(ngModel)]="password"
                       name="password"
                       required
+                      (input)="validateInput('password')"
+                      [ngClass]="{'valid': passwordValid, 'invalid': !passwordValid && password.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success': passwordValid, 'fa-times-circle text-danger': !passwordValid}"></i>
                   </div>
 
                   <div>
@@ -110,7 +125,10 @@
                       [(ngModel)]="confirmPassword"
                       name="confirmPassword"
                       required
+                      (input)="validateInput('confirmPassword')"
+                      [ngClass]="{'valid': confirmPasswordValid, 'invalid': !confirmPasswordValid && confirmPassword.length > 0}"
                     />
+                    <i class="fas" [ngClass]="{'fa-check-circle text-success': confirmPasswordValid, 'fa-times-circle text-danger': !confirmPasswordValid}"></i>
                   </div>
 
                   <!-- <div>
@@ -144,6 +162,9 @@
                       <div class="signup2">Register</div>
                     </button>
                   </div>
+
+                  <div *ngIf="message" class="alert alert-danger mt-2">{{ message }}</div>
+
                   <div class="ptext-center pb-4">
                     <div class="already-have-an-container">
                       <span class="already-have-an-container1 pb-4">

@@ -6,9 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-priority',
-  templateUrl: './priority.component.html',
-  styleUrl: './priority.component.css'
+    selector: 'app-priority',
+    templateUrl: './priority.component.html',
+    styleUrl: './priority.component.css',
+    standalone: false
 })
 export class PriorityComponent implements OnInit  {
 

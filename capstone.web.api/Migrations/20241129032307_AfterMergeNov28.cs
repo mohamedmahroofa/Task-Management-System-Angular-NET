@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace capstone.web.api.Migrations
 {
     /// <inheritdoc />
-    public partial class One : Migration
+    public partial class AfterMergeNov28 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -87,6 +87,7 @@ namespace capstone.web.api.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     PriorityId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -109,6 +110,12 @@ namespace capstone.web.api.Migrations
                         column: x => x.StatusId,
                         principalTable: "Statuses",
                         principalColumn: "StatusId");
+                    table.ForeignKey(
+                        name: "FK_Quests_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -125,6 +132,11 @@ namespace capstone.web.api.Migrations
                 name: "IX_Quests_StatusId",
                 table: "Quests",
                 column: "StatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quests_UserId",
+                table: "Quests",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -134,9 +146,6 @@ namespace capstone.web.api.Migrations
                 name: "Quests");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
@@ -144,6 +153,9 @@ namespace capstone.web.api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Statuses");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

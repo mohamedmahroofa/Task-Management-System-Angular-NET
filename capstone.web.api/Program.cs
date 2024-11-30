@@ -117,6 +117,16 @@ namespace capstone.web.api
 
                 context.Users.Add(new User
                 {
+                    FirstName = "Jesus",
+                    LastName = "Alapisco",
+                    Email = "alapiscodavilaj@mymacewan.ca",
+                    Username = "alapiscof",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("1234"), // Securely hash passwords
+                    Role = "Administrator"
+                });
+
+                context.Users.Add(new User
+                {
                     FirstName = "General",
                     LastName = "User",
                     Email = "general@example.com",
@@ -193,6 +203,7 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 1,
                     PriorityId = 3,
+                    UserId = 1,
                 });
 
                 context.Quests.Add(new Quest
@@ -203,6 +214,7 @@ namespace capstone.web.api
                     DueDate = DateTime.Now,
                     CategoryId = 2,
                     PriorityId = 1,
+                    UserId = 3,
                 });
 
                 context.SaveChanges();
