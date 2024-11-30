@@ -19,7 +19,8 @@
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Username),
-                new Claim(ClaimTypes.Role, user.Role) // Important for role-based authorization
+                new Claim(ClaimTypes.Role, user.Role), // Important for role-based authorization
+                new Claim("id", user.Id.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));

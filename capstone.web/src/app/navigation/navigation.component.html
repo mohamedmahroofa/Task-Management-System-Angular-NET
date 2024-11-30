@@ -1,27 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navigation">
-    <a class="navbar-brand brand-color-blue" routerLink="/">Tasks Manager</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/categories">Categories</a>
-          </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/prioritys">Priorities</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/users">Users</a>
-          </li>  
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/quests">Quests</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/statuses">Status</a>
-          </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <button class="btn btn-outline-danger" href="#" (click)="logout()">Logout</button>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<div class="button-container shadow-sm p-3">
+  <button class="btn btn-light btn-block mb-2"  routerLink="/categories">Categories</button>
+  <button class="btn btn-light btn-block mb-2" routerLink="/prioritys">Priorities</button>
+  <button class="btn btn-light btn-block mb-2" routerLink="/users">Users</button>
+  <button class="btn btn-light btn-block mb-2" routerLink="/quests">Quests</button>
+  <button class="btn btn-light btn-block mb-2" routerLink="/statuses">Status</button>
+  <button class="btn btn-outline-danger btn-block" href="#" (click)="logout()">Logout</button>
+</div>

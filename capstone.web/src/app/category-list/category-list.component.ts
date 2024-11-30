@@ -4,9 +4,10 @@ import { CategoryService } from '../services/category.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrl: './category-list.component.css'
+    selector: 'app-category-list',
+    templateUrl: './category-list.component.html',
+    styleUrl: './category-list.component.css',
+    standalone: false
 })
 export class CategoryListComponent implements OnInit{
   categories: Category[] = []; // Array to hold list of categories
