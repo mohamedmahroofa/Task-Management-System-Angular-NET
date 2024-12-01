@@ -64,7 +64,7 @@ import { TimeBarComponent } from './time-bar/time-bar.component';
     StatusComponent,
     StatusListComponent,
     DashboardComponent,
-    TimeBarComponent,
+    TimeBarComponent
     
   ],
   imports: [  
