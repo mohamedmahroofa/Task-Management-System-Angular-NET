@@ -107,6 +107,7 @@
                 quest.DueDate = updatedQuest.DueDate;
                 quest.CategoryId = updatedQuest.CategoryId;
                 quest.PriorityId = updatedQuest.PriorityId;
+                quest.StatusId = updatedQuest.StatusId;
                 
 
                 await db.SaveChangesAsync();

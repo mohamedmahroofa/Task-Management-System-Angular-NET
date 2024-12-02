@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Quest } from '../models/quest';
 import { QuestListComponent } from '../quest-list/quest-list.component';
 import { Priority } from '../models/priority';
@@ -8,6 +8,9 @@ import { FormControl } from '@angular/forms';
 import { PriorityService } from '../services/priority.service';
 import { CategoryService } from '../services/category.service';
 import { Router } from '@angular/router';
+import { CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Status } from '../models/status';
+import { StatusService } from '../services/status.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +19,15 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+
+  // This is for drag and drop
+  statuses: Status[] = [];
+
+  newQuests: Quest[] = [];
+  activeQuests: Quest[] = [];
+  resolvedQuests: Quest[] = [];
+  closedQuests: Quest[] = [];
 
   quests: Quest[] = []; // Array to hold list of quests
   filteredQuests: Quest[] = []; // Array to hold list of  filtered quest by priority or category
@@ -39,6 +50,7 @@ export class DashboardComponent {
       private questService: QuestService,
       private priorityService: PriorityService,
       private categoryService: CategoryService,
+      private statusService: StatusService,
       private router: Router
     ) {}
   
@@ -47,6 +59,12 @@ export class DashboardComponent {
        this.questService.getQuests().subscribe((data) => {
         this.quests = data;
         this.filteredQuests =[...this.quests];
+
+        this.organizeQuestsByStatus();
+      });
+
+      this.statusService.getStatuses().subscribe((data) => {
+        this.statuses = data;
       });
 
       this.priorityService.getPrioritys().subscribe((data) => {
@@ -61,6 +79,51 @@ export class DashboardComponent {
         this.applyFilter();
       });
   }
+
+  // Organize quests by their status
+  organizeQuestsByStatus() {
+    this.newQuests = this.quests.filter(quest => quest.statusId === 1);  // Assuming 1 represents 'New'
+    this.activeQuests = this.quests.filter(quest => quest.statusId === 2); // Assuming 2 represents 'Active'
+    this.resolvedQuests = this.quests.filter(quest => quest.statusId === 3); // Assuming 3 represents 'Resolved'
+    this.closedQuests = this.quests.filter(quest => quest.statusId === 4); // Assuming 4 represents 'Closed'
+  }
+
+  // Method to handle drag-and-drop
+  drop(event: CdkDragDrop<Quest[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+
+      // Update the statusId after moving the item to the new status container
+      const updatedQuest = event.container.data[event.currentIndex];
+      updatedQuest.statusId = this.getStatusIdByName(event.container.id);  // Assume this method gives the statusId based on the container's ID
+
+      this.questService.updateQuest(updatedQuest).subscribe();
+    }
+  }
+
+  // Helper method to get the statusId based on container ID (New, Active, Resolved, Closed)
+  getStatusIdByName(containerId: string): number {
+    switch (containerId) {
+      case 'new':
+        return 1; // New
+      case 'active':
+        return 2; // Active
+      case 'resolved':
+        return 3; // Resolved
+      case 'closed':
+        return 4; // Closed
+      default:
+        return 1; // Default to New
+    }
+  }
+  
 
   applyFilter() {
     const selectedPriority = this.priorityFilter.value;

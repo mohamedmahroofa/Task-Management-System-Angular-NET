@@ -37,7 +37,7 @@ export class StatusListComponent implements OnInit{
     this.router.navigate(['/status']);
   }
   goBack() {
-    this.router.navigate(['/navigation']);
+    this.router.navigate(['/dashboard']);
   }
 
  

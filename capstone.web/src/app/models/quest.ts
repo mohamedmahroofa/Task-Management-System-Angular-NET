@@ -1,3 +1,5 @@
+import { Status } from "./status";
+
 export interface Quest {
     questId: number,
     name: string,
@@ -6,6 +8,5 @@ export interface Quest {
     isDeleted: boolean;
     priorityId: number,
     categoryId: number,
-    
-    
+    statusId: number; 
 }

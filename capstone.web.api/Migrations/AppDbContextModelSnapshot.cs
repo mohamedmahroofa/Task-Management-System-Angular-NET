@@ -99,7 +99,7 @@ namespace capstone.web.api.Migrations
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StatusId")
+                    b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -192,9 +192,11 @@ namespace capstone.web.api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("capstone.web.api.Models.Status", null)
+                    b.HasOne("capstone.web.api.Models.Status", "Status")
                         .WithMany("Quests")
-                        .HasForeignKey("StatusId");
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("capstone.web.api.Models.User", "User")
                         .WithMany("Quests")
@@ -205,6 +207,8 @@ namespace capstone.web.api.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Priority");
+
+                    b.Navigation("Status");
 
                     b.Navigation("User");
                 });

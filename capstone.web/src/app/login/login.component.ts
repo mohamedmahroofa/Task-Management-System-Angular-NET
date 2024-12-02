@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.userService.login(this.username, this.password).subscribe(
       response => {
         this.userService.setToken(response.token);
-        this.router.navigate(['/navigation']); // Navigate to the home page or dashboard
+        this.router.navigate(['/dashboard']); // Navigate to the home page or dashboard
       },
       error => {
         this.errorMessage = 'Invalid username or password.';

@@ -15,6 +15,7 @@ namespace capstone.web.api.Models
         public int CategoryId { get; set; }
         public int PriorityId { get; set; }
         public int UserId { get; set; }
+        public int StatusId { get; set; }
 
 
         //Navigational properties
@@ -22,6 +23,8 @@ namespace capstone.web.api.Models
         public Category? Category { get; set; }
         [JsonIgnore]
         public Priority? Priority { get; set; }
+        [JsonIgnore]
+        public Status? Status { get; set; }
 
         [JsonIgnore]
         public User? User { get; set; }

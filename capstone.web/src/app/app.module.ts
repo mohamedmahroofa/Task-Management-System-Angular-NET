@@ -41,7 +41,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TimeBarComponent } from './time-bar/time-bar.component';
-
+import { DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -82,7 +82,8 @@ import { TimeBarComponent } from './time-bar/time-bar.component';
     MatOption,
     MatSelect,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    DragDropModule
     
   ],
   providers: [
