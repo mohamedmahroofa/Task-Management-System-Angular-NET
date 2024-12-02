@@ -7,6 +7,8 @@ import { Priority } from '../models/priority';
 import { CategoryService } from '../services/category.service';
 import { PriorityService } from '../services/priority.service';
 import { FormControl } from '@angular/forms';
+import { Status } from '../models/status';
+import { StatusService } from '../services/status.service';
 
 @Component({
     selector: 'app-quest-list',
@@ -87,7 +89,7 @@ export class QuestListComponent implements OnInit{
     this.router.navigate(['/quest']);
   }
   goBack() {
-    this.router.navigate(['/navigation']);
+    this.router.navigate(['/dashboard']);
   }
  
   getCategoryName(id: number): string {

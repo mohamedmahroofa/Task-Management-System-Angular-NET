@@ -192,33 +192,6 @@ namespace capstone.web.api
                 });
                 context.SaveChanges();  
             }
-            if (!context.Quests.Any())
-            {
-                // Example seed quests
-                context.Quests.Add(new Quest
-                {
-                    Name = "Go to School",
-                    IsDeleted = false,
-                    DateCreated = DateTime.Now,
-                    DueDate = DateTime.Now,
-                    CategoryId = 1,
-                    PriorityId = 3,
-                    UserId = 1,
-                });
-
-                context.Quests.Add(new Quest
-                {
-                    Name = "Take 21:00 pill",
-                    IsDeleted = false,
-                    DateCreated = DateTime.Now,
-                    DueDate = DateTime.Now,
-                    CategoryId = 2,
-                    PriorityId = 1,
-                    UserId = 3,
-                });
-
-                context.SaveChanges();
-            }
             if (!context.Statuses.Any())
             {
                 context.Statuses.Add(new Status
@@ -250,6 +223,36 @@ namespace capstone.web.api
 
                 context.SaveChanges();
             }
+            if (!context.Quests.Any())
+            {
+                // Example seed quests
+                context.Quests.Add(new Quest
+                {
+                    Name = "Go to School",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    CategoryId = 1,
+                    PriorityId = 3,
+                    UserId = 1,
+                    StatusId = 1,
+                });
+
+                context.Quests.Add(new Quest
+                {
+                    Name = "Take 21:00 pill",
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now,
+                    DueDate = DateTime.Now,
+                    CategoryId = 2,
+                    PriorityId = 1,
+                    UserId = 3,
+                    StatusId = 1,
+                });
+
+                context.SaveChanges();
+            }
+            
         }
     }
 }
