@@ -18,12 +18,9 @@ import { FormControl } from '@angular/forms';
 export class QuestListComponent implements OnInit{
   quests: Quest[] = []; // Array to hold list of quests
   filteredQuests: Quest[] = []; // Array to hold list of  filtered quest by priority or category
-  selectedQuest: Quest | null = null;
-  
   priorities: Priority[] = []; // Array to hold list of priorities
   categories: Category[] = []; // Array to hold list of categories
   displayedColumns: string[] = ['name', 'dueDate' , 'category', 'priority', 'action','actiondelete'];
-
   
   //Using FormControl for Priority Filter
   priorityFilter = new FormControl('');

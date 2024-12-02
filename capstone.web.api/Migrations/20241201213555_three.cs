@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace capstone.web.api.Migrations
 {
     /// <inheritdoc />
-    public partial class AfterMergeNov28 : Migration
+    public partial class three : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

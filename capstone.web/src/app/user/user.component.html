@@ -85,9 +85,8 @@
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Role</mat-label>
         <mat-select [(ngModel)]="user.role" name="role" required #roleInput="ngModel">
-          <mat-option value="Admin">Admin</mat-option>
-          <mat-option value="User">User</mat-option>
-          <mat-option value="Manager">Manager</mat-option>
+          <mat-option value="Administrator">Administrator</mat-option>
+          <mat-option value="General">General</mat-option>
         </mat-select>
         <mat-error *ngIf="roleInput.invalid && (roleInput.dirty || roleInput.touched)">
           Role is required.
