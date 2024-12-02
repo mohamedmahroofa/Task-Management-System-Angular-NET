@@ -12,8 +12,8 @@ using capstone.web.api.Data;
 namespace capstone.web.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241129032307_AfterMergeNov28")]
-    partial class AfterMergeNov28
+    [Migration("20241201213555_three")]
+    partial class three
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

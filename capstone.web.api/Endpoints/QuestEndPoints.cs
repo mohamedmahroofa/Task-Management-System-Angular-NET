@@ -22,14 +22,31 @@
             group.MapGet("/", async (AppDbContext db, HttpContext httpContext) =>
             {
                 var userIdClaim = httpContext.User.FindFirst("id");
-                if (userIdClaim == null)
+                var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
+
+                if (userIdClaim == null || userRoleClaim == null)
                 {
                     return Results.Unauthorized();
                 }
                 var userId = int.Parse(userIdClaim.Value);
+                var userRole = userRoleClaim.Value;
 
-                var quests = await db.Quests.Where(q => !q.IsDeleted && q.UserId == userId).ToListAsync();
-                return Results.Ok(quests);
+
+                if (userRole == "Administrator")
+                {
+                    var allQuests = await db.Quests.Where(q => !q.IsDeleted).ToListAsync();
+                    return Results.Ok(allQuests);
+                }
+                else
+                {
+                    // Otherwise, filter quests based on the user's ID
+                    var userQuests = await db.Quests.Where(q => q.UserId == userId && !q.IsDeleted).ToListAsync();
+                    return Results.Ok(userQuests);
+                }
+
+                //  var quests = await db.Quests.Where(q => !q.IsDeleted && q.UserId == userId).ToListAsync();
+                // return Results.Ok(quests); 
+
 
 
 
