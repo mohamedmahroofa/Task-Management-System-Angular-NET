@@ -9,7 +9,7 @@ import { StatusService } from '../services/status.service';
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
-  styleUrl: './status.component.css'
+  styleUrls: ['./status.component.css']
 })
 export class StatusComponent {
 
