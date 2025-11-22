@@ -81,12 +81,7 @@ export class DashboardComponent implements OnInit {
   }
 
   // Organize quests by their status
-  organizeQuestsByStatus() {
-    this.newQuests = this.quests.filter(quest => quest.statusId === 1);  // Assuming 1 represents 'New'
-    this.activeQuests = this.quests.filter(quest => quest.statusId === 2); // Assuming 2 represents 'Active'
-    this.resolvedQuests = this.quests.filter(quest => quest.statusId === 3); // Assuming 3 represents 'Resolved'
-    this.closedQuests = this.quests.filter(quest => quest.statusId === 4); // Assuming 4 represents 'Closed'
-  }
+  
 
   // Method to handle drag-and-drop
   drop(event: CdkDragDrop<Quest[]>) {
@@ -122,6 +117,13 @@ export class DashboardComponent implements OnInit {
       default:
         return 1; // Default to New
     }
+  }
+
+  organizeQuestsByStatus() {
+    this.newQuests = this.quests.filter(quest => quest.statusId === 1);  // Assuming 1 represents 'New'
+    this.activeQuests = this.quests.filter(quest => quest.statusId === 2); // Assuming 2 represents 'Active'
+    this.resolvedQuests = this.quests.filter(quest => quest.statusId === 3); // Assuming 3 represents 'Resolved'
+    this.closedQuests = this.quests.filter(quest => quest.statusId === 4); // Assuming 4 represents 'Closed'
   }
   
 

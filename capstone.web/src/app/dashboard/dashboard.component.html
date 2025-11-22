@@ -46,8 +46,8 @@
                     </table> -->
 
                     <div class="dashboard-container">
-                        <!-- New Quests -->
-                        <div class="status-column" cdkDropList id="new" (cdkDropListDropped)="drop($event)">
+                         <!-- New Quests -->
+                         <div class="status-column" cdkDropList [cdkDropListData]="newQuests" id="new" (cdkDropListDropped)="drop($event)">
                           <h3>New</h3>
                           <div *ngFor="let quest of newQuests" cdkDrag class="quest-item">
                             <div class="quest-details">
@@ -60,7 +60,7 @@
                         </div>
                       
                         <!-- Active Quests -->
-                        <div class="status-column" cdkDropList id="active" (cdkDropListDropped)="drop($event)">
+                        <div class="status-column" cdkDropList [cdkDropListData]="activeQuests" id="active" (cdkDropListDropped)="drop($event)">
                           <h3>Active</h3>
                           <div *ngFor="let quest of activeQuests" cdkDrag class="quest-item">
                             <div class="quest-details">
@@ -73,7 +73,7 @@
                         </div>
                       
                         <!-- Resolved Quests -->
-                        <div class="status-column" cdkDropList id="resolved" (cdkDropListDropped)="drop($event)">
+                        <div class="status-column" cdkDropList [cdkDropListData]="resolvedQuests" id="resolved" (cdkDropListDropped)="drop($event)">
                           <h3>Resolved</h3>
                           <div *ngFor="let quest of resolvedQuests" cdkDrag class="quest-item">
                             <div class="quest-details">
@@ -86,7 +86,7 @@
                         </div>
                       
                         <!-- Closed Quests -->
-                        <div class="status-column" cdkDropList id="closed" (cdkDropListDropped)="drop($event)">
+                        <div class="status-column" cdkDropList [cdkDropListData]="closedQuests" id="closed" (cdkDropListDropped)="drop($event)">
                           <h3>Closed</h3>
                           <div *ngFor="let quest of closedQuests" cdkDrag class="quest-item">
                             <div class="quest-details">
