@@ -31,3 +31,4 @@ A robust Full-Stack Web Application designed to streamline team workflows, task 
 cd capstone.web
 npm install
 ng serve
+..
