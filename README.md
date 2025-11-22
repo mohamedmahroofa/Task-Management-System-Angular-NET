@@ -1,8 +1,8 @@
 # Task Management System
 
-A robust Full-Stack Web Application designed to streamline team workflows, task allocation, and project tracking. Built using **Angular** for the frontend and **.NET 8 Web API** for the backend.
+A robust Full-Stack Web Application designed to streamline team workflows, task allocation, and project tracking. Developed as a Capstone Project to demonstrate modern software architecture using **Angular** and **.NET 8**.
 
-**🔗 Project Status:** Capstone Project (In Development)
+**🔗 Project Status:** Completed (December 2024)
 
 ## 🚀 Tech Stack
 
@@ -10,7 +10,7 @@ A robust Full-Stack Web Application designed to streamline team workflows, task 
 *   **Backend:** ASP.NET Core 8 Web API, C#
 *   **Database:** SQL Server, Entity Framework Core (Code-First)
 *   **Architecture:** Repository Pattern, RESTful API
-*   **DevOps:** Azure DevOps (CI/CD workflows utilized during development)
+*   **DevOps:** Azure DevOps (CI/CD workflows utilized during development phase)
 
 ## 🌟 Key Features
 
