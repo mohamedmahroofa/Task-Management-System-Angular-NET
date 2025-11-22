@@ -11,7 +11,7 @@ import { StatusService } from '../services/status.service';
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.css']
 })
-export class StatusComponent {
+export class StatusComponent implements OnInit{
 
   status: Status = {
     statusId: 0,
