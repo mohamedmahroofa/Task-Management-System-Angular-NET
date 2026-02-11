@@ -54,8 +54,13 @@ namespace capstone.web.api
                 options.AddPolicy("ReadOnlyAndAbove", policy => policy.RequireRole("Administrator", "General", "ReadOnly"));
             });
 
+                // This is for Windows
+            // builder.Services.AddDbContext<AppDbContext>(options =>
+            //     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+                // This is for Mac
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseInMemoryDatabase("TestDb"));
 
             // Enable authorization
             builder.Services.AddAuthorization();
@@ -72,7 +77,8 @@ namespace capstone.web.api
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                db.Database.Migrate();
+                // This is for Windows
+                // db.Database.Migrate();
                 SeedDatabase(db);
             }
 
