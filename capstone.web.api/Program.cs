@@ -20,6 +20,16 @@ namespace capstone.web.api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+           // Configure MongoDB
+            builder.Services.AddSingleton(sp =>
+            {
+                var configuration = sp.GetRequiredService<IConfiguration>();
+                var mongoSettings = configuration.GetSection("MongoSettings");
+                var connectionString = mongoSettings["ConnectionString"];
+                var databaseName = mongoSettings["DatabaseName"];
+                return new MongoDbContext(connectionString, databaseName);
+            });
+
             // Retrieve the secret key from configuration
             var secretKey = builder.Configuration["JwtConfig:Secret"];
             var keyBytes = Encoding.ASCII.GetBytes(secretKey);
