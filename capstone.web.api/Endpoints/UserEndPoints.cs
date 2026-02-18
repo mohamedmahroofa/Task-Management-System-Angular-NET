@@ -11,8 +11,9 @@
     using capstone.web.api.Data;
     using capstone.web.api.Models;
     using System.Text.RegularExpressions;
+  using MongoDB.Driver;
 
-    public static class UserEndpoints
+  public static class UserEndpoints
     {
         private static string GenerateJwtToken(User user, string secretKey)
         {
@@ -38,26 +39,34 @@
         {   
             var secretKey = "%^@#HD*@HD2387d223wyfi@67823gfSDHIFEQIWUC387f@3fhR$#@@jfwWEHI";
 
-            endpoints.MapGet("/api/users", [Authorize (Policy = "ReadOnlyAndAbove")] async (AppDbContext db) =>
+            endpoints.MapGet("/api/users", [Authorize (Policy = "ReadOnlyAndAbove")] async (MongoDbContext mongoDbContext) =>
             {
-                return Results.Ok(await db.Users.ToListAsync());
+                var usersCollection = mongoDbContext.GetCollection<User>("Users");
+                var users = usersCollection.Find(_ => true).ToList();
+                return Results.Ok(users);
             });
 
-            endpoints.MapGet("/api/users/{id}", [Authorize(Policy = "ReadOnlyAndAbove")] async (int id, AppDbContext db) =>
+            endpoints.MapGet("/api/users/{id}", [Authorize(Policy = "ReadOnlyAndAbove")] async (string id, MongoDbContext mongoDbContext) =>
             {
-                var user = await db.Users.FindAsync(id);
+                var usersCollection = mongoDbContext.GetCollection<User>("Users");
+                var user = await usersCollection.Find(u => u.Id == id).FirstOrDefaultAsync();
                 return user is not null ? Results.Ok(user) : Results.NotFound();
             });
 
-            endpoints.MapPost("/api/users", async (User user, AppDbContext db) =>
+            endpoints.MapPost("/api/users", async (User user, MongoDbContext mongoDbContext) =>
             {
-                if (await db.Users.AnyAsync(u => u.Username == user.Username || u.Email == user.Email))
+                var usersCollection = mongoDbContext.GetCollection<User>("Users");
+
+                // Check if a user with the same username or email already exists
+                var existingUser = await usersCollection
+                    .Find(u => u.Username == user.Username || u.Email == user.Email)
+                    .FirstOrDefaultAsync();
+                
+                if (existingUser != null)
                 {
-                    return Results.BadRequest("Username or Email already exist.");
+                    return Results.BadRequest("Username or Email already exists.");
                 }
-                else
-                {
-                    // Hash the Password
+                                // Hash the Password
                     user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
 
                     // Set the default role to "General"
@@ -66,24 +75,29 @@
                         user.Role = "General"; // Set default role
                     }
 
-                    // Add the new user to the database
-                    db.Users.Add(user);
-                    await db.SaveChangesAsync();
-                    return Results.Created($"/api/users/{user.Id}", user);
-                }
+                  await usersCollection.InsertOneAsync(user);
+
+                  return Results.Created($"/api/users/{user.Id}", user);
                 /**user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash); // Secure hashing
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
                 return Results.Created($"/api/users/{user.Id}", user);**/
             });
 
-            endpoints.MapPost("/api/register", async (User user, AppDbContext db) =>
+            endpoints.MapPost("/api/register", async (User user, MongoDbContext mongoDbContext) =>
             {
-                // Validate that the username and email are unique
-                if (await db.Users.AnyAsync(u => u.Username == user.Username || u.Email == user.Email))
+               var usersCollection = mongoDbContext.GetCollection<User>("Users");
+
+    // Check if a user with the same username or email already exists
+                var existingUser = await usersCollection
+                    .Find(u => u.Username == user.Username || u.Email == user.Email)
+                    .FirstOrDefaultAsync();
+                
+                if (existingUser != null)
                 {
                     return Results.BadRequest("Username or Email already exists.");
                 }
+
 
                 // Hash the Password
                 user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
@@ -94,9 +108,8 @@
                     user.Role = "General"; // Set default role
                 }
 
-                // Add the new user to the database
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
+                // Insert the new user into MongoDB
+                await usersCollection.InsertOneAsync(user);
 
                 return Results.Created($"/api/users/{user.Id}", user);
             });
@@ -108,9 +121,10 @@
                
             });*/
 
-            endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, User updateUser, AppDbContext db) =>
+            endpoints.MapPut("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (string id, User updateUser, MongoDbContext mongoDbContext) =>
             {
-                var user = await db.Users.FindAsync(id);
+                var usersCollection = mongoDbContext.GetCollection<User>("Users");
+                var user = await usersCollection.Find(u => u.Id ==id).FirstOrDefaultAsync();
                 if (user is null) return Results.NotFound();
 
                 user.FirstName = updateUser.FirstName;
@@ -122,25 +136,32 @@
                 if (!string.IsNullOrWhiteSpace(updateUser.PasswordHash))
                     user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updateUser.PasswordHash);
 
-                await db.SaveChangesAsync();
+                // Replace the existing user document with the updated one
+                await usersCollection.ReplaceOneAsync(u => u.Id == id, user);
+
                 return Results.NoContent();
             });
 
-            endpoints.MapDelete("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (int id, AppDbContext db) =>
+            endpoints.MapDelete("/api/users/{id}", [Authorize(Policy = "AdministratorOnly")] async (string id, MongoDbContext mongoDbContext) =>
             {
-                var user = await db.Users.FindAsync(id);
+                var usersCollection = mongoDbContext.GetCollection<User>("Users");
+                var user = await usersCollection.Find(u => u.Id == id).FirstOrDefaultAsync();
                 if (user is not null)
                 {
-                    db.Users.Remove(user);
-                    await db.SaveChangesAsync();
-                    return Results.NoContent();
+                    // Delete the user
+                    await usersCollection.DeleteOneAsync(u => u.Id == id);
                 }
-                return Results.NotFound();
+                return Results.NoContent();
             });
 
-            endpoints.MapPost("/api/login", async (LoginDto login, AppDbContext db) =>
+            endpoints.MapPost("/api/login", async (LoginDto login, MongoDbContext mongoDbContext) =>
             {
-                var user = await db.Users.SingleOrDefaultAsync(u => u.Username == login.Username);
+                var usersCollection = mongoDbContext.GetCollection<User>("Users");
+                // Find the user by username
+                var user = await usersCollection
+                    .Find(u => u.Username == login.Username)
+                    .FirstOrDefaultAsync();
+                
                 if (user is null || !BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash))
                     return Results.Unauthorized();
 
