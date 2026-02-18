@@ -10,6 +10,7 @@
     using System.Text;
     using capstone.web.api.Data;
     using capstone.web.api.Models;
+    using MongoDB.Driver;
 
     public static class CategoryEndpoints
     {
@@ -18,57 +19,83 @@
             var group = routes.MapGroup("/api/categories");
 
             // GET: /api/categories
-            group.MapGet("/", async (AppDbContext db) =>
+            group.MapGet("/", async (MongoDbContext mongoDbContext) =>
             {
-                var categories = await db.Categories.Where(c => !c.IsDeleted).ToListAsync();
+                var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
+                var categories = await categoriesCollection.Find(c => !c.IsDeleted).ToListAsync();
                 return Results.Ok(categories);
             });
 
             // GET: /api/categories/{id}
-            group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapGet("/{id}", async (string id, MongoDbContext mongoDbContext) =>
             {
-                var category = await db.Categories.Where(c => !c.IsDeleted).FirstOrDefaultAsync(c => c.CategoryId == id);
+                var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
+                var category = await categoriesCollection
+                    .Find(c => c.CategoryId == id && !c.IsDeleted)
+                    .FirstOrDefaultAsync();
+
                 return category is not null ? Results.Ok(category) : Results.NotFound();
             });
 
             // POST: /api/categories
-            group.MapPost("/", async (Category category, AppDbContext db) =>
+            group.MapPost("/", async (Category category, MongoDbContext mongoDbContext) =>
             {
-                var categoryReq = await db.Categories.CountAsync(c => !c.IsDeleted);
-                if (categoryReq < 1) //at least one entry in the database to be able to post
-                {
-                    return Results.BadRequest("There must be at least 1 Category");
-                }
-
                 category.IsDeleted = false;
                 category.DateCreated = DateTime.Now;
-                db.Categories.Add(category);
-                await db.SaveChangesAsync();
+                
+                var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
+
+                var existingCategory = await categoriesCollection
+                    .Find(c => c.Name == category.Name)
+                    .FirstOrDefaultAsync();
+
+                if (existingCategory != null)
+                {
+                    return Results.BadRequest("Category with this name already exists.");
+                }
+
+                await categoriesCollection.InsertOneAsync(category);
+
                 return Results.Created($"/api/categories/{category.CategoryId}", category);
             });
 
             // PUT: /api/categories/{id}
-            group.MapPut("/{id:int}", async (int id, Category updatedCategory, AppDbContext db) =>
+            group.MapPut("/{id}", async (string id, Category updatedCategory, MongoDbContext mongoDbContext) =>
             {
-                var category = await db.Categories.FindAsync(id);
+
+                var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
+
+                var category = await categoriesCollection.Find(c => c.CategoryId == id).FirstOrDefaultAsync();
+
                 if (category is null) return Results.NotFound();
 
                 // Propeties be updated.
                 category.Name = updatedCategory.Name;  
                 category.DateCreated = updatedCategory.DateCreated;
+                category.IsDeleted = updatedCategory.IsDeleted;
 
-                await db.SaveChangesAsync();
+                 // Replace the existing document with the updated one
+                await categoriesCollection.ReplaceOneAsync(c => c.CategoryId == id, category);
+
                 return Results.NoContent();
             });
 
             // DELETE: /api/categories/{id}
-            group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapDelete("/{id}", async (string id, MongoDbContext mongoDbContext) =>
             {
-                var category = await db.Categories.FindAsync(id);
+
+                var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
+
+
+                // Find the category by Id
+                var category = await categoriesCollection.Find(c => c.CategoryId == id).FirstOrDefaultAsync();
                 if (category is null) return Results.NotFound();
 
                 category.IsDeleted = true;
-                await db.SaveChangesAsync();
+                
+                // Replace the document with the updated one
+                await categoriesCollection.ReplaceOneAsync(c => c.CategoryId == id, category);
+
                 return Results.NoContent();
             });
         }

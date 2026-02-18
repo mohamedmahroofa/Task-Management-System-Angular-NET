@@ -11,7 +11,7 @@
     using capstone.web.api.Data;
     using capstone.web.api.Models;
     using System.Text.RegularExpressions;
-  using MongoDB.Driver;
+    using MongoDB.Driver;
 
   public static class UserEndpoints
     {
