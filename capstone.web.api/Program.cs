@@ -78,7 +78,7 @@ namespace capstone.web.api
             {
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 // This is for Windows
-                // db.Database.Migrate();
+                // db.Database.Migrate(); 
                 SeedDatabase(db);
             }
 
