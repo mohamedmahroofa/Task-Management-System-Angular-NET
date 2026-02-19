@@ -4,7 +4,7 @@ namespace capstone.web.api.Models
 {
     public class Quest
     {
-        public int QuestId { get; set; }
+        public string QuestId { get; set; }
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DueDate { get; set; }
@@ -12,10 +12,10 @@ namespace capstone.web.api.Models
 
 
         //Forgein Key
-        public int CategoryId { get; set; }
-        public int PriorityId { get; set; }
-        public int UserId { get; set; }
-        public int StatusId { get; set; }
+        public string CategoryId { get; set; }
+        public string PriorityId { get; set; }
+        public string UserId { get; set; }
+        public string StatusId { get; set; }
 
 
         //Navigational properties

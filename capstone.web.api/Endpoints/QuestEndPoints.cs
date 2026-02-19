@@ -11,6 +11,7 @@
     using capstone.web.api.Data;
     using capstone.web.api.Models;
     using System.Net.Http;
+    using MongoDB.Driver;
 
     public static class QuestEndpoints
     {
@@ -19,7 +20,7 @@
             var group = routes.MapGroup("/api/quests");
 
             // GET: /api/quests
-            group.MapGet("/", async (AppDbContext db, HttpContext httpContext) =>
+            group.MapGet("/", async (MongoDbContext mongoDbContext, HttpContext httpContext) =>
             {
                 var userIdClaim = httpContext.User.FindFirst("id");
                 var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
@@ -28,19 +29,23 @@
                 {
                     return Results.Unauthorized();
                 }
-                var userId = int.Parse(userIdClaim.Value);
+                var userId = userIdClaim.Value;
                 var userRole = userRoleClaim.Value;
 
+                var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
 
                 if (userRole == "Administrator")
                 {
-                    var allQuests = await db.Quests.Where(q => !q.IsDeleted).ToListAsync();
+                    var allQuests = await questsCollection.Find(q => !q.IsDeleted).ToListAsync();
                     return Results.Ok(allQuests);
                 }
                 else
                 {
                     // Otherwise, filter quests based on the user's ID
-                    var userQuests = await db.Quests.Where(q => q.UserId == userId && !q.IsDeleted).ToListAsync();
+                    var userQuests = await questsCollection
+                        .Find(q => q.UserId == userId && !q.IsDeleted)
+                        .ToListAsync();
+
                     return Results.Ok(userQuests);
                 }
 
@@ -53,42 +58,60 @@
             });
 
             // GET: /api/quests/{id}
-            group.MapGet("/{id:int}", async (int id, AppDbContext db, HttpContext httpContext) =>
+            group.MapGet("/{id}", async (string id, MongoDbContext mongoDbContext, HttpContext httpContext) =>
             {
                 var userIdClaim = httpContext.User.FindFirst("id");
                 if (userIdClaim == null)
                 {
                     return Results.Unauthorized();
                 }
-                var userId = int.Parse(userIdClaim.Value);
+                var userId = userIdClaim.Value;
 
-                var quest = await db.Quests.Where(q => !q.IsDeleted && q.UserId == userId).FirstOrDefaultAsync(q => q.QuestId == id);
-                return quest is not null ? Results.Ok(quest) : Results.NotFound();
+                var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
+
+                var quest = await questsCollection
+                    .Find(q => q.QuestId == id && !q.IsDeleted)
+                    .FirstOrDefaultAsync();
+                
+                if (quest == null)
+                    return Results.NotFound();
+
+                // Check ownership: allow admin or owner
+                var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
+                var userRole = userRoleClaim?.Value;
+
+                if (userRole != "Administrator" && quest.UserId != userId)
+                    return Results.Forbid(); // Not the owner and not admin
+
+                return Results.Ok(quest);
             });
 
             // POST: /api/quests
-            group.MapPost("/", async (Quest quest, AppDbContext db, HttpContext httpContext) =>
+            group.MapPost("/", async (Quest quest, MongoDbContext mongoDbContext, HttpContext httpContext) =>
             {
                 var userIdClaim = httpContext.User.FindFirst("id");
                 if (userIdClaim == null)
                 {
                     return Results.Unauthorized();
                 }
-                var userId = int.Parse(userIdClaim.Value);
+                var userId = userIdClaim.Value;
 
                 quest.UserId = userId;
 
                 quest.IsDeleted = false;
                 quest.DateCreated = DateTime.Now;
                 
+                // Get the collection
+                var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
 
-                db.Quests.Add(quest);
-                await db.SaveChangesAsync();
+                // Insert the new quest
+                await questsCollection.InsertOneAsync(quest);
+
                 return Results.Created($"/api/quests/{quest.QuestId}", quest);
             });
 
             // PUT: /api/quests/{id}
-            group.MapPut("/{id:int}", async (int id, Quest updatedQuest, AppDbContext db, HttpContext httpContext) =>
+            group.MapPut("/{id}", async (string id, Quest updatedQuest, MongoDbContext mongoDbContext, HttpContext httpContext) =>
             {
 
                 var userIdClaim = httpContext.User.FindFirst("id");
@@ -96,10 +119,20 @@
                 {
                     return Results.Unauthorized();
                 }
-                var userId = int.Parse(userIdClaim.Value);
+                var userId = userIdClaim.Value;
 
-                var quest = await db.Quests.FindAsync(id);
+                var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
+
+                var quest = await questsCollection.Find(q => q.QuestId == id).FirstOrDefaultAsync();
+
                 if (quest is null) return Results.NotFound();
+
+                // Optional: Only allow the owner or admin to update
+                var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
+                var userRole = userRoleClaim?.Value;
+
+                if (quest.UserId != userId && userRole != "Administrator")
+                    return Results.Forbid();
 
                 // Propeties be updated.
                 quest.Name = updatedQuest.Name;  
@@ -110,19 +143,40 @@
                 quest.StatusId = updatedQuest.StatusId;
                 
 
-                await db.SaveChangesAsync();
+                // Replace the document in MongoDB
+                await questsCollection.ReplaceOneAsync(q => q.QuestId == id, quest);
+
                 return Results.NoContent();
             });
 
             // DELETE: /api/quests/{id}
-            group.MapDelete("/{id:int}", async (int id, AppDbContext db, HttpContext httpContext) =>
+            group.MapDelete("/{id}", async (string id, MongoDbContext mongoDbContext, HttpContext httpContext) =>
             {
                 
-                var quest = await db.Quests.FindAsync(id);
+                var userIdClaim = httpContext.User.FindFirst("id");
+
+                if (userIdClaim == null)
+                    return Results.Unauthorized();
+
+                var userId = userIdClaim.Value; // string now
+
+                var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
+
+                // Find the quest by ID
+                var quest = await questsCollection.Find(q => q.QuestId == id).FirstOrDefaultAsync();
+
                 if (quest is null) return Results.NotFound();
 
+                var userRoleClaim = httpContext.User.FindFirst(ClaimTypes.Role);
+                var userRole = userRoleClaim?.Value;
+                if (quest.UserId != userId && userRole != "Administrator")
+                    return Results.Forbid();
+
                 quest.IsDeleted = true;
-                await db.SaveChangesAsync();
+
+                // Replace the document in MongoDB
+                await questsCollection.ReplaceOneAsync(q => q.QuestId == id, quest);
+                
                 return Results.NoContent();
             });
         }
