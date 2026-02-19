@@ -4,7 +4,7 @@ namespace capstone.web.api.Models
 {
     public class Status
     {
-        public int StatusId { get; set; }
+        public string StatusId { get; set; }
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public bool IsDeleted { get; set; }

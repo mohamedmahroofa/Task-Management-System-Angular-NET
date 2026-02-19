@@ -10,6 +10,7 @@
     using System.Text;
     using capstone.web.api.Data;
     using capstone.web.api.Models;
+    using MongoDB.Driver;
 
     public static class StatusEndpoints
     {
@@ -18,57 +19,90 @@
             var group = routes.MapGroup("/api/statuses");
 
             // GET: /api/statuses
-            group.MapGet("/", async (AppDbContext db) =>
+            group.MapGet("/", async (MongoDbContext mongoDbContext) =>
             {
-                var statuses = await db.Statuses.Where(c => !c.IsDeleted).ToListAsync();
+                var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
+
+                var statuses = await statusesCollection
+                    .Find(s => !s.IsDeleted)
+                    .ToListAsync();
+
                 return Results.Ok(statuses);
             });
 
             // GET: /api/statuses/{id}
-            group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapGet("/{id}", async (string id, MongoDbContext mongoDbContext) =>
             {
-                var status = await db.Statuses.Where(c => !c.IsDeleted).FirstOrDefaultAsync(c => c.StatusId == id);
+                var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
+
+                var status = await statusesCollection
+                    .Find(s => s.StatusId == id && !s.IsDeleted)
+                    .FirstOrDefaultAsync();
+
                 return status is not null ? Results.Ok(status) : Results.NotFound();
             });
 
             // POST: /api/statuses
-            group.MapPost("/", async (Status status, AppDbContext db) =>
+            group.MapPost("/", async (Status status, MongoDbContext mongoDbContext) =>
             {
-                var statusReq = await db.Statuses.CountAsync(c => !c.IsDeleted);
-                if (statusReq < 1) //at least one entry in the database to be able to post
+
+                var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
+
+                // Count existing non-deleted statuses
+                var statusCount = await statusesCollection.CountDocumentsAsync(s => !s.IsDeleted);
+
+                if (statusCount < 1) //at least one entry in the database to be able to post
                 {
                     return Results.BadRequest("There must be at least 1 Status");
                 }
 
                 status.IsDeleted = false;
                 status.DateCreated = DateTime.Now;
-                db.Statuses.Add(status);
-                await db.SaveChangesAsync();
+                
+                await statusesCollection.InsertOneAsync(status);
+
                 return Results.Created($"/api/statuses/{status.StatusId}", status);
             });
 
             // PUT: /api/statuses/{id}
-            group.MapPut("/{id:int}", async (int id, Status updatedStatus, AppDbContext db) =>
+            group.MapPut("/{id}", async (string id, Status updatedStatus, MongoDbContext mongoDbContext) =>
             {
-                var status = await db.Statuses.FindAsync(id);
+
+                var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
+
+                var status = await statusesCollection
+                    .Find(s => s.StatusId == id)
+                    .FirstOrDefaultAsync();
+                    
                 if (status is null) return Results.NotFound();
 
                 // Propeties be updated.
                 status.Name = updatedStatus.Name;
                 status.DateCreated = updatedStatus.DateCreated;
 
-                await db.SaveChangesAsync();
+                // Replace the existing document with the updated one
+                await statusesCollection.ReplaceOneAsync(s => s.StatusId == id, status);
+
                 return Results.NoContent();
             });
 
             // DELETE: /api/statuses/{id}
-            group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapDelete("/{id}", async (string id, MongoDbContext mongoDbContext) =>
             {
-                var status = await db.Statuses.FindAsync(id);
+
+                var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
+
+                var status = await statusesCollection
+                    .Find(s => s.StatusId == id)
+                    .FirstOrDefaultAsync();
+
                 if (status is null) return Results.NotFound();
 
                 status.IsDeleted = true;
-                await db.SaveChangesAsync();
+                
+                 // Replace the document with the updated one
+                await statusesCollection.ReplaceOneAsync(s => s.StatusId == id, status);
+
                 return Results.NoContent();
             });
         }
