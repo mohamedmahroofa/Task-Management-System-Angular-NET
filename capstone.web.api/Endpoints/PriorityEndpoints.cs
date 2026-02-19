@@ -3,13 +3,13 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.IdentityModel.Tokens;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
     using capstone.web.api.Data;
     using capstone.web.api.Models;
+    using MongoDB.Driver;
 
     public static class PriorityEndpoints
     {
@@ -18,56 +18,88 @@
             var group = routes.MapGroup("/api/priorities");
 
             // GET: /api/priorities
-            group.MapGet("/", async (AppDbContext db) =>
+            group.MapGet("/", async (MongoDbContext mongoDbContext) =>
             {
-                var priorities = await db.Priorities.ToListAsync();
+                var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
+
+                var priorities = await prioritiesCollection
+                    .Find(p => !p.IsDeleted)
+                    .ToListAsync();
+                
                 return Results.Ok(priorities);
             });
 
             // GET: /api/priorities/{id}
-            group.MapGet("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapGet("/{id}", async (string id, MongoDbContext mongoDbContext) =>
             {
-                var priority = await db.Priorities.FindAsync(id);
+                var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
+                var priority = await prioritiesCollection
+                    .Find(p => p.PriorityId == id && !p.IsDeleted)
+                    .FirstOrDefaultAsync();
+
                 return priority is not null ? Results.Ok(priority) : Results.NotFound();
             });
 
             // POST: /api/priorities
-            group.MapPost("/", async (Priority priority, AppDbContext db) =>
+            group.MapPost("/", async (Priority priority, MongoDbContext mongoDbContext) =>
             {
 
-                var priorityReq = await db.Priorities.CountAsync(p => !p.IsDeleted);
-                if (priorityReq < 1) //at least one entry in the database to be able to post
+                var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
+
+
+                // Count existing (non-deleted) priorities
+                var priorityCount = await prioritiesCollection
+                    .CountDocumentsAsync(p => !p.IsDeleted);
+
+                if (priorityCount < 1) //at least one entry in the database to be able to post
                 {
                     return Results.BadRequest("There must be at least 1 Priority level");
                 }
                 priority.IsDeleted = false;
                 priority.DateCreated = DateTime.Now;
-                db.Priorities.Add(priority);
-                await db.SaveChangesAsync();
+                
+                await prioritiesCollection.InsertOneAsync(priority);
+
                 return Results.Created($"/api/priorities/{priority.PriorityId}", priority);
             });
 
             // PUT: /api/priorities/{id}
-            group.MapPut("/{id:int}", async (int id, Priority updatedPriority, AppDbContext db) =>
+            group.MapPut("/{id}", async (string id, Priority updatedPriority, MongoDbContext mongoDbContext) =>
             {
-                var priority = await db.Priorities.FindAsync(id);
+
+                var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
+
+                var priority = await prioritiesCollection
+                                .Find(p => p.PriorityId == id)
+                                .FirstOrDefaultAsync();
+
                 if (priority is null) return Results.NotFound();
 
                 priority.Name = updatedPriority.Name;  // Update properties as needed
                 priority.IsDeleted = updatedPriority.IsDeleted;
                 priority.DateCreated = updatedPriority.DateCreated;
-                await db.SaveChangesAsync();
+                
+                await prioritiesCollection.ReplaceOneAsync(p => p.PriorityId == id, priority);
+
                 return Results.NoContent();
             });
 
             // DELETE: /api/priorities/{id}
-            group.MapDelete("/{id:int}", async (int id, AppDbContext db) =>
+            group.MapDelete("/{id}", async (string id, MongoDbContext mongoDbContext) =>
             {
-                var priority = await db.Priorities.FindAsync(id);
+
+                var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
+
+                var priority = await prioritiesCollection
+                    .Find(p => p.PriorityId == id)
+                    .FirstOrDefaultAsync();
+
                 if (priority is null) return Results.NotFound();
 
-                db.Priorities.Remove(priority);
-                await db.SaveChangesAsync();
+                priority.IsDeleted = true;
+
+                await prioritiesCollection.ReplaceOneAsync(p => p.PriorityId == id, priority);
+
                 return Results.NoContent();
             });
         }
