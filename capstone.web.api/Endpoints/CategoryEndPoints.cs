@@ -40,8 +40,6 @@
             // POST: /api/categories
             group.MapPost("/", async (Category category, MongoDbContext mongoDbContext) =>
             {
-                category.IsDeleted = false;
-                category.DateCreated = DateTime.Now;
                 
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
 
@@ -53,6 +51,26 @@
                 {
                     return Results.BadRequest("Category with this name already exists.");
                 }
+
+                // Generate sequential CategoryId
+                var lastCategory = await categoriesCollection
+                    .Find(_ => true)
+                    .SortByDescending(c => c.CategoryId)
+                    .Limit(1)
+                    .FirstOrDefaultAsync();
+
+                if (lastCategory != null && lastCategory.CategoryId.StartsWith("cat"))
+                {
+                    var lastNumber = int.Parse(lastCategory.CategoryId[3..]);
+                    category.CategoryId = $"cat{lastNumber + 1}";
+                }
+                else
+                {
+                    category.CategoryId = "cat1"; // first category
+                }
+
+                category.IsDeleted = false;
+                category.DateCreated = DateTime.Now;
 
                 await categoriesCollection.InsertOneAsync(category);
 

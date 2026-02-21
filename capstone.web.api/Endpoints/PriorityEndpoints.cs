@@ -55,9 +55,29 @@
                 {
                     return Results.BadRequest("There must be at least 1 Priority level");
                 }
+                
+
+                var existingPriority = await prioritiesCollection
+                .Find(p => p.Name == priority.Name)
+                .FirstOrDefaultAsync();
+
+                if (existingPriority != null)
+                return Results.BadRequest("Priority with this name already exists.");
+
+                // Generate sequential string ID: pri1, pri2, ...
+                var lastPriority = await prioritiesCollection
+                    .Find(_ => true)
+                    .SortByDescending(p => p.PriorityId)
+                    .Limit(1)
+                    .FirstOrDefaultAsync();
+
+                priority.PriorityId = lastPriority != null && lastPriority.PriorityId.StartsWith("pri")
+                    ? $"pri{int.Parse(lastPriority.PriorityId[3..]) + 1}"
+                    : "pri1";
+
                 priority.IsDeleted = false;
                 priority.DateCreated = DateTime.Now;
-                
+
                 await prioritiesCollection.InsertOneAsync(priority);
 
                 return Results.Created($"/api/priorities/{priority.PriorityId}", priority);

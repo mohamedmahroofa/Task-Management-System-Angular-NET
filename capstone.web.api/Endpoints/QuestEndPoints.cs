@@ -104,6 +104,17 @@
                 // Get the collection
                 var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
 
+                // Generate sequential string ID: q1, q2, ...
+                var lastQuest = await questsCollection
+                    .Find(_ => true)
+                    .SortByDescending(q => q.QuestId)
+                    .Limit(1)
+                    .FirstOrDefaultAsync();
+
+                quest.QuestId = lastQuest != null && lastQuest.QuestId.StartsWith("q")
+                    ? $"q{int.Parse(lastQuest.QuestId[1..]) + 1}"
+                    : "q1";
+
                 // Insert the new quest
                 await questsCollection.InsertOneAsync(quest);
 

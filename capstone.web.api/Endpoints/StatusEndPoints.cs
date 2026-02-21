@@ -58,6 +58,17 @@
 
                 status.IsDeleted = false;
                 status.DateCreated = DateTime.Now;
+
+                 // Generate sequential string ID
+                var lastStatus = await statusesCollection
+                    .Find(_ => true)
+                    .SortByDescending(s => s.StatusId)
+                    .Limit(1)
+                    .FirstOrDefaultAsync();
+
+                status.StatusId = lastStatus != null && lastStatus.StatusId.StartsWith("s")
+                    ? $"s{int.Parse(lastStatus.StatusId[1..]) + 1}"
+                    : "s1";
                 
                 await statusesCollection.InsertOneAsync(status);
 
