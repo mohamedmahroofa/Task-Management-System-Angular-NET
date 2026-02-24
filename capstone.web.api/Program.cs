@@ -96,38 +96,57 @@ namespace capstone.web.api
             static async Task SeedMongoDatabase(MongoDbContext mongoDbContext)
             {
                 var usersCollection = mongoDbContext.GetCollection<User>("Users");
+                var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
 
                 // Check if any users already exist
                 var existingUsers = await usersCollection.Find(_ => true).ToListAsync();
-                if (existingUsers.Count > 0) return; // Already seeded
-
+                if (existingUsers.Count == 0)
+                {
                 // Admin user
-                var adminUser = new User
-                {
-                    Id = ObjectId.GenerateNewId().ToString(),
-                    FirstName = "Admin",
-                    LastName = "User",
-                    Email = "admin@example.com",
-                    Username = "admin",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin-password"),
-                    Role = "Administrator"
-                };
+                    var adminUser = new User
+                    {
+                        Id = ObjectId.GenerateNewId().ToString(),
+                        FirstName = "Admin",
+                        LastName = "User",
+                        Email = "admin@example.com",
+                        Username = "admin",
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin-password"),
+                        Role = "Administrator"
+                    };
 
-                // General user
-                var generalUser = new User
-                {
-                    Id = ObjectId.GenerateNewId().ToString(),
-                    FirstName = "Ahmed",
-                    LastName = "Sheedh",
-                    Email = "sheedh@example.com",
-                    Username = "general",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("general-password"),
-                    Role = "General"
-                };
+                    // General user
+                    var generalUser = new User
+                    {
+                        Id = ObjectId.GenerateNewId().ToString(),
+                        FirstName = "Ahmed",
+                        LastName = "Sheedh",
+                        Email = "sheedh@example.com",
+                        Username = "general",
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("general-password"),
+                        Role = "General"
+                    };
 
-                await usersCollection.InsertManyAsync(new[] { adminUser, generalUser });
-                Console.WriteLine("MongoDB seeded: Admin and General user added.");
+                    await usersCollection.InsertManyAsync(new[] { adminUser, generalUser });
+                    Console.WriteLine("MongoDB seeded: Admin and General user added.");
+                }
+
+                // Seed Categories
+                var existingCategories = await categoriesCollection.Find(_ => true).ToListAsync();
+                if (existingCategories.Count == 0)
+                {
+                    var category = new Category
+                    {
+                        CategoryId = "cat1",
+                        Name = "Schoolwork",
+                        IsDeleted = false,
+                        DateCreated = DateTime.Now
+                    };
+                    await categoriesCollection.InsertOneAsync(category);
+                    Console.WriteLine("MongoDB seeded: Category added.");
+                }
             }
+
+            
 
             // using (var scope = app.Services.CreateScope())
             // {
