@@ -127,23 +127,27 @@ namespace capstone.web.api
                     };
 
                     await usersCollection.InsertManyAsync(new[] { adminUser, generalUser });
+                    Console.WriteLine("No users currently present in the Database so seeding users.");
                     Console.WriteLine("MongoDB seeded: Admin and General user added.");
+                } else
+                {
+                    Console.WriteLine("There is already data present so unable to Seed users.");
                 }
 
                 // Seed Categories
-                var existingCategories = await categoriesCollection.Find(_ => true).ToListAsync();
-                if (existingCategories.Count == 0)
-                {
-                    var category = new Category
-                    {
-                        CategoryId = "cat1",
-                        Name = "Schoolwork",
-                        IsDeleted = false,
-                        DateCreated = DateTime.Now
-                    };
-                    await categoriesCollection.InsertOneAsync(category);
-                    Console.WriteLine("MongoDB seeded: Category added.");
-                }
+                // var existingCategories = await categoriesCollection.Find(_ => true).ToListAsync();
+                // if (existingCategories.Count == 0)
+                // {
+                //     var category = new Category
+                //     {
+                //         CategoryId = "cat1",
+                //         Name = "Schoolwork",
+                //         IsDeleted = false,
+                //         DateCreated = DateTime.Now
+                //     };
+                //     await categoriesCollection.InsertOneAsync(category);
+                //     Console.WriteLine("MongoDB seeded: Category added.");
+                // }
             }
 
             
