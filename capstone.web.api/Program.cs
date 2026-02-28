@@ -135,19 +135,22 @@ namespace capstone.web.api
                 }
 
                 // Seed Categories
-                // var existingCategories = await categoriesCollection.Find(_ => true).ToListAsync();
-                // if (existingCategories.Count == 0)
-                // {
-                //     var category = new Category
-                //     {
-                //         CategoryId = "cat1",
-                //         Name = "Schoolwork",
-                //         IsDeleted = false,
-                //         DateCreated = DateTime.Now
-                //     };
-                //     await categoriesCollection.InsertOneAsync(category);
-                //     Console.WriteLine("MongoDB seeded: Category added.");
-                // }
+                var existingCategories = await categoriesCollection.Find(_ => true).ToListAsync();
+                if (existingCategories.Count == 0)
+                {
+                    var category = new Category
+                    {
+                        CategoryId = "cat1",
+                        Name = "Schoolwork",
+                        IsDeleted = false,
+                        DateCreated = DateTime.Now
+                    };
+                    await categoriesCollection.InsertOneAsync(category);
+                    Console.WriteLine("MongoDB seeded: Category added.");
+                } else
+                {
+                    Console.WriteLine("Category already Exists in MongoDB");
+                }
             }
 
             
