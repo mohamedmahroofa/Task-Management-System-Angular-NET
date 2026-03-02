@@ -97,6 +97,7 @@ namespace capstone.web.api
             {
                 var usersCollection = mongoDbContext.GetCollection<User>("Users");
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
+                var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
 
                 // Check if any users already exist
                 var existingUsers = await usersCollection.Find(_ => true).ToListAsync();
@@ -150,6 +151,25 @@ namespace capstone.web.api
                 } else
                 {
                     Console.WriteLine("Category already Exists in MongoDB");
+                }
+
+                // Seed Priorities
+                var existingPriorities = await prioritiesCollection.Find(_ => true).ToListAsync();
+                if (existingPriorities.Count == 0)
+                {
+                    var priority = new Priority
+                    {
+                        PriorityId = "pri1",
+                        Name = "Low",
+                        IsDeleted = false,
+                        DateCreated = DateTime.Now,
+                        Color = "Green"
+                    };
+                    await prioritiesCollection.InsertOneAsync(priority);
+                    Console.WriteLine("MongoDB seeded: Priority added.");
+                } else
+                {
+                    Console.WriteLine("Priority already Exists in MongoDB");
                 }
             }
 
