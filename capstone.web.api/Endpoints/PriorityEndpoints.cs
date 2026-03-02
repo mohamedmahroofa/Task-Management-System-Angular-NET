@@ -23,8 +23,8 @@
                 var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
 
                 var priorities = await prioritiesCollection
-                    .Find(p => !p.IsDeleted)
-                    .ToListAsync();
+                                    .Find(p => !p.IsDeleted)
+                                    .ToListAsync();
                 
                 return Results.Ok(priorities);
             });
@@ -34,8 +34,8 @@
             {
                 var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
                 var priority = await prioritiesCollection
-                    .Find(p => p.PriorityId == id && !p.IsDeleted)
-                    .FirstOrDefaultAsync();
+                                .Find(p => p.PriorityId == id && !p.IsDeleted)
+                                .FirstOrDefaultAsync();
 
                 return priority is not null ? Results.Ok(priority) : Results.NotFound();
             });
@@ -46,34 +46,29 @@
 
                 var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
 
-
-                // Count existing (non-deleted) priorities
-                var priorityCount = await prioritiesCollection
-                    .CountDocumentsAsync(p => !p.IsDeleted);
-
-                if (priorityCount < 1) //at least one entry in the database to be able to post
-                {
-                    return Results.BadRequest("There must be at least 1 Priority level");
-                }
-                
-
                 var existingPriority = await prioritiesCollection
-                .Find(p => p.Name == priority.Name)
-                .FirstOrDefaultAsync();
+                                        .Find(p => p.Name == priority.Name)
+                                        .FirstOrDefaultAsync();
 
                 if (existingPriority != null)
                 return Results.BadRequest("Priority with this name already exists.");
 
                 // Generate sequential string ID: pri1, pri2, ...
                 var lastPriority = await prioritiesCollection
-                    .Find(_ => true)
-                    .SortByDescending(p => p.PriorityId)
-                    .Limit(1)
-                    .FirstOrDefaultAsync();
+                                    .Find(_ => true)
+                                    .SortByDescending(p => p.PriorityId)
+                                    .Limit(1)
+                                    .FirstOrDefaultAsync();
 
-                priority.PriorityId = lastPriority != null && lastPriority.PriorityId.StartsWith("pri")
-                    ? $"pri{int.Parse(lastPriority.PriorityId[3..]) + 1}"
-                    : "pri1";
+                if (lastPriority != null && lastPriority.PriorityId.StartsWith("pri"))
+                {
+                    var lastNumber = int.Parse(lastPriority.PriorityId[3..]);
+                    priority.PriorityId = $"pri{lastNumber + 1}";
+                }
+                else
+                {
+                    priority.PriorityId = "pri1"; // first category
+                }
 
                 priority.IsDeleted = false;
                 priority.DateCreated = DateTime.Now;
@@ -111,8 +106,8 @@
                 var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
 
                 var priority = await prioritiesCollection
-                    .Find(p => p.PriorityId == id)
-                    .FirstOrDefaultAsync();
+                                .Find(p => p.PriorityId == id)
+                                .FirstOrDefaultAsync();
 
                 if (priority is null) return Results.NotFound();
 

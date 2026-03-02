@@ -22,7 +22,11 @@
             group.MapGet("/", async (MongoDbContext mongoDbContext) =>
             {
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
-                var categories = await categoriesCollection.Find(c => !c.IsDeleted).ToListAsync();
+
+                var categories = await categoriesCollection
+                                    .Find(c => !c.IsDeleted)
+                                    .ToListAsync();
+
                 return Results.Ok(categories);
             });
 
@@ -31,8 +35,8 @@
             {
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
                 var category = await categoriesCollection
-                    .Find(c => c.CategoryId == id && !c.IsDeleted)
-                    .FirstOrDefaultAsync();
+                                .Find(c => c.CategoryId == id && !c.IsDeleted)
+                                .FirstOrDefaultAsync();
 
                 return category is not null ? Results.Ok(category) : Results.NotFound();
             });
@@ -42,10 +46,10 @@
             {
                 
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
-
+                
                 var existingCategory = await categoriesCollection
-                    .Find(c => c.Name == category.Name)
-                    .FirstOrDefaultAsync();
+                                        .Find(c => c.Name == category.Name)
+                                        .FirstOrDefaultAsync();
 
                 if (existingCategory != null)
                 {
@@ -54,10 +58,10 @@
 
                 // Generate sequential CategoryId
                 var lastCategory = await categoriesCollection
-                    .Find(_ => true)
-                    .SortByDescending(c => c.CategoryId)
-                    .Limit(1)
-                    .FirstOrDefaultAsync();
+                                    .Find(_ => true)
+                                    .SortByDescending(c => c.CategoryId)
+                                    .Limit(1)
+                                    .FirstOrDefaultAsync();
 
                 if (lastCategory != null && lastCategory.CategoryId.StartsWith("cat"))
                 {
@@ -83,7 +87,9 @@
 
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
 
-                var category = await categoriesCollection.Find(c => c.CategoryId == id).FirstOrDefaultAsync();
+                var category = await categoriesCollection
+                                .Find(c => c.CategoryId == id)
+                                .FirstOrDefaultAsync();
 
                 if (category is null) return Results.NotFound();
 
@@ -106,7 +112,10 @@
 
 
                 // Find the category by Id
-                var category = await categoriesCollection.Find(c => c.CategoryId == id).FirstOrDefaultAsync();
+                var category = await categoriesCollection
+                                .Find(c => c.CategoryId == id)
+                                .FirstOrDefaultAsync();
+                                
                 if (category is null) return Results.NotFound();
 
                 category.IsDeleted = true;
