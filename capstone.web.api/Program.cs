@@ -172,6 +172,24 @@ namespace capstone.web.api
                 {
                     Console.WriteLine("Priority already Exists in MongoDB");
                 }
+
+                // Seed Statuses
+                var existingStatuses = await statusesCollection.Find(_ => true).ToListAsync();
+                if (existingStatuses.Count == 0)
+                {
+                    var status = new Status
+                    {
+                        StatusId = "sta1",
+                        Name = "Begin",
+                        IsDeleted = false,
+                        DateCreated = DateTime.Now,
+                    };
+                    await statusesCollection.InsertOneAsync(status);
+                    Console.WriteLine("MongoDB seeded: Status added.");
+                } else
+                {
+                    Console.WriteLine("Status already Exists in MongoDB");
+                }
             }
 
             
