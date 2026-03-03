@@ -98,6 +98,7 @@ namespace capstone.web.api
                 var usersCollection = mongoDbContext.GetCollection<User>("Users");
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
                 var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
+                var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
 
                 // Check if any users already exist
                 var existingUsers = await usersCollection.Find(_ => true).ToListAsync();

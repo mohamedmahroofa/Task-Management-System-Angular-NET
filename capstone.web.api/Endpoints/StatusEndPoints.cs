@@ -52,6 +52,10 @@
                                         .Find(s => s.Name == status.Name)
                                         .FirstOrDefaultAsync();
 
+                if(existingStatus != null)
+                {
+                    return Results.BadRequest("Status with this name already exists.");
+                }
 
                  // Generate sequential string ID
                 var lastStatus = await statusesCollection
@@ -60,10 +64,10 @@
                                     .Limit(1)
                                     .FirstOrDefaultAsync();
 
-                if(lastStatus != null && lastStatus.StatusId.StartsWith("sta1"))
+                if(lastStatus != null && lastStatus.StatusId.StartsWith("sta"))
                 {
                     var lastNumber = int.Parse(lastStatus.StatusId[3..]);
-                    status.StatusId = $"pri{lastNumber + 1}";
+                    status.StatusId = $"sta{lastNumber + 1}";
                 }
                 else
                 {
