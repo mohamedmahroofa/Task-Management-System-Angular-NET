@@ -24,8 +24,8 @@
                 var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
 
                 var statuses = await statusesCollection
-                    .Find(s => !s.IsDeleted)
-                    .ToListAsync();
+                                .Find(s => !s.IsDeleted)
+                                .ToListAsync();
 
                 return Results.Ok(statuses);
             });
@@ -48,28 +48,31 @@
 
                 var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
 
-                // Count existing non-deleted statuses
-                var statusCount = await statusesCollection.CountDocumentsAsync(s => !s.IsDeleted);
+                var existingStatus = await statusesCollection
+                                        .Find(s => s.Name == status.Name)
+                                        .FirstOrDefaultAsync();
 
-                if (statusCount < 1) //at least one entry in the database to be able to post
-                {
-                    return Results.BadRequest("There must be at least 1 Status");
-                }
-
-                status.IsDeleted = false;
-                status.DateCreated = DateTime.Now;
 
                  // Generate sequential string ID
                 var lastStatus = await statusesCollection
-                    .Find(_ => true)
-                    .SortByDescending(s => s.StatusId)
-                    .Limit(1)
-                    .FirstOrDefaultAsync();
+                                    .Find(_ => true)
+                                    .SortByDescending(s => s.StatusId)
+                                    .Limit(1)
+                                    .FirstOrDefaultAsync();
 
-                status.StatusId = lastStatus != null && lastStatus.StatusId.StartsWith("s")
-                    ? $"s{int.Parse(lastStatus.StatusId[1..]) + 1}"
-                    : "s1";
+                if(lastStatus != null && lastStatus.StatusId.StartsWith("sta1"))
+                {
+                    var lastNumber = int.Parse(lastStatus.StatusId[3..]);
+                    status.StatusId = $"pri{lastNumber + 1}";
+                }
+                else
+                {
+                    status.StatusId = "sta1";
+                }
                 
+                status.IsDeleted = false;
+                status.DateCreated = DateTime.Now;
+
                 await statusesCollection.InsertOneAsync(status);
 
                 return Results.Created($"/api/statuses/{status.StatusId}", status);
@@ -82,13 +85,14 @@
                 var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
 
                 var status = await statusesCollection
-                    .Find(s => s.StatusId == id)
-                    .FirstOrDefaultAsync();
+                                .Find(s => s.StatusId == id)
+                                .FirstOrDefaultAsync();
                     
                 if (status is null) return Results.NotFound();
 
                 // Propeties be updated.
                 status.Name = updatedStatus.Name;
+                status.IsDeleted = updatedStatus.IsDeleted;
                 status.DateCreated = updatedStatus.DateCreated;
 
                 // Replace the existing document with the updated one
@@ -104,8 +108,8 @@
                 var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
 
                 var status = await statusesCollection
-                    .Find(s => s.StatusId == id)
-                    .FirstOrDefaultAsync();
+                                .Find(s => s.StatusId == id)
+                                .FirstOrDefaultAsync();
 
                 if (status is null) return Results.NotFound();
 
