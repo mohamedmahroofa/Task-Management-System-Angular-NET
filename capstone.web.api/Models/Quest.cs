@@ -1,9 +1,13 @@
 ﻿using System.Text.Json.Serialization;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace capstone.web.api.Models
 {
     public class Quest
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.String)]
         public string QuestId { get; set; }
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
