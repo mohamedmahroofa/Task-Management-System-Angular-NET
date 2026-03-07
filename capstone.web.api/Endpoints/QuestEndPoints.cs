@@ -96,10 +96,7 @@
                 }
                 var userId = userIdClaim.Value;
 
-                quest.UserId = userId;
-
-                quest.IsDeleted = false;
-                quest.DateCreated = DateTime.Now;
+              
                 
                 // Get the collection
                 var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
@@ -111,9 +108,18 @@
                     .Limit(1)
                     .FirstOrDefaultAsync();
 
-                quest.QuestId = lastQuest != null && lastQuest.QuestId.StartsWith("q")
-                    ? $"q{int.Parse(lastQuest.QuestId[1..]) + 1}"
-                    : "q1";
+                if(lastQuest != null && lastQuest.QuestId.StartsWith("que"))
+                {
+                    var lastNumber = int.Parse(lastQuest.QuestId[3..]);
+                    quest.QuestId = $"que{lastNumber + 1}";
+                } else
+                {
+                    quest.QuestId = "que1";
+                }
+
+                quest.UserId = userId;
+                quest.IsDeleted = false;
+                quest.DateCreated = DateTime.Now;
 
                 // Insert the new quest
                 await questsCollection.InsertOneAsync(quest);
