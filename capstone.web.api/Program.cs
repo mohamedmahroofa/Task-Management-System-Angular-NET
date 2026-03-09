@@ -99,6 +99,7 @@ namespace capstone.web.api
                 var categoriesCollection = mongoDbContext.GetCollection<Category>("Categories");
                 var prioritiesCollection = mongoDbContext.GetCollection<Priority>("Priorities");
                 var statusesCollection = mongoDbContext.GetCollection<Status>("Statuses");
+                var questsCollection = mongoDbContext.GetCollection<Quest>("Quests");
 
                 // Check if any users already exist
                 var existingUsers = await usersCollection.Find(_ => true).ToListAsync();
@@ -189,6 +190,36 @@ namespace capstone.web.api
                 } else
                 {
                     Console.WriteLine("Status already Exists in MongoDB");
+                }
+
+                // Seeding Quests
+                var existingQuests = await questsCollection.Find(_ => true).ToListAsync();
+
+                if (existingQuests.Count == 0)
+                {
+                    var firstUser = await usersCollection.Find(_ => true).FirstOrDefaultAsync();
+                    if (firstUser != null)
+                    {
+                        var quest = new Quest
+                        {
+                            QuestId = "que1",
+                            Name = "Default",
+                            DateCreated = DateTime.Now,
+                            DueDate = DateTime.Now.AddDays(7),
+                            IsDeleted = false,
+                            CategoryId = "cat1",
+                            PriorityId = "pri1",
+                            StatusId = "sta1",
+                            UserId = firstUser.Id
+                        };
+
+                        await questsCollection.InsertOneAsync(quest);
+                        Console.WriteLine("MongoDB seeded: Quest added.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Quest already exists in MongoDB.");
                 }
             }
 
