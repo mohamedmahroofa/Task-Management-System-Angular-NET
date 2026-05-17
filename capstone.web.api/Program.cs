@@ -144,7 +144,7 @@ namespace capstone.web.api
                     var category = new Category
                     {
                         CategoryId = "cat1",
-                        Name = "Schoolwork",
+                        Name = "School work",
                         IsDeleted = false,
                         DateCreated = DateTime.Now
                     };
