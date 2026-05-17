@@ -1,34 +1,41 @@
 # Task Management System
 
-A robust Full-Stack Web Application designed to streamline team workflows, task allocation, and project tracking. Developed as a Capstone Project to demonstrate modern software architecture using **Angular** and **.NET 8**.
+🔗 **Live Site:** [https://task-management-capstone.netlify.app](https://task-management-capstone.netlify.app)
 
-**🔗 Project Status:** Completed (December 2024)
+A full-stack task management web application designed to help teams organize workflows, manage task allocation, and track project progress. This project was developed as a capstone project using Angular 17 for the frontend and ASP.NET Core 8 Web API for the backend.
 
-## 🚀 Tech Stack
+**Project Status:** Completed - December 2024
 
-*   **Frontend:** Angular 17, TypeScript, RxJS, Bootstrap
-*   **Backend:** ASP.NET Core 8 Web API, C#
-*   **Database:** SQL Server, Entity Framework Core (Code-First)
-*   **Architecture:** Repository Pattern, RESTful API
-*   **DevOps:** Azure DevOps (CI/CD workflows utilized during development phase)
+## Tech Stack
 
-## 🌟 Key Features
+- **Frontend:** Angular 17, TypeScript, RxJS, Bootstrap
+- **Backend:** ASP.NET Core 8 Web API, C#
+- **Database:** SQL Server, Entity Framework Core
+- **Architecture:** Repository Pattern, RESTful API
+- **DevOps:** Azure DevOps workflows used during development
 
-*   **Task Management:** Create, read, update, and delete (CRUD) operations for project tasks.
-*   **User Authentication:** Secure login and role-based access control (RBAC).
-*   **Data Synchronization:** Seamless integration between Angular UI and SQL database using RESTful endpoints.
-*   **Responsive Design:** Optimized for various device sizes using Bootstrap.
+## Key Features
 
-## 🛠️ Setup & Installation
+- **Task Management:** Create, view, update, and delete project tasks.
+- **User Authentication:** Login functionality with role-based access control.
+- **Data Integration:** Angular frontend connected to a .NET Web API using RESTful endpoints.
+- **Responsive Design:** Bootstrap-based layout for different screen sizes.
+- **Project Tracking:** Manage task categories, priorities, statuses, users, and dashboard views.
 
-**Prerequisites:**
-*   Node.js & Angular CLI
-*   .NET 8 SDK
-*   SQL Server (Local Instance)
+## Setup and Installation
 
-**Running the Frontend:**
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js
+- Angular CLI
+- .NET 8 SDK
+- SQL Server
+
+### Run the Frontend
+
 ```bash
 cd capstone.web
 npm install
 ng serve
-..
