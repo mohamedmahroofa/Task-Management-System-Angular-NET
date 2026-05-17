@@ -1,27 +1,42 @@
-# CapstoneWeb
+# Task Management System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+🔗 **Live Site:** [https://task-management-capstone.netlify.app](https://task-management-capstone.netlify.app)
 
-## Development server
+A full-stack task management web application designed to help teams organize workflows, manage task allocation, and track project progress. This project was developed as a capstone project using Angular 17 for the frontend and ASP.NET Core 8 Web API for the backend.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Project Status:** Completed - December 2024
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend:** Angular 17, TypeScript, RxJS, Bootstrap
+- **Backend:** ASP.NET Core 8 Web API, C#
+- **Database:** SQL Server, Entity Framework Core
+- **Architecture:** Repository Pattern, RESTful API
+- **DevOps:** Azure DevOps workflows used during development
 
-## Build
+## Key Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Task Management:** Create, view, update, and delete project tasks.
+- **User Authentication:** Login functionality with role-based access control.
+- **Data Integration:** Angular frontend connected to a .NET Web API using RESTful endpoints.
+- **Responsive Design:** Bootstrap-based layout for different screen sizes.
+- **Project Tracking:** Manage task categories, priorities, statuses, users, and dashboard views.
 
-## Running unit tests
+## Setup and Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Prerequisites
 
-## Running end-to-end tests
+Make sure you have the following installed:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Node.js
+- Angular CLI
+- .NET 8 SDK
+- SQL Server
 
-## Further help
+### Run the Frontend
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+cd capstone.web
+npm install
+ng serve
+```

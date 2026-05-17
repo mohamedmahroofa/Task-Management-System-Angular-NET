@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrl: './status-list.component.css',
   standalone: false
 })
-export class StatusListComponent implements OnInit{
+export class StatusListComponent implements OnInit {
   statuses: Status[] = []; // Array to hold list of statuses
-  displayedColumns: string[] = ['name', 'dateCreated' , 'action','actiondelete'];
+  displayedColumns: string[] = ['name', 'dateCreated', 'action', 'actiondelete'];
 
-  constructor(private statusService: StatusService, private router: Router) {}
+  constructor(private statusService: StatusService, private router: Router) { }
 
   ngOnInit() {
     // Fetch Statuses on component initialization
@@ -41,5 +41,5 @@ export class StatusListComponent implements OnInit{
     this.router.navigate(['/dashboard']);
   }
 
- 
+
 }
