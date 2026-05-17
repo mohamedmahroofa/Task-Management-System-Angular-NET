@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-time-bar',
   templateUrl: './time-bar.component.html',
-  styleUrl: './time-bar.component.css'
+  styleUrl: './time-bar.component.css',
+  standalone: false
 })
 export class TimeBarComponent {
 

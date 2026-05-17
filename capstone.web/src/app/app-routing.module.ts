@@ -24,7 +24,7 @@ import { TimeBarComponent } from './time-bar/time-bar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login page
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Redirect to login page
   { path: 'prioritys', component: PriorityListComponent },
   { path: 'priority', component: PriorityComponent },
   { path: 'priority/:id', component: PriorityComponent },
@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'user/:id', component: UserComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'timeBar', component: TimeBarComponent },
-  { path: '**', redirectTo: '/login' }, // Redirect any unknown routes to login
+  { path: '**', redirectTo: 'login' }, // Redirect any unknown routes to login
 ];
 
 @NgModule({

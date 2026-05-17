@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-status-list',
   templateUrl: './status-list.component.html',
-  styleUrl: './status-list.component.css'
+  styleUrl: './status-list.component.css',
+  standalone: false
 })
 export class StatusListComponent implements OnInit{
   statuses: Status[] = []; // Array to hold list of statuses
