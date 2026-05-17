@@ -29,7 +29,7 @@
                 autofocus
                 (input)="validateInput('username')"
               />
-              <i class="fas" [ngClass]="{'fa-check-circle text:success' : usernameValid, 'fa-times-circle text-danger': !usernameValid}"></i>
+              <i class="fas" [ngClass]="{'fa-check-circle text-success' : usernameValid, 'fa-times-circle text-danger': !usernameValid}"></i>
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@
                 required
                 (input)="validateInput('password')"
               />
-              <i class="fas" [ngClass]="{'fa-check-circle text:success' : passwordValid, 'fa-times-circle text-danger': !passwordValid}"></i>
+              <i class="fas" [ngClass]="{'fa-check-circle text-success' : passwordValid, 'fa-times-circle text-danger': !passwordValid}"></i>
               </div>
             </div>
           </div>
