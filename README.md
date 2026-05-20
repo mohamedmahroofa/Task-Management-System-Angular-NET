@@ -1,6 +1,6 @@
 # Task Management System
 
-🔗 **Live Site:** [https://task-management-capstone.netlify.app](https://task-management-capstone.netlify.app) (Temprorarily unavailable while hosting is being updated.)
+🔗 **Live Site:** [https://task-management-capstone.netlify.app](https://task-management-capstone.netlify.app) (Temporarily unavailable while hosting is being updated)
 
 A full-stack task management web application designed to help teams organize workflows, manage task allocation, and track project progress. This project was developed as a capstone project using Angular 17 for the frontend and ASP.NET Core 8 Web API for the backend.
 
